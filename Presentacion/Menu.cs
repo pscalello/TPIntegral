@@ -372,7 +372,7 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
                 apellido = Utils.PedirPalabra("Ingrese Apellido del Usuario:\n");
                 direccion = Utils.PedirPalabra("Ingrese Direccion del Usuario:\n");
                 telefono = Utils.PedirPalabra("Ingrese Teléfono del Usuario:\n");
-                email = Utils.PedirPalabra("Ingrese Email del Usuario:\n");
+                email = Utils.PedirEmail("Ingrese Email del Usuario:\n");
 
                 // mínimo y máximo de fechas establecidos de acuerdo a criterio nuestro para integridad:
                 // el alta no puede ser anterior a 1990 ni posterior a 2024 (suponiendo carga de futuros ingresos)
