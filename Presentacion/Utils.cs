@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Presentacion
 {
-    internal class Class1
+    internal class Utils
     {
     }
 }

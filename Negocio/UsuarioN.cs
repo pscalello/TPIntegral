@@ -1,6 +1,6 @@
 ﻿namespace Negocio
 {
-    public class Usuario
+    public class UsuarioN
     {
 
     }
