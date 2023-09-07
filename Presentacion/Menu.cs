@@ -78,22 +78,21 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
         }
 
         //***************************************************************************************************************************** 
-        //                                                  PANTALLA LOGIN                                                           //
+        //                                       PANTALLAS LOGIN                                                                     //
         //*****************************************************************************************************************************
 
 
         static void PantallaLogin()
         {
             bool salir = false;
-            int hostUsuario, intentos = 1;
+            int hostUsuario=0, intentos = 1;
             UsuarioN UsuarioNuevo = new UsuarioN();
+            string NombreUsuario="", password="";
 
             while (!salir)
             {
                 Console.Clear();
                 Console.WriteLine("TP INTEGRAL CAI 2 - LOGIN \n");
-
-                string NombreUsuario, password;
 
                 NombreUsuario = Utils.PedirPalabra("Ingrese su nombre de usuario:\n");
                 password = Utils.PedirPalabra("Ingrese su password:\n");
@@ -103,33 +102,81 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
 
                 hostUsuario = UsuarioNuevo.AutenticarUsuario(NombreUsuario, password, intentos);
 
-                switch (hostUsuario)
+                if (hostUsuario == 0)
                 {
+                    Console.WriteLine("Nombre de Usuario o Password incorrecto. Inténtelo nuevamente.");
+                    Console.ReadKey();
+                    intentos += 1;
+                }
+                else
+                {
+                    salir = true;
+                }
+            }
+
+            switch (hostUsuario)
+            {
+                    case -2:
+                        Console.WriteLine("Por favor, cambie su contraseña. Presione una tecla para continuar");
+                        Console.ReadKey();
+                        salir = true;
+                        CambioContraseña(NombreUsuario, password);
+                        break;
                     case -1:
                         Console.WriteLine("Se agotaron sus intentos, comuníquese con un administrador. Presione cualquier tecla para continuar");
                         Console.ReadKey();
-                        salir = true;
-                        break;
-                    case 0:
-                        Console.WriteLine("Nombre de Usuario o Password incorrecto. Inténtelo nuevamente.");
-                        Console.ReadKey();
-                        intentos += 1;
                         break;
                     case 1:
                         MenuAdministrador();
-                        salir = true;
                         break;
                     case 2:
                         MenuSupervisor();
-                        salir = true;
                         break;
                     case 3:
                         MenuVendedor();
-                        salir = true;
                         break;
+            }
+        }
+
+
+        //***************************************************************************************************************************** 
+        //                                       PANTALLAS CAMBIO DE CONTRASEÑA                                                      //
+        //*****************************************************************************************************************************
+
+
+        static void CambioContraseña (string nombreUsuario, string password)
+        {
+            bool salir = false;
+            string nuevoPassword;
+            UsuarioN UsuarioNuevo = new UsuarioN();
+
+            while (!salir)
+            {
+                Console.Clear();
+                Console.WriteLine("TP INTEGRAL CAI 2 - CAMBIO DE CONTRASEÑA \n");
+
+
+                nuevoPassword = Utils.PedirPalabra("Ingrese su nueva contraseña (De entre 8 y 15 carácteres, una mayúscula y un número,\n +" +
+                                                    "distinta a la anterior y a la que recibió para el primer logueo.\n");
+
+                if (UsuarioNuevo.CambioContraseña(nombreUsuario, nuevoPassword) == true)
+                {
+                    Console.WriteLine("Contraseña modificada con éxito! Presione cualquier tecla para volver a loguearse");
+                    Console.ReadKey();
+                    salir = true;
+                }
+                else
+                {
+                    Console.WriteLine("No puede usar esa contraseña, presione una tecla para volver a intentarlo.");
+                    Console.ReadKey();
                 }
             }
         }
+
+
+
+
+
 
         //***************************************************************************************************************************** 
         //                                                  REGISTRO CLIENTES                                                        //

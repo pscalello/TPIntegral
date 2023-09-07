@@ -13,7 +13,10 @@ namespace Negocio
         public static List<UsuarioE> Usuarios = new List<UsuarioE>();
 
 
-        // METODO QUE RECIBE DE PRESENTACION LOS DATOS DE UN USUARIO, HACE VALIDACIONES DE NEGOCIO Y LO CREA
+        //***************************************************************************************************************************** 
+        //                                             CREACION DE USUARIO                                                           //
+        //*****************************************************************************************************************************
+
 
         public bool CrearUsuario(string nombre, string apellido, string direccion, string telefono,
                                     string email, DateTime fechaAltaEmpresa, DateTime fechaNacimiento,
@@ -27,7 +30,7 @@ namespace Negocio
 
             UsuarioE UsuarioNuevo = null;
 
-            if (ValidarNombreUsuario(usuario, nombre, apellido)) // Incluir otras reglas con AND en el if en caso de ser necesarios
+            if (ValidarNombreUsuario(usuario, nombre, apellido)) 
 
             {
                 // Al crear un usuario, debe permanecesr inactivo (fecha de baja no null) y con una contraseña genérica hasta primer ingreso:
@@ -42,6 +45,11 @@ namespace Negocio
             }
             return false; //En caso que no pase las validaciones, le informa a PRESENTACION que el alta no fue realizada
         }
+
+
+        //***************************************************************************************************************************** 
+        //                                             CONSULTA DE USUARIO                                                           //
+        //*****************************************************************************************************************************
 
 
         // METODO QUE CONSULTA USUARIOS EN BASE A UNA PETICION
@@ -88,12 +96,17 @@ namespace Negocio
         }
 
 
+        //***************************************************************************************************************************** 
+        //                                             AUTENTICACIÓN DE USUARIO                                                       //
+        //*****************************************************************************************************************************
+
         public int AutenticarUsuario(string usuario, string Contraseña, int intentos)
         {
 
             // Recorrer la lista de usuarios y verificar las credenciales
             // Esta función puede devolver 1, 2 o 3 (ADMIN, SUPERVISOR O VENDEDOR), o
             // 0 (usuario o pass incorrecto) o -1 (probó más de 3 veces, pasa a incactivo)
+            // Devolverá -2 cuándo haga falta modificar la contraseña
 
             if (intentos == 3) // Si intento 3 veces y encuentra el nombre de usuario (puede estar ingresando cosas inexistentes), cambiar el estado y devolver -1
             {
@@ -111,14 +124,69 @@ namespace Negocio
             {
                 if (usuarioEnLista.Usuario == usuario && usuarioEnLista.Contraseña == Contraseña)
                 {
-                    // Autenticación exitosa, devuelve valor de host para armar menu: 1 ADMIN, 2 SUPERVISOR, 3 VENDEDOR
-                    return usuarioEnLista.Host;
+                    // Si el usuario y la contraseña son correctos, valida si hace falta cambio de contraseña.
+                    // Los supuestos de cambio de contraseña son 2:
+                    // 1) Cuándo es primer ingreso (pass = CAI20232 y fecha de baja no nula)
+                    // 2) Cuándo expira la contraseña (30 días después de la fecha de alta)
+                    // En ambos casos la función devuelve un -2 para mostrar menú de cambio
+
+                    DateTime fechaTope = usuarioEnLista.FechaAlta.AddDays(30);
+                    if ((usuarioEnLista.Contraseña == "CAI20232" && usuarioEnLista.FechaBaja != null) || fechaTope >= DateTime.Now)
+                    {
+                        return -2;
+                    }
+                    else
+                    {
+                        // Autenticación exitosa, devuelve valor de host para armar menu: 1 ADMIN, 2 SUPERVISOR, 3 VENDEDOR
+                        return usuarioEnLista.Host;
+                    }
                 }
             }
 
             // Si no se encuentra el usuario o las credenciales no coinciden, devolver 0
             return 0;
         }
+
+
+        //***************************************************************************************************************************** 
+        //                                             CAMBIO DE CONTRASEÑA                                                          //
+        //*****************************************************************************************************************************
+
+        public bool CambioContraseña(string usuario, string nuevaContraseña)
+        {
+            UsuarioE UsuarioNuevo = null;
+
+            // Valida que la contraseña no sea igual a la anterior, ni igual a la default, que tenga entre 8
+            // y 15 caracteres y que tenga una mayúscula y un número
+
+
+            foreach (var usuarioEnLista in Usuarios)
+            {
+                if (usuarioEnLista.Usuario == usuario)
+                {
+                    if (nuevaContraseña != usuarioEnLista.Contraseña &&
+                        nuevaContraseña != "CAI20232" &&
+                        nuevaContraseña.Length >= 8 && nuevaContraseña.Length <= 15 &&
+                        nuevaContraseña.Any(char.IsUpper) && nuevaContraseña.Any(char.IsDigit))
+                    {
+                        // Si todas las validaciones pasan, actualiza la contraseña del usuario
+                        usuarioEnLista.SetContraseña(nuevaContraseña);
+                        return true;
+                    }
+                }
+            }
+
+            // Si no retornó verdadero, no comprobó reglas de negocio y no actualiza contraseña, devuelve falso
+
+            return false;
+
+        }
+
+
+
+
+
+
 
 
         // CAMBIA ESTADO ACTIVO O INACTIVO EN BASE A UN GUID Y EL ESTADO DESEADO
@@ -159,8 +227,18 @@ namespace Negocio
             {
                 return false; // Contiene el nombre o apellido del usuario
             }
+
+            foreach (var usuarioEnLista in Usuarios)
+            {
+                if (usuarioEnLista.Usuario == usuario) 
+                {
+                    return false; ; // Nombre de usuario repetido
+                }
+            }
+
             return true; // Cumple con todas las condiciones
         }
+
         private bool NoRepeticionUsuario(UsuarioE usuario)
         {
             // Verificar si el nombre de usuario ya existe en la lista
@@ -173,7 +251,6 @@ namespace Negocio
             {
                 return true; // Nombre de usuario único
             }
-
         }
 
     }

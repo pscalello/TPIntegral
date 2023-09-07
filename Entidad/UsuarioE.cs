@@ -50,6 +50,10 @@ namespace Entidad
             FechaBaja = fecha;
         }
 
+        public void SetContraseña(string contraseña)
+        {
+            Contraseña = contraseña;
+        }
 
     }
 
