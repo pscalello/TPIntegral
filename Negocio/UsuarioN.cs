@@ -23,14 +23,12 @@ namespace Negocio
 
             // VALIDACIONES DE USUARIO DE ACUERDO A REGLAS DE NEGOCIO ANTES DE INSERTAR
 
+
+
             UsuarioE UsuarioNuevo = null;
 
-<<<<<<< HEAD
-            if (ValidarNombreUsuario(usuario, nombre, apellido) && (NoRepeticionUsuario(usuario)))// Incluir otras reglas con AND en el if en caso de ser necesarios
-=======
             if (ValidarNombreUsuario(usuario, nombre, apellido)) // Incluir otras reglas con AND en el if en caso de ser necesarios
 
->>>>>>> 0a55467703b59aa9ab2474c828b93d9d68ed4614
             {
                 // Al crear un usuario, debe permanecesr inactivo (fecha de baja no null) y con una contraseña genérica hasta primer ingreso:
                 DateTime fechaBaja = DateTime.Now;
