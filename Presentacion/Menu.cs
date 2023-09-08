@@ -15,21 +15,21 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
         {
             UsuarioN UsuarioNuevo = new UsuarioN();
 
-            // Hardcodeo de 3 usuarios: un Administrador, un supervisor y un endedor
+            // Hardcodeo de 3 usuarios: un Administrador, un supervisor y un vendedor
 
             //ADMINISTRADOR: Se instancia la entidad para que esté ACTIVO y con Pasword no genérica
             // Creación persistente de administrador
-            UsuarioE Administrador = new UsuarioE("SOFIA", "GONZALEZ", "Rivadavia 333", "4444-5555", "admin@gmail.com", new DateTime(2023, 1, 1),
-                                           new DateTime(2000, 6, 15), new DateTime(2023, 8, 1), "Administrador", 1, 40222888, "Admin1234");
+            UsuarioE Administrador = new UsuarioE("SOFIA", "GONZALEZ", "Rivadavia 333", "4444-5555", "admin@gmail.com", new DateTime(2023, 9, 1),
+                                           new DateTime(2000, 6, 15), new DateTime(2023, 10, 1), "Administrador", 1, 40222888, "Admin1234");
             UsuarioN.Usuarios.Add(Administrador);
 
 
-            //SUPERVISOR: Se usa método "CearUsuario" de "NEGOCIO" para ponerlo inactivo y con clave genérica
+            //SUPERVISOR: Se usa método "CrearUsuario" de "NEGOCIO" para ponerlo inactivo y con clave genérica
             UsuarioNuevo.CrearUsuario("JUAN", "RAMIREZ", "Rivadavia 333", "8888-6666", "supervisor@gmail.com", new DateTime(2023, 1, 1),
                                        new DateTime(2005, 7, 15), "Supervisor", 2, 30252997);
 
 
-            //VENDEDOR: Se usa método "CearUsuario" de "NEGOCIO" para ponerlo inactivo y con clave genérica
+            //VENDEDOR: Se usa método "CrearUsuario" de "NEGOCIO" para ponerlo inactivo y con clave genérica
             UsuarioNuevo.CrearUsuario("ROBERTO", "CARRIZO", "Rivadavia 333", "9999-5555", "vendedor@gmail.com", new DateTime(2023, 1, 1),
                            new DateTime(2003, 9, 8), "Vendedor", 3, 40222333);
 
@@ -121,6 +121,7 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
                         Console.ReadKey();
                         salir = true;
                         CambioContraseña(NombreUsuario, password);
+                        //Aca deberiamos agregar algo para que el -2 cambie y n vuelva
                         break;
                     case -1:
                         Console.WriteLine("Se agotaron sus intentos, comuníquese con un administrador. Presione cualquier tecla para continuar");
@@ -456,7 +457,7 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
                 else
                 {
                     Console.WriteLine("Error en los tipos de datos\n" +
-                                      "Por favor, verifique que el usuario no contenga nombre y/o apellido de la persona a registrar.\n " +
+                                      "Por favor, el usuario no cumple con las reglas de negocio o ya está en uso.\n " +
                                       "Presione una tecla para continuar.");
                     Console.ReadKey();
                 }
