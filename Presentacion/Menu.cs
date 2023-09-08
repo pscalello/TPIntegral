@@ -427,7 +427,7 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
                 fechaAlta = Utils.PedirFechaEntre(new DateTime(1990, 1, 1), new DateTime(2024, 1, 1), "Ingrese la fecha de Alta (formato: YYYY-MM-DD):\n");
                 fechaNacimiento = Utils.PedirFechaEntre(new DateTime(1930, 1, 1), new DateTime(2010, 1, 1), "Ingrese la fecha de Nacimiento (formato: YYYY-MM-DD):\n");
 
-                nombreUsuario = Utils.PedirPalabra("Ingrese nombre de usuario:\n");
+                nombreUsuario = Utils.PedirUsuario("Ingrese nombre de usuario:\n", nombre, apellido);
                 host = Utils.PedirEntre(1, 2, "Ingrese Perfil (1:Supervisor / 2: Vendedor):\n");
                 dni = Utils.PedirEntre(1000000, 99999999, "Ingrese DNI:\n");
 

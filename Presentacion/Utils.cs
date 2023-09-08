@@ -99,5 +99,53 @@ namespace Presentacion
 
                 return email;
             }
+        
+
+            public static string PedirUsuario(string mensaje, string nombre, string apellido)
+            {
+                Console.WriteLine(mensaje);
+                string usuario;
+                bool isValid = false;
+
+
+            do
+            {
+                usuario = Console.ReadLine();
+
+                // El nombre de usuario debe de tener entre 8 y 15 caracteres
+                if (usuario.Length < 8 || usuario.Length > 15)
+                {
+                    Console.WriteLine("El usuario debe tener entre 8 y 15 caracteres. Vuelva a intentar."); // Fuera del rango de caracteres permitidos
+                }
+                // El nombre de usuario no puede contener ni el nombre ni el apellido del usuario 
+                else if (usuario.ToUpper().Contains(nombre.ToUpper()) || usuario.ToUpper().Contains(apellido.ToUpper()))
+                {
+                    Console.WriteLine("El usuario no puede contener el nombre y/o apellido. Vuelva a intentar."); // Contiene el nombre o apellido del usuario
+                }
+                else
+                {
+                    isValid = true;
+                }
+
+                // faltaria agregar la validacion de que el usuario no exista
+                /* foreach (var usuarioEnLista in Usuarios)
+                 {
+                     if (usuarioEnLista.Usuario == usuario)
+                     {
+                         return false; ; // Nombre de usuario repetido
+                     }
+                 }
+
+                 */
+
+
+            } while (isValid == false);
+
+
+
+                return usuario;
+
+            }
+
         }
-    }
+}
