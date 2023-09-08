@@ -100,14 +100,15 @@ namespace Presentacion
                 return email;
             }
         
-
+            /*no va acá**************************************************************************************************
+             
             public static string PedirUsuario(string mensaje, string nombre, string apellido)
             {
                 Console.WriteLine(mensaje);
                 string usuario;
                 bool isValid = false;
 
-
+            
             do
             {
                 usuario = Console.ReadLine();
@@ -128,7 +129,8 @@ namespace Presentacion
                 }
 
                 // faltaria agregar la validacion de que el usuario no exista
-                /* foreach (var usuarioEnLista in Usuarios)
+
+                foreach (var usuarioEnLista in Usuarios)
                  {
                      if (usuarioEnLista.Usuario == usuario)
                      {
@@ -136,7 +138,7 @@ namespace Presentacion
                      }
                  }
 
-                 */
+             
 
 
             } while (isValid == false);
@@ -147,5 +149,6 @@ namespace Presentacion
 
             }
 
+            */
         }
 }
