@@ -17,6 +17,7 @@ namespace Entidad
         public int Host { get; private set; }
         public int DNI { get; private set; }
         public string Contraseña { get; private set; }
+        public DateTime UltimaActualizacionContraseña { get; private set; }
 
         // Constructor vacío
         public UsuarioE()
@@ -42,6 +43,7 @@ namespace Entidad
             Host = host;
             DNI = dni;
             Contraseña = contraseña;
+            UltimaActualizacionContraseña = FechaAlta;
         }
 
         // Modificacion de atrubutos
@@ -53,6 +55,11 @@ namespace Entidad
         public void SetContraseña(string contraseña)
         {
             Contraseña = contraseña;
+        }
+
+        public void SetUltimaActualizacionContraseña(DateTime fecha)
+        {
+            UltimaActualizacionContraseña = fecha;
         }
 
     }

@@ -116,26 +116,26 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
 
             switch (hostUsuario)
             {
-                    case -2:
-                        Console.WriteLine("Por favor, cambie su contraseña. Presione una tecla para continuar");
-                        Console.ReadKey();
-                        salir = true;
-                        CambioContraseña(NombreUsuario, password);
-                        //Aca deberiamos agregar algo para que el -2 cambie y n vuelva
-                        break;
-                    case -1:
-                        Console.WriteLine("Se agotaron sus intentos, comuníquese con un administrador. Presione cualquier tecla para continuar");
-                        Console.ReadKey();
-                        break;
-                    case 1:
-                        MenuAdministrador();
-                        break;
-                    case 2:
-                        MenuSupervisor();
-                        break;
-                    case 3:
-                        MenuVendedor();
-                        break;
+                case -2:
+                    Console.WriteLine("Por favor, cambie su contraseña. Presione una tecla para continuar");
+                    Console.ReadKey();
+                    salir = true;
+                    CambioContraseña(NombreUsuario, password);
+                    //Aca deberiamos agregar algo para que el -2 cambie y n vuelva
+                    break;
+                case -1:
+                    Console.WriteLine("Se agotaron sus intentos, comuníquese con un administrador. Presione cualquier tecla para continuar");
+                    Console.ReadKey();
+                    break;
+                case 1:
+                    MenuAdministrador();
+                    break;
+                case 2:
+                    MenuSupervisor();
+                    break;
+                case 3:
+                    MenuVendedor();
+                    break;
             }
         }
 
@@ -318,7 +318,6 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
                 switch (OpcionMenu)
                 {
                     case 0:
-                        MenuPrincipal();
                         salir = true;
                         break;
                     case 1:
@@ -367,7 +366,6 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
                 switch (OpcionMenu)
                 {
                     case 0:
-                        MenuPrincipal();
                         salir = true;
                         break;
                     case 1:

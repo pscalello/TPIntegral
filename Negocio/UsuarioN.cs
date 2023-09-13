@@ -125,12 +125,12 @@ namespace Negocio
                 if (usuarioEnLista.Usuario == usuario && usuarioEnLista.Contraseña == Contraseña)
                 {
                     // Si el usuario y la contraseña son correctos, valida si hace falta cambio de contraseña.
-                    // Los supuestos de cambio de contraseña son 2:
+                    // Los supuestos de cambio de contraseña son 2:usu
                     // 1) Cuándo es primer ingreso (pass = CAI20232 y fecha de baja no nula)
                     // 2) Cuándo expira la contraseña (30 días después de la fecha de alta)
                     // En ambos casos la función devuelve un -2 para mostrar menú de cambio
 
-                    DateTime fechaTope = usuarioEnLista.FechaAlta.AddDays(30);
+                    DateTime fechaTope = usuarioEnLista.UltimaActualizacionContraseña.AddDays(30);
                     if ((usuarioEnLista.Contraseña == "CAI20232" && usuarioEnLista.FechaBaja != null) || fechaTope <= DateTime.Now)
                     {
                         return -2;
@@ -171,6 +171,7 @@ namespace Negocio
                     {
                         // Si todas las validaciones pasan, actualiza la contraseña del usuario
                         usuarioEnLista.SetContraseña(nuevaContraseña);
+                        usuarioEnLista.SetUltimaActualizacionContraseña(DateTime.Now);
                         return true;
                     }
                 }
