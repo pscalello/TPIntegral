@@ -246,7 +246,6 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
                 switch (OpcionMenu)
                 {
                     case 0:
-                        MenuPrincipal();
                         salir = true;
                         break;
                     case 1:
