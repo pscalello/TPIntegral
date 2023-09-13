@@ -429,6 +429,11 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
                 fechaNacimiento = Utils.PedirFechaEntre(new DateTime(1930, 1, 1), new DateTime(2010, 1, 1), "Ingrese la fecha de Nacimiento (formato: YYYY-MM-DD):\n");
 
                 nombreUsuario = Utils.PedirPalabra("Ingrese nombre de usuario:\n");
+                while (UsuarioN.ValidarNombreUsuario(nombreUsuario, nombre, apellido) == false)
+                {
+                    nombreUsuario = Utils.PedirPalabra("El nombre de usuario ingresado ya existe o no cumple con las siguientes condiciones:" +
+                        " debe de tener entre 8 y 15 caracteres y no puede contener ni el nombre ni el apellido del usuario. Ingrese un nuevo nombre de usuario:\n");
+                }
                 host = Utils.PedirEntre(1, 2, "Ingrese Perfil (1:Supervisor / 2: Vendedor):\n");
                 dni = Utils.PedirEntre(1000000, 99999999, "Ingrese DNI:\n");
 

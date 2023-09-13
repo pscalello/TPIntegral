@@ -215,7 +215,7 @@ namespace Negocio
         // VALIDACIONES DE NEGOCIO
 
         // Valida Nombre de Usuario
-        private bool ValidarNombreUsuario(string usuario, string nombre, string apellido)
+        public static bool ValidarNombreUsuario(string usuario, string nombre, string apellido)
         {
             // El nombre de usuario debe de tener entre 8 y 15 caracteres
             if (usuario.Length < 8 || usuario.Length > 15)
