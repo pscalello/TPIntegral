@@ -252,10 +252,10 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
                         AltaUsuarios();
                         break;
                     case 2:
-                        //PantallaRegistroClientes();
+                        OpcionNoHabilitada();
                         break;
                     case 3:
-                        //salir = true;
+                        OpcionNoHabilitada();
                         break;
                     case 4:
                         ConsultaUsuarios();
@@ -272,10 +272,7 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
                     case 12:
                     case 13:
                     case 14:
-                        Console.WriteLine("Estas opciones estarán habilitadas en futuras versiones. Presione cualquier tecla para continuar.");
-                        Console.ReadKey();
-                        //MenuPrincipal();
-                        //salir = true;
+                        OpcionNoHabilitada();
                         break;
                 }
             }
@@ -328,10 +325,7 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
                     case 6:
                     case 7:
                     case 8:
-                        Console.WriteLine("Estas opciones estarán habilitadas en futuras versiones. Presione cualquier tecla para continuar.");
-                        Console.ReadKey();
-                        MenuPrincipal();
-                        salir = true;
+                        OpcionNoHabilitada();
                         break;
 
                 }
@@ -370,10 +364,7 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
                         break;
                     case 1:
                     case 2:
-                        Console.WriteLine("Estas opciones estarán habilitadas en futuras versiones. Presione cualquier tecla para continuar.");
-                        Console.ReadKey();
-                        MenuPrincipal();
-                        salir = true;
+                        OpcionNoHabilitada();
                         break;
 
                 }
@@ -495,7 +486,6 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
                 switch (OpcionMenu)
                 {
                     case 0:
-                        MenuPrincipal();
                         salir = true;
                         break;
                     case 1:
@@ -510,33 +500,46 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
                         break;
                 }
 
-                if (consultausuarios.Count == 0)
+                if (!salir)
                 {
-                    Console.WriteLine("No hay datos para mostrar.");
-                }
-                else
-                {
-                    foreach (UsuarioE usuario in consultausuarios)
+                    if (consultausuarios.Count == 0)
                     {
-                        Console.WriteLine($"ID: {usuario.Id}");
-                        Console.WriteLine($"Nombre: {usuario.Nombre}");
-                        Console.WriteLine($"Apellido: {usuario.Apellido}");
-                        //// Agrega más propiedades según tu objeto UsuarioE
-                        Console.WriteLine();
+                        Console.WriteLine("No hay datos para mostrar.");
+                    }
+                    else
+                    {
+                        foreach (UsuarioE usuario in consultausuarios)
+                        {
+                            Console.WriteLine($"ID: {usuario.Id}");
+                            Console.WriteLine($"Nombre: {usuario.Nombre}");
+                            Console.WriteLine($"Apellido: {usuario.Apellido}");
+                            //// Agrega más propiedades según tu objeto UsuarioE
+                            Console.WriteLine();
+                        }
+                    }
+
+
+                    Console.WriteLine("\n\nFin del listado.\n");
+                    Console.WriteLine("Desea realizar otra consulta? (1:Si / 2:No)\n");
+                    OpcionMenu = Utils.PedirEntre(1, 2, ""); // hasta que no ingresa un nro de 1 a 2, error
+
+                    if (OpcionMenu == 2)
+                    {
+                        salir = true;
                     }
                 }
-
-
-                Console.WriteLine("\n\nFin del listado.\n");
-                Console.WriteLine("Desea realizar otra consulta? (1:Si / 2:No)\n");
-                OpcionMenu = Utils.PedirEntre(1, 2, ""); // hasta que no ingresa un nro de 1 a 2, error
-
-                if (OpcionMenu == 2)
-                {
-                    salir = true;
-                }
-
             }
+        }
+
+        //***************************************************************************************************************************** 
+        //***************************************************************************************************************************** 
+        //                                             FUNCIONES REUTILIZABLES                                                       //
+        //***************************************************************************************************************************** 
+        //***************************************************************************************************************************** 
+        static void OpcionNoHabilitada()
+        {
+            Console.WriteLine("Estas opciones estarán habilitadas en futuras versiones. Presione cualquier tecla para continuar.");
+            Console.ReadKey();
         }
 
 
