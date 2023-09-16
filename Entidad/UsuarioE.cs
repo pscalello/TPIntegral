@@ -2,20 +2,16 @@
 
 namespace Entidad
 {
-    public class UsuarioE
+    public class UsuarioE : PersonaE
     {
         public Guid Id { get; private set; }
-        public string Nombre { get; private set; }
-        public string Apellido { get; private set; }
         public string Direccion { get; private set; }
         public string Telefono { get; private set; }
         public string Email { get; private set; }
         public DateTime FechaAlta { get; private set; }
-        public DateTime FechaNacimiento { get; private set; }
         public DateTime? FechaBaja { get; private set; }
         public string Usuario { get; private set; }
         public int Host { get; private set; }
-        public int DNI { get; private set; }
         public string Contraseña { get; private set; }
         public DateTime UltimaActualizacionContraseña { get; private set; }
 
