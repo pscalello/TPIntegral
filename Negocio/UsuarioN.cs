@@ -183,27 +183,27 @@ namespace Negocio
 
         }
 
-        public void DarUsuariodeBaja(List<UsuarioE> listaUsuarios, string nombreUsuario)
+        public bool DarUsuariodeBaja(string nombreUsuario)
         {
             UsuarioE usuarioADarDeBaja = null;
 
-            for (int i = 0; i < listaUsuarios.Count; i++)
+            for (int i = 0; i < Usuarios.Count; i++)
             {
-                if (listaUsuarios[i].NombreUsuario == nombreUsuario)
+                if (Usuarios[i].Usuario == nombreUsuario)
                 {
-                    usuarioADarDeBaja = listaUsuarios[i];
+                    usuarioADarDeBaja = Usuarios[i];
+                    Usuarios.Remove(usuarioADarDeBaja);
                     break;
                 }
             }
 
             if (usuarioADarDeBaja != null)
             {
-                listaUsuarios.Remove(usuarioADarDeBaja);
-                Console.WriteLine($"El usuario {nombreUsuario} ha sido dado de baja.");
+                return true;
             }
             else
             {
-                Console.WriteLine($"No se encontró un usuario con el nombre de usuario {nombreUsuario}.");
+                return false;
             }
         }
 
@@ -245,7 +245,7 @@ namespace Negocio
         // VALIDACIONES DE NEGOCIO
 
         // Valida Nombre de Usuario
-        private bool ValidarNombreUsuario(string usuario, string nombre, string apellido)
+        public bool ValidarNombreUsuario(string usuario, string nombre, string apellido)
         {
             // El nombre de usuario debe de tener entre 8 y 15 caracteres
             if (usuario.Length < 8 || usuario.Length > 15)

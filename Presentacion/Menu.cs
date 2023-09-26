@@ -85,9 +85,9 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
         static void PantallaLogin()
         {
             bool salir = false;
-            int hostUsuario=0, intentos = 1;
+            int hostUsuario = 0, intentos = 1;
             UsuarioN UsuarioNuevo = new UsuarioN();
-            string NombreUsuario="", password="";
+            string NombreUsuario = "", password = "";
 
             while (!salir)
             {
@@ -145,7 +145,7 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
         //*****************************************************************************************************************************
 
 
-        static void CambioContraseña (string nombreUsuario, string password)
+        static void CambioContraseña(string nombreUsuario, string password)
         {
             bool salir = false;
             string nuevoPassword;
@@ -252,10 +252,10 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
                         AltaUsuarios();
                         break;
                     case 2:
-                        Menu.DardeBajaUsuario();
+                        OpcionNoHabilitada();
                         break;
                     case 3:
-                        OpcionNoHabilitada();
+                        DardeBajaUsuario();
                         break;
                     case 4:
                         ConsultaUsuarios();
@@ -417,7 +417,7 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
                 fechaNacimiento = Utils.PedirFechaEntre(new DateTime(1930, 1, 1), new DateTime(2010, 1, 1), "Ingrese la fecha de Nacimiento (formato: YYYY-MM-DD):\n");
 
                 nombreUsuario = Utils.PedirPalabra("Ingrese nombre de usuario:\n");
-                while (UsuarioN.ValidarNombreUsuario(nombreUsuario, nombre, apellido) == false)
+                while (UsuarioNuevo.ValidarNombreUsuario(nombreUsuario, nombre, apellido) == false)
                 {
                     nombreUsuario = Utils.PedirPalabra("El nombre de usuario ingresado ya existe o no cumple con las siguientes condiciones:" +
                         " debe de tener entre 8 y 15 caracteres y no puede contener ni el nombre ni el apellido del usuario. Ingrese un nuevo nombre de usuario:\n");
@@ -537,10 +537,30 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
 
         static void DardeBajaUsuario()
         {
-            string nombreUsuario = Utils.PedirPalabra("Ingrese nombre de usuario que desea dar de baja:\\n");
+            string nombreUsuario = null;
+            UsuarioN usuarioBaja = new UsuarioN();
+            bool salir = false;
+            //int OpcionMenu, id = 0;
+            //UsuarioN UsuarioNNuevo = new UsuarioN();
+            while (!salir)
+            {
+                Console.Clear();
+                nombreUsuario = Utils.PedirPalabra("Ingrese nombre de usuario que desea dar de baja:\\n");
 
-            // Llama al método para dar de baja al usuario en la misma capa (no necesitas un gestor de usuarios separado).
-            UsuarioN.DarUsuariodeBaja(Usuarios, nombreUsuario);
+                // Llama al método para dar de baja al usuario en la misma capa (no necesitas un gestor de usuarios separado).
+                if (usuarioBaja.DarUsuariodeBaja(nombreUsuario) == true)
+                {
+                    Console.WriteLine("Usuario dado de baja de manera exitosa:\\n");
+                    salir = true;
+                }
+                else
+                {
+                    Console.WriteLine("Error en la baja del usuario. Presione una tecla para continuar:\\n");
+                    Console.ReadKey();
+                    salir = true;
+                }
+
+            }
         }
 
 
@@ -549,22 +569,22 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
 
 
 
+            //***************************************************************************************************************************** 
+            //***************************************************************************************************************************** 
+            //                                             FUNCIONES REUTILIZABLES                                                       //
+            //***************************************************************************************************************************** 
+            //***************************************************************************************************************************** 
+            static void OpcionNoHabilitada()
+            {
+                Console.WriteLine("Estas opciones estarán habilitadas en futuras versiones. Presione cualquier tecla para continuar.");
+                Console.ReadKey();
+            }
 
-        //***************************************************************************************************************************** 
-        //***************************************************************************************************************************** 
-        //                                             FUNCIONES REUTILIZABLES                                                       //
-        //***************************************************************************************************************************** 
-        //***************************************************************************************************************************** 
-        static void OpcionNoHabilitada()
-        {
-            Console.WriteLine("Estas opciones estarán habilitadas en futuras versiones. Presione cualquier tecla para continuar.");
-            Console.ReadKey();
+
+            //***************************************************************************************************************************** 
+            //                    FIN - NO INSERTAR NADA DEBAJO DE ESTE COMENTARIO                                                       //
+            //*****************************************************************************************************************************
         }
-
-
-        //***************************************************************************************************************************** 
-        //                    FIN - NO INSERTAR NADA DEBAJO DE ESTE COMENTARIO                                                       //
-        //*****************************************************************************************************************************
     }
-}
+
 
