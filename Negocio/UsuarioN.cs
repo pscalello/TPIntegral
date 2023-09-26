@@ -132,7 +132,7 @@ namespace Negocio
                     // En ambos casos la función devuelve un -2 para mostrar menú de cambio
 
                     DateTime fechaTope = usuarioEnLista.FechaAlta.AddDays(30);
-                    if ((usuarioEnLista.Contraseña == "CAI20232" && usuarioEnLista.FechaBaja != null) || fechaTope >= DateTime.Now)
+                    if ((usuarioEnLista.Contraseña == "CAI20232" && usuarioEnLista.FechaBaja != null) )//|| fechaTope >= DateTime.Now)
                     {
                         return -2;
                     }

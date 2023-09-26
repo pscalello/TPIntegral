@@ -545,17 +545,18 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
             while (!salir)
             {
                 Console.Clear();
-                nombreUsuario = Utils.PedirPalabra("Ingrese nombre de usuario que desea dar de baja:\\n");
+                nombreUsuario = Utils.PedirPalabra("Ingrese nombre de usuario que desea dar de baja:\n");
 
                 // Llama al método para dar de baja al usuario en la misma capa (no necesitas un gestor de usuarios separado).
                 if (usuarioBaja.DarUsuariodeBaja(nombreUsuario) == true)
                 {
-                    Console.WriteLine("Usuario dado de baja de manera exitosa:\\n");
+                    Console.WriteLine("Usuario dado de baja de manera exitosa. Presione una tecla para continuar\n");
+                    Console.ReadKey();
                     salir = true;
                 }
                 else
                 {
-                    Console.WriteLine("Error en la baja del usuario. Presione una tecla para continuar:\\n");
+                    Console.WriteLine("Error en la baja del usuario. Presione una tecla para continuar\n");
                     Console.ReadKey();
                     salir = true;
                 }
