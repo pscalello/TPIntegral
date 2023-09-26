@@ -252,7 +252,7 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
                         AltaUsuarios();
                         break;
                     case 2:
-                        OpcionNoHabilitada();
+                        Menu.DardeBajaUsuario();
                         break;
                     case 3:
                         OpcionNoHabilitada();
@@ -530,6 +530,25 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
                 }
             }
         }
+
+        //***************************************************************************************************************************** 
+        //                                                  BAJA USUARIOS                                                           //
+        //*****************************************************************************************************************************
+
+        static void DardeBajaUsuario()
+        {
+            string nombreUsuario = Utils.PedirPalabra("Ingrese nombre de usuario que desea dar de baja:\\n");
+
+            // Llama al método para dar de baja al usuario en la misma capa (no necesitas un gestor de usuarios separado).
+            UsuarioN.DarUsuariodeBaja(Usuarios, nombreUsuario);
+        }
+
+
+
+
+
+
+
 
         //***************************************************************************************************************************** 
         //***************************************************************************************************************************** 
