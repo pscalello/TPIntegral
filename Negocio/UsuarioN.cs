@@ -1,5 +1,6 @@
 ﻿using Entidad;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
 
@@ -125,13 +126,13 @@ namespace Negocio
                 if (usuarioEnLista.Usuario == usuario && usuarioEnLista.Contraseña == Contraseña)
                 {
                     // Si el usuario y la contraseña son correctos, valida si hace falta cambio de contraseña.
-                    // Los supuestos de cambio de contraseña son 2:usu
+                    // Los supuestos de cambio de contraseña son 2:
                     // 1) Cuándo es primer ingreso (pass = CAI20232 y fecha de baja no nula)
                     // 2) Cuándo expira la contraseña (30 días después de la fecha de alta)
                     // En ambos casos la función devuelve un -2 para mostrar menú de cambio
 
-                    DateTime fechaTope = usuarioEnLista.UltimaActualizacionContraseña.AddDays(30);
-                    if ((usuarioEnLista.Contraseña == "CAI20232" && usuarioEnLista.FechaBaja != null) || fechaTope <= DateTime.Now)
+                    DateTime fechaTope = usuarioEnLista.FechaAlta.AddDays(30);
+                    if ((usuarioEnLista.Contraseña == "CAI20232" && usuarioEnLista.FechaBaja != null) || fechaTope >= DateTime.Now)
                     {
                         return -2;
                     }
@@ -171,7 +172,6 @@ namespace Negocio
                     {
                         // Si todas las validaciones pasan, actualiza la contraseña del usuario
                         usuarioEnLista.SetContraseña(nuevaContraseña);
-                        usuarioEnLista.SetUltimaActualizacionContraseña(DateTime.Now);
                         return true;
                     }
                 }
@@ -182,6 +182,35 @@ namespace Negocio
             return false;
 
         }
+
+        public void DarUsuariodeBaja(List<UsuarioE> listaUsuarios, string nombreUsuario)
+        {
+            UsuarioE usuarioADarDeBaja = null;
+
+            for (int i = 0; i < listaUsuarios.Count; i++)
+            {
+                if (listaUsuarios[i].NombreUsuario == nombreUsuario)
+                {
+                    usuarioADarDeBaja = listaUsuarios[i];
+                    break;
+                }
+            }
+
+            if (usuarioADarDeBaja != null)
+            {
+                listaUsuarios.Remove(usuarioADarDeBaja);
+                Console.WriteLine($"El usuario {nombreUsuario} ha sido dado de baja.");
+            }
+            else
+            {
+                Console.WriteLine($"No se encontró un usuario con el nombre de usuario {nombreUsuario}.");
+            }
+        }
+
+
+
+
+
 
 
 
@@ -216,7 +245,7 @@ namespace Negocio
         // VALIDACIONES DE NEGOCIO
 
         // Valida Nombre de Usuario
-        public static bool ValidarNombreUsuario(string usuario, string nombre, string apellido)
+        private bool ValidarNombreUsuario(string usuario, string nombre, string apellido)
         {
             // El nombre de usuario debe de tener entre 8 y 15 caracteres
             if (usuario.Length < 8 || usuario.Length > 15)
@@ -233,7 +262,7 @@ namespace Negocio
             {
                 if (usuarioEnLista.Usuario == usuario) 
                 {
-                    return false; ; // Nombre de usuario repetido
+                    return false; // Nombre de usuario repetido
                 }
             }
 
