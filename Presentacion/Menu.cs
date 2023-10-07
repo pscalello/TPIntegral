@@ -1,4 +1,5 @@
-﻿using Entidad;
+﻿using Datos;
+using Entidad;
 using Negocio;
 using System;
 using System.ComponentModel;
@@ -398,7 +399,7 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
                 DateTime fechaAlta, fechaNacimiento;
                 int host, dni;
                 UsuarioN UsuarioNuevo = new UsuarioN();
-                bool creacionCorrecta;
+                UsuarioE usuarioCreadoCorrectamente;
 
 
                 // 1) PEDIDO DE DATOS
@@ -422,7 +423,7 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
                     nombreUsuario = Utils.PedirPalabra("El nombre de usuario ingresado ya existe o no cumple con las siguientes condiciones:" +
                         " debe de tener entre 8 y 15 caracteres y no puede contener ni el nombre ni el apellido del usuario. Ingrese un nuevo nombre de usuario:\n");
                 }
-                host = Utils.PedirEntre(1, 2, "Ingrese Perfil (1:Supervisor / 2: Vendedor):\n");
+                host = Utils.PedirEntre(1, 2, "Ingrese Perfil (1:Supervisor / 2: Vendedor):\n") + 1;
                 dni = Utils.PedirEntre(1000000, 99999999, "Ingrese DNI:\n");
 
 
@@ -432,11 +433,13 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
                 // Si la validación es correcta, crea usuario y le permite al administrador seguir cargando o no.
                 // Si es incorrecta, muestra error y se reinicia el ciclo
 
-                creacionCorrecta = UsuarioNuevo.CrearUsuario(nombre, apellido, direccion, telefono, email, fechaAlta, fechaNacimiento, nombreUsuario, host, dni);
+                usuarioCreadoCorrectamente = UsuarioNuevo.CrearUsuario(nombre, apellido, direccion, telefono, email, fechaAlta, fechaNacimiento, nombreUsuario, host, dni);
 
 
-                if (creacionCorrecta == true)
+                if (usuarioCreadoCorrectamente != null)
                 {
+                    // REAGREGAR ESTO CUANDO FUNCIONE EL ENDPOINT AgregarUsuario DEL SWAGGER
+                    // UsuarioD.CrearUsuario(usuarioCreadoCorrectamente);
                     Console.WriteLine("\n\nUsuario creado con éxito!\n");
                     Console.WriteLine("Desea cargar otro usuario? (1:Si / 2:No)\n");
                     OpcionMenu = Utils.PedirEntre(1, 2, ""); // hasta que no ingresa un nro de 1 a 2, error

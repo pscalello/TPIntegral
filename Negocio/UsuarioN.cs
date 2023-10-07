@@ -19,7 +19,7 @@ namespace Negocio
         //*****************************************************************************************************************************
 
 
-        public bool CrearUsuario(string nombre, string apellido, string direccion, string telefono,
+        public UsuarioE CrearUsuario(string nombre, string apellido, string direccion, string telefono,
                                     string email, DateTime fechaAltaEmpresa, DateTime fechaNacimiento,
                                     string usuario, int host, int dni)
         {
@@ -42,9 +42,9 @@ namespace Negocio
 
                 // Lo guarda en lista de esta capa, simulando DATOS
                 Usuarios.Add(UsuarioNuevo);
-                return true;
+                return UsuarioNuevo;
             }
-            return false; //En caso que no pase las validaciones, le informa a PRESENTACION que el alta no fue realizada
+            return null; //En caso que no pase las validaciones, le informa a PRESENTACION que el alta no fue realizada
         }
 
 
