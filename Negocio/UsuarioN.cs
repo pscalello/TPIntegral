@@ -1,4 +1,5 @@
 ﻿using Datos;
+using Datos.Modelos;
 using Entidad;
 using System;
 using System.Collections.Generic;
@@ -154,7 +155,7 @@ namespace Negocio
         //                                             CAMBIO DE CONTRASEÑA                                                          //
         //*****************************************************************************************************************************
 
-        public bool CambioContraseña(string usuario, string viejaContraseña, string nuevaContraseña, List<dynamic> listaUsuarios)
+        public bool CambioContraseña(string usuario, string viejaContraseña, string nuevaContraseña, List<RespuestaConsultaUsuarios> listaUsuarios)
         {
             UsuarioE UsuarioNuevo = null;
 
@@ -197,19 +198,19 @@ namespace Negocio
 
         public bool DarUsuariodeBaja(string nombreUsuarioABorrar, Guid idUsuarioAdmin)
         {
-            dynamic usuarioADarDeBaja = null;
+            RespuestaConsultaUsuarios usuarioADarDeBaja = null;
             Guid idUsuarioADarDeBaja = Guid.Parse("00000000-0000-0000-0000-000000000000"); // GUID default, instanciado para evitar errores;
 
-            List<dynamic> listaUsuarios = UsuarioD.ConsultarUsuarios(idUsuarioAdmin);
+            List<RespuestaConsultaUsuarios> listaUsuarios = UsuarioD.ConsultarUsuarios(idUsuarioAdmin);
 
             for (int i = 0; i < listaUsuarios.Count; i++)
             {
                 if (listaUsuarios[i].nombreUsuario == nombreUsuarioABorrar)
                 {
                     usuarioADarDeBaja = listaUsuarios[i];
-                    idUsuarioADarDeBaja = usuarioADarDeBaja?.id;
                     try
                     {
+                        idUsuarioADarDeBaja = usuarioADarDeBaja.id;
                         UsuarioD.BorrarUsuario(idUsuarioADarDeBaja, idUsuarioAdmin);
                         break;
                     }

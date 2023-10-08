@@ -1,4 +1,5 @@
 ﻿using Datos;
+using Datos.Modelos;
 using Entidad;
 using Negocio;
 using System;
@@ -90,7 +91,7 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
             UsuarioN UsuarioNuevo = new UsuarioN();
             string NombreUsuario = "", password = "";
             Guid idUsuario = Guid.Parse("00000000-0000-0000-0000-000000000000"); // GUID default, instanciado para evitar errores
-            List<dynamic> listaUsuarios = new List<dynamic>();
+            List<RespuestaConsultaUsuarios> listaUsuarios = new List<RespuestaConsultaUsuarios>();
 
             while (!salir)
             {
@@ -160,7 +161,7 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
         //*****************************************************************************************************************************
 
 
-        static void CambioContraseña(string nombreUsuario, string password, List<dynamic> listaUsuarios)
+        static void CambioContraseña(string nombreUsuario, string password, List<RespuestaConsultaUsuarios> listaUsuarios)
         {
             bool salir = false;
             string nuevoPassword;
