@@ -195,17 +195,29 @@ namespace Negocio
             return Usuarios.Find((usuario) => usuario.Usuario == nombreUsuario).Host;
         }
 
-        public bool DarUsuariodeBaja(string nombreUsuario)
+        public bool DarUsuariodeBaja(string nombreUsuarioABorrar, Guid idUsuarioAdmin)
         {
-            UsuarioE usuarioADarDeBaja = null;
+            dynamic usuarioADarDeBaja = null;
+            Guid idUsuarioADarDeBaja = Guid.Parse("00000000-0000-0000-0000-000000000000"); // GUID default, instanciado para evitar errores;
 
-            for (int i = 0; i < Usuarios.Count; i++)
+            List<dynamic> listaUsuarios = UsuarioD.ConsultarUsuarios(idUsuarioAdmin);
+
+            for (int i = 0; i < listaUsuarios.Count; i++)
             {
-                if (Usuarios[i].Usuario == nombreUsuario)
+                if (listaUsuarios[i].nombreUsuario == nombreUsuarioABorrar)
                 {
-                    usuarioADarDeBaja = Usuarios[i];
-                    Usuarios.Remove(usuarioADarDeBaja);
-                    break;
+                    usuarioADarDeBaja = listaUsuarios[i];
+                    idUsuarioADarDeBaja = usuarioADarDeBaja?.id;
+                    try
+                    {
+                        UsuarioD.BorrarUsuario(idUsuarioADarDeBaja, idUsuarioAdmin);
+                        break;
+                    }
+                    catch
+                    {
+                        Console.WriteLine("Error al borrar el usuario, revise sus permisos.");
+                        break;
+                    }
                 }
             }
 

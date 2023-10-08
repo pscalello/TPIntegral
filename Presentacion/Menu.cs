@@ -125,13 +125,13 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
                         switch (hostUsuario)
                         {
                             case 1:
-                                MenuAdministrador(idUsuario);
-                                break;
-                            case 2:
                                 MenuSupervisor(idUsuario);
                                 break;
-                            case 3:
+                            case 2:
                                 MenuVendedor(idUsuario);
+                                break;
+                            case 3:
+                                MenuAdministrador(idUsuario);
                                 break;
                         }
                     }
@@ -270,7 +270,7 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
                         OpcionNoHabilitada();
                         break;
                     case 3:
-                        DardeBajaUsuario();
+                        DardeBajaUsuario(idUsuario);
                         break;
                     case 4:
                         ConsultaUsuarios();
@@ -437,7 +437,7 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
                     nombreUsuario = Utils.PedirPalabra("El nombre de usuario ingresado ya existe o no cumple con las siguientes condiciones:" +
                         " debe de tener entre 8 y 15 caracteres y no puede contener ni el nombre ni el apellido del usuario. Ingrese un nuevo nombre de usuario:\n");
                 }
-                host = Utils.PedirEntre(1, 2, "Ingrese Perfil (1:Supervisor / 2: Vendedor):\n") + 1;
+                host = Utils.PedirEntre(1, 2, "Ingrese Perfil (1:Supervisor / 2: Vendedor):\n");
                 dni = Utils.PedirEntre(1000000, 99999999, "Ingrese DNI:\n");
 
 
@@ -553,20 +553,18 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
         //                                                  BAJA USUARIOS                                                           //
         //*****************************************************************************************************************************
 
-        static void DardeBajaUsuario()
+        static void DardeBajaUsuario(Guid idUsuarioAdmin)
         {
-            string nombreUsuario = null;
+            string nombreUsuarioABorrar = null;
             UsuarioN usuarioBaja = new UsuarioN();
             bool salir = false;
-            //int OpcionMenu, id = 0;
-            //UsuarioN UsuarioNNuevo = new UsuarioN();
             while (!salir)
             {
                 Console.Clear();
-                nombreUsuario = Utils.PedirPalabra("Ingrese nombre de usuario que desea dar de baja:\n");
+                nombreUsuarioABorrar = Utils.PedirPalabra("Ingrese nombre de usuario que desea dar de baja:\n");
 
                 // Llama al método para dar de baja al usuario en la misma capa (no necesitas un gestor de usuarios separado).
-                if (usuarioBaja.DarUsuariodeBaja(nombreUsuario) == true)
+                if (usuarioBaja.DarUsuariodeBaja(nombreUsuarioABorrar, idUsuarioAdmin) == true)
                 {
                     Console.WriteLine("Usuario dado de baja de manera exitosa. Presione una tecla para continuar\n");
                     Console.ReadKey();
@@ -574,7 +572,7 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
                 }
                 else
                 {
-                    Console.WriteLine("Error en la baja del usuario. Presione una tecla para continuar\n");
+                    Console.WriteLine("Error en la baja del usuario, usuario no encontrado. Presione una tecla para continuar\n");
                     Console.ReadKey();
                     salir = true;
                 }

@@ -88,10 +88,10 @@ namespace Datos
             return respuesta;
         }
 
-        public static void BorrarUsuario(string idUsuario, string idUsuarioMaster)
+        public static void BorrarUsuario(Guid idUsuarioABorrar, Guid idUsuarioMaster)
         {
-            Dictionary<String, String> map = new Dictionary<String, String>();
-            map.Add("id", idUsuario);
+            Dictionary<String, Guid> map = new Dictionary<string, Guid>();
+            map.Add("id", idUsuarioABorrar);
             map.Add("idUsuario", idUsuarioMaster);
 
             var jsonRequest = JsonConvert.SerializeObject(map);
