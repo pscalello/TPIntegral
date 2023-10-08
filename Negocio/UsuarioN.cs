@@ -154,7 +154,7 @@ namespace Negocio
         //                                             CAMBIO DE CONTRASEÑA                                                          //
         //*****************************************************************************************************************************
 
-        public bool CambioContraseña(string usuario, string nuevaContraseña)
+        public bool CambioContraseña(string usuario, string viejaContraseña, string nuevaContraseña, List<dynamic> listaUsuarios)
         {
             UsuarioE UsuarioNuevo = null;
 
@@ -162,17 +162,17 @@ namespace Negocio
             // y 15 caracteres y que tenga una mayúscula y un número
 
 
-            foreach (var usuarioEnLista in Usuarios)
+            foreach (var usuarioEnLista in listaUsuarios)
             {
-                if (usuarioEnLista.Usuario == usuario)
+                if (usuarioEnLista.nombreUsuario == usuario)
                 {
-                    if (nuevaContraseña != usuarioEnLista.Contraseña &&
+                    if (// nuevaContraseña != usuarioEnLista.Contraseña &&
                         nuevaContraseña != "CAI20232" &&
                         nuevaContraseña.Length >= 8 && nuevaContraseña.Length <= 15 &&
                         nuevaContraseña.Any(char.IsUpper) && nuevaContraseña.Any(char.IsDigit))
                     {
                         // Si todas las validaciones pasan, actualiza la contraseña del usuario
-                        usuarioEnLista.SetContraseña(nuevaContraseña);
+                        UsuarioD.CambiarContraseña(usuario, viejaContraseña, nuevaContraseña);
                         return true;
                     }
                 }

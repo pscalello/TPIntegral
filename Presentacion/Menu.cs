@@ -89,7 +89,8 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
             int hostUsuario = 0, intentos = 1;
             UsuarioN UsuarioNuevo = new UsuarioN();
             string NombreUsuario = "", password = "";
-            Guid idUsuario = Guid.Parse("00000000-0000-0000-0000-000000000000");
+            Guid idUsuario = Guid.Parse("00000000-0000-0000-0000-000000000000"); // GUID default, instanciado para evitar errores
+            List<dynamic> listaUsuarios = new List<dynamic>();
 
             while (!salir)
             {
@@ -99,58 +100,57 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
                 NombreUsuario = Utils.PedirPalabra("Ingrese su nombre de usuario:\n");
                 password = Utils.PedirPalabra("Ingrese su password:\n");
 
-                // valida Nombre Usuario y Password por negocio y recibe 1 si es admin, 2 si es supervisor, 3 si es vendedor,
-                // 0 si no coincide pass y usuario y -1 si agotó intentos
-
-                // hostUsuario = UsuarioNuevo.AutenticarUsuario(NombreUsuario, password, intentos);
-
                 try
                 {
-                    if (NombreUsuario == "Administrador")
+                    Console.WriteLine("Por favor aguarde mientras autenticamos su usuario.");
+
+                    // hace intento de login
+                    idUsuario = UsuarioD.Login(NombreUsuario, password);
+                    salir = true;
+
+                    // busca el numero de host
+                    listaUsuarios = UsuarioD.ConsultarUsuarios(new Guid("D347CE99-DB8D-4542-AA97-FC9F3CCE6969"));
+                    hostUsuario = listaUsuarios.Find((usuario) => usuario.nombreUsuario == NombreUsuario).host;
+
+                    // cambio de contraseña
+                    if (password == "CAI20232")
                     {
-                        idUsuario = UsuarioNuevo.BuscarId(NombreUsuario);
+                        Console.WriteLine("Por favor, cambie su contraseña. Presione una tecla para continuar");
+                        Console.ReadKey();
+                        CambioContraseña(NombreUsuario, password, listaUsuarios);
                     }
                     else
                     {
-                        idUsuario = UsuarioD.Login(NombreUsuario, password);
+                        // si no debe reloggearse por cambio de contraseña, entra al menú correspondiente.
+                        switch (hostUsuario)
+                        {
+                            case 1:
+                                MenuAdministrador(idUsuario);
+                                break;
+                            case 2:
+                                MenuSupervisor(idUsuario);
+                                break;
+                            case 3:
+                                MenuVendedor(idUsuario);
+                                break;
+                        }
                     }
-                    salir = true;
-                    
-                } catch
+                } catch // si se loggeó con credenciales incorrectas:
                 {
-                    Console.WriteLine("Nombre de Usuario o Password incorrecto. Inténtelo nuevamente.");
-                    Console.ReadKey();
-                    intentos += 1;
+                    // si se loggeó mal 3 veces, muestra mensaje y sale del sistema.
+                    if (intentos == 3)
+                    {
+                        salir = true;
+                        Console.WriteLine("Se agotaron sus intentos, comuníquese con un administrador. Presione cualquier tecla para continuar");
+                        Console.ReadKey();
+                    } else
+                    {
+                        // si aún le quedan intentos, le dice que intente otra vez y suma un intento.
+                        Console.WriteLine("Nombre de Usuario o Password incorrecto. Inténtelo nuevamente.");
+                        Console.ReadKey();
+                        intentos += 1;
+                    }
                 }
-            }
-
-            List<dynamic> listaUsuarios = UsuarioD.ConsultarUsuarios(new Guid("D347CE99-DB8D-4542-AA97-FC9F3CCE6969"));
-            hostUsuario = listaUsuarios.Find((usuario) => usuario.nombreUsuario == NombreUsuario).host;
-
-            //hostUsuario = UsuarioNuevo.BuscarHost(NombreUsuario);
-
-            switch (hostUsuario)
-            {
-                case -2:
-                    Console.WriteLine("Por favor, cambie su contraseña. Presione una tecla para continuar");
-                    Console.ReadKey();
-                    salir = true;
-                    CambioContraseña(NombreUsuario, password);
-                    //Aca deberiamos agregar algo para que el -2 cambie y n vuelva
-                    break;
-                case -1:
-                    Console.WriteLine("Se agotaron sus intentos, comuníquese con un administrador. Presione cualquier tecla para continuar");
-                    Console.ReadKey();
-                    break;
-                case 1:
-                    MenuAdministrador(idUsuario);
-                    break;
-                case 2:
-                    MenuSupervisor(idUsuario);
-                    break;
-                case 3:
-                    MenuVendedor(idUsuario);
-                    break;
             }
         }
 
@@ -160,7 +160,7 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
         //*****************************************************************************************************************************
 
 
-        static void CambioContraseña(string nombreUsuario, string password)
+        static void CambioContraseña(string nombreUsuario, string password, List<dynamic> listaUsuarios)
         {
             bool salir = false;
             string nuevoPassword;
@@ -175,7 +175,7 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
                 nuevoPassword = Utils.PedirPalabra("Ingrese su nueva contraseña (De entre 8 y 15 carácteres, una mayúscula y un número,\n +" +
                                                     "distinta a la anterior y a la que recibió para el primer logueo.\n");
 
-                if (UsuarioNuevo.CambioContraseña(nombreUsuario, nuevoPassword) == true)
+                if (UsuarioNuevo.CambioContraseña(nombreUsuario, password, nuevoPassword, listaUsuarios) == true)
                 {
                     Console.WriteLine("Contraseña modificada con éxito! Presione cualquier tecla para volver a loguearse");
                     Console.ReadKey();
@@ -452,7 +452,8 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
 
                 if (usuarioCreadoCorrectamente != null)
                 {
-                    // REAGREGAR ESTO CUANDO FUNCIONE EL ENDPOINT AgregarUsuario DEL SWAGGER
+                    // Llama al endpoint de AgregarUsuario
+                    Console.WriteLine("Por favor aguarde mientras creamos el usuario.");
                     UsuarioD.CrearUsuario(usuarioCreadoCorrectamente, idUsuarioAdmin);
                     Console.WriteLine("\n\nUsuario creado con éxito!\n");
                     Console.WriteLine("Desea cargar otro usuario? (1:Si / 2:No)\n");

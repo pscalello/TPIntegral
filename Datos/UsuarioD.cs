@@ -1,4 +1,5 @@
-﻿using Datos.Utilidades;
+﻿using Datos.Modelos;
+using Datos.Utilidades;
 using Entidad;
 using Newtonsoft.Json;
 using System;
