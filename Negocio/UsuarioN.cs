@@ -1,4 +1,5 @@
-﻿using Entidad;
+﻿using Datos;
+using Entidad;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
@@ -181,6 +182,17 @@ namespace Negocio
 
             return false;
 
+        }
+
+        public Guid BuscarId(string nombreUsuario)
+        {
+            // busca entre todos los usuarios el que tenga el mismo nombre de usuario, y devuelve el Id.
+            return Usuarios.Find((usuario) => usuario.Usuario == nombreUsuario).Id;
+        }
+
+        public int BuscarHost(string nombreUsuario)
+        {
+            return Usuarios.Find((usuario) => usuario.Usuario == nombreUsuario).Host;
         }
 
         public bool DarUsuariodeBaja(string nombreUsuario)

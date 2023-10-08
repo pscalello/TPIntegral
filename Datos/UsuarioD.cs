@@ -12,10 +12,10 @@ namespace Datos
 {
     public static class UsuarioD
     {
-        public static void CrearUsuario(UsuarioE usuario)
+        public static void CrearUsuario(UsuarioE usuario, Guid idUsuarioCreador)
         {
             var payload = new PayloadAgregarUsuario(
-                usuario.Id,
+                Guid.Parse("D347CE99-DB8D-4542-AA97-FC9F3CCE6969"),
                 usuario.Host,
                 usuario.Nombre,
                 usuario.Apellido,
@@ -37,23 +37,32 @@ namespace Datos
             }
         }
 
-        //public static string Login(Login login)
-        //{
-        //    var jsonRequest = JsonConvert.SerializeObject(login);
+        public static Guid Login(string usuario, string contraseña)
+        {
+            PayloadLogin login = new PayloadLogin(
+                usuario,
+                contraseña
+                );
 
-        //    HttpResponseMessage response = WebHelper.Post("Usuario/Login", jsonRequest);
+            var jsonRequest = JsonConvert.SerializeObject(login);
 
-        //    if (!response.IsSuccessStatusCode)
-        //    {
-        //        throw new Exception("Verifique los datos ingresados");
-        //    }
+            HttpResponseMessage response = WebHelper.Post("Usuario/Login", jsonRequest);
 
-        //    var reader = new StreamReader(response.Content.ReadAsStream());
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("Verifique los datos ingresados");
+            }
 
-        //    String respuesta = reader.ReadToEnd();
+            var reader = new StreamReader(response.Content.ReadAsStream());
 
-        //    return respuesta;
-        //}
+            string respuestaString = reader.ReadToEnd().Trim(new char[] {'"', '\\'});
+
+            //Guid respuesta = JsonConvert.Deserialize(respuestaString);
+
+            Guid respuesta = Guid.Parse(respuestaString);
+
+            return respuesta;
+        }
 
         public static string CambiarContraseña(string nombreUsuario, string contraseña, string contraseñaNueva)
         {
@@ -93,6 +102,21 @@ namespace Datos
                 throw new Exception("Verifique los datos ingresados");
             }
 
+        }
+
+        public static List<dynamic> ConsultarUsuarios(Guid idUsuarioMaster)
+        {
+            HttpResponseMessage response = WebHelper.Get("Usuario/TraerUsuariosActivos?id=" + idUsuarioMaster);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("Verifique los datos ingresados");
+            }
+            var reader = new StreamReader(response.Content.ReadAsStream());
+
+            List<Object> respuesta = JsonConvert.DeserializeObject<List<dynamic>>(reader.ReadToEnd());
+
+            return respuesta;
         }
     }
 }

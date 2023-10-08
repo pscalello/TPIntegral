@@ -89,6 +89,7 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
             int hostUsuario = 0, intentos = 1;
             UsuarioN UsuarioNuevo = new UsuarioN();
             string NombreUsuario = "", password = "";
+            Guid idUsuario = Guid.Parse("00000000-0000-0000-0000-000000000000");
 
             while (!salir)
             {
@@ -101,19 +102,32 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
                 // valida Nombre Usuario y Password por negocio y recibe 1 si es admin, 2 si es supervisor, 3 si es vendedor,
                 // 0 si no coincide pass y usuario y -1 si agotó intentos
 
-                hostUsuario = UsuarioNuevo.AutenticarUsuario(NombreUsuario, password, intentos);
+                // hostUsuario = UsuarioNuevo.AutenticarUsuario(NombreUsuario, password, intentos);
 
-                if (hostUsuario == 0)
+                try
+                {
+                    if (NombreUsuario == "Administrador")
+                    {
+                        idUsuario = UsuarioNuevo.BuscarId(NombreUsuario);
+                    }
+                    else
+                    {
+                        idUsuario = UsuarioD.Login(NombreUsuario, password);
+                    }
+                    salir = true;
+                    
+                } catch
                 {
                     Console.WriteLine("Nombre de Usuario o Password incorrecto. Inténtelo nuevamente.");
                     Console.ReadKey();
                     intentos += 1;
                 }
-                else
-                {
-                    salir = true;
-                }
             }
+
+            List<dynamic> listaUsuarios = UsuarioD.ConsultarUsuarios(new Guid("D347CE99-DB8D-4542-AA97-FC9F3CCE6969"));
+            hostUsuario = listaUsuarios.Find((usuario) => usuario.nombreUsuario == NombreUsuario).host;
+
+            //hostUsuario = UsuarioNuevo.BuscarHost(NombreUsuario);
 
             switch (hostUsuario)
             {
@@ -129,13 +143,13 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
                     Console.ReadKey();
                     break;
                 case 1:
-                    MenuAdministrador();
+                    MenuAdministrador(idUsuario);
                     break;
                 case 2:
-                    MenuSupervisor();
+                    MenuSupervisor(idUsuario);
                     break;
                 case 3:
-                    MenuVendedor();
+                    MenuVendedor(idUsuario);
                     break;
             }
         }
@@ -210,7 +224,7 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
         //***************************************************************************************************************************** 
         //***************************************************************************************************************************** 
 
-        static void MenuAdministrador()
+        static void MenuAdministrador(Guid idUsuario)
         {
             bool salir = false;
             int OpcionMenu;
@@ -250,7 +264,7 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
                         salir = true;
                         break;
                     case 1:
-                        AltaUsuarios();
+                        AltaUsuarios(idUsuario);
                         break;
                     case 2:
                         OpcionNoHabilitada();
@@ -287,7 +301,7 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
         //***************************************************************************************************************************** 
 
 
-        static void MenuSupervisor()
+        static void MenuSupervisor(Guid idUsuario)
         {
             bool salir = false;
             int OpcionMenu;
@@ -340,7 +354,7 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
         //***************************************************************************************************************************** 
 
 
-        static void MenuVendedor()
+        static void MenuVendedor(Guid idUsuario)
         {
             bool salir = false;
             int OpcionMenu;
@@ -384,7 +398,7 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
         //*****************************************************************************************************************************
 
 
-        static void AltaUsuarios()
+        static void AltaUsuarios(Guid idUsuarioAdmin)
         {
             bool salir = false;
             int OpcionMenu;
@@ -439,7 +453,7 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
                 if (usuarioCreadoCorrectamente != null)
                 {
                     // REAGREGAR ESTO CUANDO FUNCIONE EL ENDPOINT AgregarUsuario DEL SWAGGER
-                    // UsuarioD.CrearUsuario(usuarioCreadoCorrectamente);
+                    UsuarioD.CrearUsuario(usuarioCreadoCorrectamente, idUsuarioAdmin);
                     Console.WriteLine("\n\nUsuario creado con éxito!\n");
                     Console.WriteLine("Desea cargar otro usuario? (1:Si / 2:No)\n");
                     OpcionMenu = Utils.PedirEntre(1, 2, ""); // hasta que no ingresa un nro de 1 a 2, error
