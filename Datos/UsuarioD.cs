@@ -16,7 +16,7 @@ namespace Datos
         public static void CrearUsuario(UsuarioE usuario, Guid idUsuarioCreador)
         {
             var payload = new PayloadAgregarUsuario(
-                Guid.Parse("D347CE99-DB8D-4542-AA97-FC9F3CCE6969"),
+                idUsuarioCreador,
                 usuario.Host,
                 usuario.Nombre,
                 usuario.Apellido,
@@ -88,11 +88,11 @@ namespace Datos
             return respuesta;
         }
 
-        public static void BorrarUsuario(Guid idUsuarioABorrar, Guid idUsuarioMaster)
+        public static void BorrarUsuario(Guid idUsuarioABorrar, Guid idUsuarioAdmin)
         {
             Dictionary<String, Guid> map = new Dictionary<string, Guid>();
             map.Add("id", idUsuarioABorrar);
-            map.Add("idUsuario", idUsuarioMaster);
+            map.Add("idUsuario", idUsuarioAdmin);
 
             var jsonRequest = JsonConvert.SerializeObject(map);
 
@@ -105,9 +105,9 @@ namespace Datos
 
         }
 
-        public static List<RespuestaConsultaUsuarios> ConsultarUsuarios(Guid idUsuarioMaster)
+        public static List<RespuestaConsultaUsuarios> ConsultarUsuarios(Guid idUsuarioAdmin)
         {
-            HttpResponseMessage response = WebHelper.Get("Usuario/TraerUsuariosActivos?id=" + idUsuarioMaster);
+            HttpResponseMessage response = WebHelper.Get("Usuario/TraerUsuariosActivos?id=" + idUsuarioAdmin);
 
             if (!response.IsSuccessStatusCode)
             {

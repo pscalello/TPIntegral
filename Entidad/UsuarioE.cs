@@ -40,10 +40,6 @@ namespace Entidad
             DNI = dni;
             Contraseña = contraseña;
             UltimaActualizacionContraseña = FechaAlta;
-            if (Usuario == "Administrador")
-            {
-                Id = Guid.Parse("D347CE99-DB8D-4542-AA97-FC9F3CCE6969");
-            }
         }
 
         // Modificacion de atrubutos

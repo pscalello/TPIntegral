@@ -274,8 +274,7 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
                         DardeBajaUsuario(idUsuario);
                         break;
                     case 4:
-                        ConsultaUsuarios();
-                        //salir = true;
+                        ConsultaUsuarios(idUsuario);
                         break;
                     // de 9 a 14 deshabilitadas de momento:
                     case 5:
@@ -481,23 +480,24 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
         //                                                  CONSULTA USUARIOS                                                        //
         //*****************************************************************************************************************************
 
-        static void ConsultaUsuarios()
+        static void ConsultaUsuarios(Guid idAdmin)
         {
-            List<UsuarioE> consultausuarios = new List<UsuarioE>();
+            List<RespuestaConsultaUsuarios> consultausuarios = new List<RespuestaConsultaUsuarios>();
             UsuarioN UsuarioNegocio = new UsuarioN();
 
             bool salir = false;
-            int OpcionMenu, id = 0;
-            //UsuarioN UsuarioNNuevo = new UsuarioN();
+            int OpcionMenu;
+            string id = "";
+
             while (!salir)
             {
                 Console.Clear();
                 Console.WriteLine("TP INTEGRAL CAI 2 - Consulta de Usuarios \n\n" +
                                     "Elija la opción deseada: \n\n" +
                                     "1 - Listar todos los usuarios \n" +
-                                    "2 - Listar Administradores \n" +
-                                    "3 - Listar Supervisores \n" +
-                                    "4 - Listar Vendedores \n" +
+                                    "2 - Listar Supervisores \n" +
+                                    "3 - Listar Vendedores \n" +
+                                    "4 - Listar Administradores \n" +
                                     "5 - Listar Usuario por ID \n" +
                                     "0 - Volver al menú principal \n");
                 OpcionMenu = Utils.PedirEntre(0, 5, ""); // hasta que no ingresa un nro de 0 a 5, error
@@ -511,11 +511,11 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
                     case 2:
                     case 3:
                     case 4:
-                        consultausuarios = UsuarioNegocio.ConsultarUsuarios(OpcionMenu, new Guid(id, 0, 0, new byte[8])); //Solucion para pasar int como parámetro ID
+                        consultausuarios = UsuarioNegocio.ConsultarUsuarios(OpcionMenu, "", idAdmin); //Solucion para pasar string como parámetro ID
                         break;
                     case 5:
-                        id = Utils.PedirEntre(1, 99999, "Ingresar el ID deseado \n");
-                        consultausuarios = UsuarioNegocio.ConsultarUsuarios(OpcionMenu, new Guid(id, 0, 0, new byte[8])); //Solucion para pasar int como parámetro ID
+                        id = Utils.PedirPalabra("Ingresar el GUID deseado \n");
+                        consultausuarios = UsuarioNegocio.ConsultarUsuarios(OpcionMenu, id, idAdmin); //Solucion para pasar string como parámetro ID
                         break;
                 }
 
@@ -527,12 +527,13 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
                     }
                     else
                     {
-                        foreach (UsuarioE usuario in consultausuarios)
+                        Console.WriteLine();
+                        foreach (RespuestaConsultaUsuarios usuario in consultausuarios)
                         {
-                            Console.WriteLine($"ID: {usuario.Id}");
-                            Console.WriteLine($"Nombre: {usuario.Nombre}");
-                            Console.WriteLine($"Apellido: {usuario.Apellido}");
-                            //// Agrega más propiedades según tu objeto UsuarioE
+                            Console.WriteLine($"ID: {usuario.id}");
+                            Console.WriteLine($"Nombre: {usuario.nombre}");
+                            Console.WriteLine($"Apellido: {usuario.apellido}");
+                            //// Agrega más propiedades según tu objeto RespuestaConsultaUsuarios
                             Console.WriteLine();
                         }
                     }

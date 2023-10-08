@@ -56,46 +56,62 @@ namespace Negocio
 
 
         // METODO QUE CONSULTA USUARIOS EN BASE A UNA PETICION
-        public List<UsuarioE> ConsultarUsuarios(int tipoConsulta, Guid id)
+        public List<RespuestaConsultaUsuarios> ConsultarUsuarios(int tipoConsulta, string id, Guid idAdmin)
         {
+            Guid idParseado = Guid.Parse("00000000-0000-0000-0000-000000000000"); // GUID default, instanciado para evitar errores
+
             // Los tipos de consulta pueden ser:
             // 1: Devolver todos los usuarios
-            // 2: Devolver Administradores
-            // 3: Devolver Supervisores
-            // 4: Devolver Vendedores
+            // 2: Devolver Supervisores
+            // 3: Devolver Vendedores
+            // 4: Devolver Administradores
             // 5: Devolver un usuario por nro de ID
 
-            List<UsuarioE> consultausuarios = new List<UsuarioE>();
+            List<RespuestaConsultaUsuarios> consultaUsuarios = UsuarioD.ConsultarUsuarios(idAdmin);
+            List<RespuestaConsultaUsuarios> usuariosADevolver = new List<RespuestaConsultaUsuarios>();
 
             // Recorre la lista provisoria que simula la base de datos USUARIO y completa la lista Consultausuarios en base a los filtros definidos
 
             // Si es 1, devuelve todos
-            if (tipoConsulta == 1) { consultausuarios = Usuarios; }
+            if (tipoConsulta == 1) { usuariosADevolver = consultaUsuarios; }
 
             // Si es 2, 3 o 4, le resta 1 al tipo y devuelve todos (puesto que 1 es Admin, 2 es supervisor y 3 es vendedor)
 
             if (tipoConsulta == 2 || tipoConsulta == 3 || tipoConsulta == 4)
             {
-                foreach (var usuarioEnLista in Usuarios)
+                foreach (RespuestaConsultaUsuarios usuarioEnLista in consultaUsuarios)
                 {
-                    if (usuarioEnLista.Host == tipoConsulta - 1)
+                    if (usuarioEnLista.host == tipoConsulta - 1)
                     {
-                        consultausuarios.Add(usuarioEnLista);
+                        usuariosADevolver.Add(usuarioEnLista);
                     }
                 }
             }
 
             // Si es 5, busca el id
-            if (tipoConsulta == 5)
-                foreach (var usuarioEnLista in Usuarios)
+            if (tipoConsulta == 5) {
+                try
                 {
-                    if (usuarioEnLista.Id == id) // Busca el usuario del id a cambiar estado
+                    idParseado = Guid.Parse(id);
+                    foreach (RespuestaConsultaUsuarios usuarioEnLista in consultaUsuarios)
                     {
-                        consultausuarios.Add(usuarioEnLista);
+                        if (usuarioEnLista.id == idParseado) // Busca el usuario del id a cambiar estado
+                        {
+                            usuariosADevolver.Add(usuarioEnLista);
+                        }
                     }
+                    if (!usuariosADevolver.Any())
+                    {
+                        Console.WriteLine("Usuario no encontrado. Es posible que se encuentre inactivo o que no exista.");
+                    }
+                } catch
+                {
+                    Console.WriteLine("ID inválido. Recuerde que el formato del guid es XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX, " +
+                        "donde cada X representa un carácter numérico." + "\n");
                 }
+            }
 
-            return consultausuarios;
+            return usuariosADevolver;
         }
 
 
@@ -140,7 +156,7 @@ namespace Negocio
                     }
                     else
                     {
-                        // Autenticación exitosa, devuelve valor de host para armar menu: 1 ADMIN, 2 SUPERVISOR, 3 VENDEDOR
+                        // Autenticación exitosa, devuelve valor de host para armar menu: 1 SUPERVISOR, 2 VENDEDOR, 3 ADMIN
                         return usuarioEnLista.Host;
                     }
                 }
