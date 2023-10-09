@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Datos;
 
 namespace InterfazForm
 {
@@ -50,7 +51,7 @@ namespace InterfazForm
                     MessageBox.Show("Superó la cantidad de intentos. \n Comuníquese con un administrador para recuperar su contraseña");
 
                     // Falta desactivar usuario
-
+                    
                     this.Close();
                 }
                 else // Si no es su tercer intento, informar que los datos son incorrectos
@@ -68,6 +69,32 @@ namespace InterfazForm
             }
             else // Loquego ok, tenemos el ID del usuario logueado
             {
+                Guid guid = new Guid(respuesta.Replace("\"", "")); //Viene con comillas la respuesta - reemplazo y parsea a GUID
+
+
+                ///////////////////////////////////////////////////////
+                // Está FALLANDO ESTE METODO buscarHost
+                ///////////////////////////////////////////////////////
+
+                //int hostUsuario =  UsuarioLogueadoN.BuscarHostUsuario(guid);
+
+                frmMenuPrincipal frmMenuPrincipal = new frmMenuPrincipal();
+
+
+                ///////////////////////////////////////////////////////
+                // Está trayendo TODOS los host en cero, revisar - Paso 3 para pasar a ver las altas
+                ///////////////////////////////////////////////////////
+
+
+                //frmMenuPrincipal.Host = hostUsuario;
+                frmMenuPrincipal.Host = 3;
+
+                frmMenuPrincipal.Show();
+                
+
+                this.Close();  
+
+                // 3 es Admin, 2 es Supervisor, 1 es Vendedor
 
             }
 

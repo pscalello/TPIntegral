@@ -10,16 +10,12 @@ namespace Negocio
 {
     public class UsuarioN
     {
-        // Sirve para persistir datos, hasta que tengamos capa de datos. 
-        public static List<UsuarioE> Usuarios = new List<UsuarioE>();
-        // LOGIN con nuevo esquema de Datos 
 
 
-        //public String Login(LoginE login)
-        //{
-        //    String idUsuario = UsuarioD.Login(login);
-        //    return idUsuario;
-        //}
+        // La llenamos con todos los usuarios activos con el ID de superusuario
+        private static List<UsuarioE> Usuarios = UsuarioD.ConsultarUsuarios(Guid.Parse("D347CE99-DB8D-4542-AA97-FC9F3CCE6969"));
+
+
 
         //***************************************************************************************************************************** 
         //                                             CREACION DE USUARIO                                                           //
@@ -86,7 +82,7 @@ namespace Negocio
             {
                 foreach (UsuarioE usuarioEnLista in consultaUsuarios)
                 {
-                    if (usuarioEnLista.Host == tipoConsulta - 1)
+                    if (usuarioEnLista.host == tipoConsulta - 1)
                     {
                         usuariosADevolver.Add(usuarioEnLista);
                     }
@@ -164,7 +160,7 @@ namespace Negocio
 
             foreach (var usuarioEnLista in listaUsuarios)
             {
-                if (usuarioEnLista.Usuario == usuario)
+                if (usuarioEnLista.nombreUsuario == usuario)
                 {
                     if (// nuevaContraseña != usuarioEnLista.Contraseña &&
                         nuevaContraseña != "CAI20232" &&
@@ -187,13 +183,25 @@ namespace Negocio
         public Guid BuscarId(string nombreUsuario)
         {
             // busca entre todos los usuarios el que tenga el mismo nombre de usuario, y devuelve el Id.
-            return Usuarios.Find((usuario) => usuario.Usuario == nombreUsuario).Id;
+            return Usuarios.Find((usuario) => usuario.nombreUsuario == nombreUsuario).Id;
         }
 
-        public int BuscarHost(string nombreUsuario)
+        public int BuscarHostUsuario(Guid idUsuario)
         {
-            return Usuarios.Find((usuario) => usuario.Usuario == nombreUsuario).Host;
+
+            List<UsuarioE> listaUsuarios = UsuarioD.ConsultarUsuarios(Guid.Parse("D347CE99-DB8D-4542-AA97-FC9F3CCE6969"));
+            try
+            {
+                return listaUsuarios.Find((usuario) => usuario.Id == idUsuario).host;
+            }
+            catch (Exception ex)
+            {
+                return 0;   
+            }
         }
+
+
+
 
         public bool DarUsuariodeBaja(string nombreUsuarioABorrar, Guid idUsuarioAdmin)
         {
@@ -204,7 +212,7 @@ namespace Negocio
 
             for (int i = 0; i < listaUsuarios.Count; i++)
             {
-                if (listaUsuarios[i].Usuario == nombreUsuarioABorrar)
+                if (listaUsuarios[i].nombreUsuario == nombreUsuarioABorrar)
                 {
                     usuarioADarDeBaja = listaUsuarios[i];
                     try
@@ -284,7 +292,7 @@ namespace Negocio
 
             foreach (var usuarioEnLista in Usuarios)
             {
-                if (usuarioEnLista.Usuario == usuario) 
+                if (usuarioEnLista.nombreUsuario == usuario) 
                 {
                     return false; // Nombre de usuario repetido
                 }

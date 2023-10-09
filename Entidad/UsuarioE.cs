@@ -10,8 +10,8 @@ namespace Entidad
         public string Email { get; private set; }
         public DateTime FechaAlta { get; private set; }
         public DateTime? FechaBaja { get; private set; }
-        public string Usuario { get; private set; }
-        public int Host { get; private set; }
+        public string nombreUsuario { get; private set; }
+        public int host { get; private set; }
         public string Contraseña { get; private set; }
         public DateTime UltimaActualizacionContraseña { get; private set; }
 
@@ -27,16 +27,16 @@ namespace Entidad
                         int host, int dni, string contraseña)
                         : this() // Llama al constructor vacío para generar un nuevo ID
         {
-            Nombre = nombre;
-            Apellido = apellido;
+            nombre = nombre;
+            apellido = apellido;
             Direccion = direccion;
             Telefono = telefono;
             Email = email;
             FechaAlta = fechaAlta;
             FechaNacimiento = fechaNacimiento;
             FechaBaja = fechaBaja;
-            Usuario = usuario;
-            Host = host;
+            nombreUsuario = usuario;
+            host = host;
             DNI = dni;
             Contraseña = contraseña;
             UltimaActualizacionContraseña = FechaAlta;

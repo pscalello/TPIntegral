@@ -28,91 +28,104 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button6 = new Button();
-            button5 = new Button();
-            button4 = new Button();
-            button3 = new Button();
-            button2 = new Button();
-            button1 = new Button();
+            btnSalir = new Button();
+            btnReportes = new Button();
+            btnVentas = new Button();
+            btnABMProductos = new Button();
+            btnABMProveedores = new Button();
+            btnABMUsuarios = new Button();
+            btnDevoluciones = new Button();
             SuspendLayout();
             // 
-            // button6
+            // btnSalir
             // 
-            button6.Location = new Point(34, 222);
-            button6.Name = "button6";
-            button6.Size = new Size(218, 23);
-            button6.TabIndex = 11;
-            button6.Text = "Salir";
-            button6.UseVisualStyleBackColor = true;
+            btnSalir.Location = new Point(31, 264);
+            btnSalir.Name = "btnSalir";
+            btnSalir.Size = new Size(218, 23);
+            btnSalir.TabIndex = 11;
+            btnSalir.Text = "Salir";
+            btnSalir.UseVisualStyleBackColor = true;
             // 
-            // button5
+            // btnReportes
             // 
-            button5.Location = new Point(34, 180);
-            button5.Name = "button5";
-            button5.Size = new Size(218, 23);
-            button5.TabIndex = 10;
-            button5.Text = "Reportes";
-            button5.UseVisualStyleBackColor = true;
+            btnReportes.Location = new Point(31, 223);
+            btnReportes.Name = "btnReportes";
+            btnReportes.Size = new Size(218, 23);
+            btnReportes.TabIndex = 10;
+            btnReportes.Text = "Reportes";
+            btnReportes.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // btnVentas
             // 
-            button4.Location = new Point(34, 138);
-            button4.Name = "button4";
-            button4.Size = new Size(218, 23);
-            button4.TabIndex = 9;
-            button4.Text = "Ventas";
-            button4.UseVisualStyleBackColor = true;
+            btnVentas.Location = new Point(31, 141);
+            btnVentas.Name = "btnVentas";
+            btnVentas.Size = new Size(218, 23);
+            btnVentas.TabIndex = 9;
+            btnVentas.Text = "Ventas";
+            btnVentas.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // btnABMProductos
             // 
-            button3.Location = new Point(34, 96);
-            button3.Name = "button3";
-            button3.Size = new Size(218, 23);
-            button3.TabIndex = 8;
-            button3.Text = "ABM Productos";
-            button3.UseVisualStyleBackColor = true;
+            btnABMProductos.Location = new Point(31, 100);
+            btnABMProductos.Name = "btnABMProductos";
+            btnABMProductos.Size = new Size(218, 23);
+            btnABMProductos.TabIndex = 8;
+            btnABMProductos.Text = "ABM Productos";
+            btnABMProductos.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btnABMProveedores
             // 
-            button2.Location = new Point(34, 54);
-            button2.Name = "button2";
-            button2.Size = new Size(218, 23);
-            button2.TabIndex = 7;
-            button2.Text = "ABM Proveedores";
-            button2.UseVisualStyleBackColor = true;
+            btnABMProveedores.Location = new Point(31, 59);
+            btnABMProveedores.Name = "btnABMProveedores";
+            btnABMProveedores.Size = new Size(218, 23);
+            btnABMProveedores.TabIndex = 7;
+            btnABMProveedores.Text = "ABM Proveedores";
+            btnABMProveedores.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // btnABMUsuarios
             // 
-            button1.Location = new Point(34, 12);
-            button1.Name = "button1";
-            button1.Size = new Size(218, 23);
-            button1.TabIndex = 6;
-            button1.Text = "ABM Usuarios";
-            button1.UseVisualStyleBackColor = true;
+            btnABMUsuarios.Location = new Point(31, 18);
+            btnABMUsuarios.Name = "btnABMUsuarios";
+            btnABMUsuarios.Size = new Size(218, 23);
+            btnABMUsuarios.TabIndex = 6;
+            btnABMUsuarios.Text = "ABM Usuarios";
+            btnABMUsuarios.UseVisualStyleBackColor = true;
+            // 
+            // btnDevoluciones
+            // 
+            btnDevoluciones.Location = new Point(31, 182);
+            btnDevoluciones.Name = "btnDevoluciones";
+            btnDevoluciones.Size = new Size(218, 23);
+            btnDevoluciones.TabIndex = 12;
+            btnDevoluciones.Text = "Devoluciones";
+            btnDevoluciones.UseVisualStyleBackColor = true;
             // 
             // frmMenuPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(284, 273);
-            Controls.Add(button6);
-            Controls.Add(button5);
-            Controls.Add(button4);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            ClientSize = new Size(284, 313);
+            Controls.Add(btnDevoluciones);
+            Controls.Add(btnSalir);
+            Controls.Add(btnReportes);
+            Controls.Add(btnVentas);
+            Controls.Add(btnABMProductos);
+            Controls.Add(btnABMProveedores);
+            Controls.Add(btnABMUsuarios);
             Name = "frmMenuPrincipal";
             Text = "Menú Principal";
+            Load += frmMenuPrincipal_Load;
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Button button6;
-        private Button button5;
-        private Button button4;
-        private Button button3;
-        private Button button2;
-        private Button button1;
+        private Button btnSalir;
+        private Button btnReportes;
+        private Button btnVentas;
+        private Button btnABMProductos;
+        private Button btnABMProveedores;
+        private Button btnABMUsuarios;
+        private Button btnDevoluciones;
     }
 }

@@ -11,7 +11,8 @@ namespace InterfazForm
         private void btnLogin_Click(object sender, EventArgs e)
         {
             frmLogin frmLogin = new frmLogin();
-            frmLogin.ShowDialog();
+            //this.Hide();    
+            frmLogin.Show();
 
         }
 
