@@ -1,5 +1,4 @@
-﻿using Datos.Modelos;
-using Datos.Utilidades;
+﻿using Datos.Utilidades;
 using Entidad;
 using Newtonsoft.Json;
 using System;
@@ -13,22 +12,10 @@ namespace Datos
 {
     public static class UsuarioD
     {
-        public static void CrearUsuario(UsuarioE usuario, Guid idUsuarioCreador)
+
+        public static void CrearUsuario(UsuarioE usuario)
         {
-            var payload = new PayloadAgregarUsuario(
-                idUsuarioCreador,
-                usuario.Host,
-                usuario.Nombre,
-                usuario.Apellido,
-                usuario.DNI,
-                usuario.Direccion,
-                usuario.Telefono,
-                usuario.Email,
-                usuario.FechaNacimiento,
-                usuario.Usuario,
-                usuario.Contraseña
-                );
-            var jsonRequest = JsonConvert.SerializeObject(payload);
+            var jsonRequest = JsonConvert.SerializeObject(usuario);
 
             HttpResponseMessage response = WebHelper.Post("Usuario/AgregarUsuario", jsonRequest);
 
@@ -38,32 +25,25 @@ namespace Datos
             }
         }
 
-        public static Guid Login(string usuario, string contraseña)
-        {
-            PayloadLogin login = new PayloadLogin(
-                usuario,
-                contraseña
-                );
 
+        public static string Login(LoginE login)
+        {
             var jsonRequest = JsonConvert.SerializeObject(login);
 
             HttpResponseMessage response = WebHelper.Post("Usuario/Login", jsonRequest);
 
             if (!response.IsSuccessStatusCode)
             {
-                throw new Exception("Verifique los datos ingresados");
+                throw new Exception("-1");
             }
 
             var reader = new StreamReader(response.Content.ReadAsStream());
 
-            string respuestaString = reader.ReadToEnd().Trim(new char[] {'"', '\\'});
-
-            //Guid respuesta = JsonConvert.Deserialize(respuestaString);
-
-            Guid respuesta = Guid.Parse(respuestaString);
+            String respuesta = reader.ReadToEnd();
 
             return respuesta;
         }
+
 
         public static string CambiarContraseña(string nombreUsuario, string contraseña, string contraseñaNueva)
         {
@@ -105,7 +85,7 @@ namespace Datos
 
         }
 
-        public static List<RespuestaConsultaUsuarios> ConsultarUsuarios(Guid idUsuarioAdmin)
+        public static List<UsuarioE> ConsultarUsuarios(Guid idUsuarioAdmin)
         {
             HttpResponseMessage response = WebHelper.Get("Usuario/TraerUsuariosActivos?id=" + idUsuarioAdmin);
 
@@ -115,7 +95,7 @@ namespace Datos
             }
             var reader = new StreamReader(response.Content.ReadAsStream());
 
-            List<RespuestaConsultaUsuarios> respuesta = JsonConvert.DeserializeObject<List<RespuestaConsultaUsuarios>>(reader.ReadToEnd());
+            List<UsuarioE> respuesta = JsonConvert.DeserializeObject<List<UsuarioE>>(reader.ReadToEnd());
 
             return respuesta;
         }

@@ -1,5 +1,5 @@
 ﻿using Datos;
-using Datos.Modelos;
+//using Datos.Modelos;
 using Entidad;
 using System;
 using System.Collections.Generic;
@@ -8,13 +8,18 @@ using System.Linq;
 
 namespace Negocio
 {
-
     public class UsuarioN
     {
-
         // Sirve para persistir datos, hasta que tengamos capa de datos. 
         public static List<UsuarioE> Usuarios = new List<UsuarioE>();
+        // LOGIN con nuevo esquema de Datos 
 
+
+        //public String Login(LoginE login)
+        //{
+        //    String idUsuario = UsuarioD.Login(login);
+        //    return idUsuario;
+        //}
 
         //***************************************************************************************************************************** 
         //                                             CREACION DE USUARIO                                                           //
@@ -56,7 +61,7 @@ namespace Negocio
 
 
         // METODO QUE CONSULTA USUARIOS EN BASE A UNA PETICION
-        public List<RespuestaConsultaUsuarios> ConsultarUsuarios(int tipoConsulta, string id, Guid idAdmin)
+        public List<UsuarioE> ConsultarUsuarios(int tipoConsulta, string id, Guid idAdmin)
         {
             Guid idParseado = Guid.Parse("00000000-0000-0000-0000-000000000000"); // GUID default, instanciado para evitar errores
 
@@ -67,8 +72,8 @@ namespace Negocio
             // 4: Devolver Administradores
             // 5: Devolver un usuario por nro de ID
 
-            List<RespuestaConsultaUsuarios> consultaUsuarios = UsuarioD.ConsultarUsuarios(idAdmin);
-            List<RespuestaConsultaUsuarios> usuariosADevolver = new List<RespuestaConsultaUsuarios>();
+            List<UsuarioE> consultaUsuarios = UsuarioD.ConsultarUsuarios(idAdmin);
+            List<UsuarioE> usuariosADevolver = new List<UsuarioE>();
 
             // Recorre la lista provisoria que simula la base de datos USUARIO y completa la lista Consultausuarios en base a los filtros definidos
 
@@ -79,9 +84,9 @@ namespace Negocio
 
             if (tipoConsulta == 2 || tipoConsulta == 3 || tipoConsulta == 4)
             {
-                foreach (RespuestaConsultaUsuarios usuarioEnLista in consultaUsuarios)
+                foreach (UsuarioE usuarioEnLista in consultaUsuarios)
                 {
-                    if (usuarioEnLista.host == tipoConsulta - 1)
+                    if (usuarioEnLista.Host == tipoConsulta - 1)
                     {
                         usuariosADevolver.Add(usuarioEnLista);
                     }
@@ -93,9 +98,9 @@ namespace Negocio
                 try
                 {
                     idParseado = Guid.Parse(id);
-                    foreach (RespuestaConsultaUsuarios usuarioEnLista in consultaUsuarios)
+                    foreach (UsuarioE usuarioEnLista in consultaUsuarios)
                     {
-                        if (usuarioEnLista.id == idParseado) // Busca el usuario del id a cambiar estado
+                        if (usuarioEnLista.Id == idParseado) // Busca el usuario del id a cambiar estado
                         {
                             usuariosADevolver.Add(usuarioEnLista);
                         }
@@ -119,51 +124,29 @@ namespace Negocio
         //                                             AUTENTICACIÓN DE USUARIO                                                       //
         //*****************************************************************************************************************************
 
-        public int AutenticarUsuario(string usuario, string Contraseña, int intentos)
+        public string Login(LoginE loginE)
         {
-
-            // Recorrer la lista de usuarios y verificar las credenciales
-            // Esta función puede devolver 1, 2 o 3 (ADMIN, SUPERVISOR O VENDEDOR), o
-            // 0 (usuario o pass incorrecto) o -1 (probó más de 3 veces, pasa a incactivo)
-            // Devolverá -2 cuándo haga falta modificar la contraseña
-
-            if (intentos == 3) // Si intento 3 veces y encuentra el nombre de usuario (puede estar ingresando cosas inexistentes), cambiar el estado y devolver -1
+            // Esta funcion puede devolver un ID, o bien
+            // -1 para indicar que no coincide usuario y contraseña. o bien
+            // -2 para indicar que debe modificar su contraseña
+            try
             {
-                foreach (var usuarioEnLista in Usuarios)
+                string respuesta;
+                respuesta = UsuarioD.Login(loginE);
+                if (loginE.Contraseña == "CAI20232") // si no hay excepción, se loguea y esta es la password, retorna -2
                 {
-                    if (usuarioEnLista.Usuario == usuario) // Busca el id a cambiar estado
-                    {
-                        ActivoInactivo(usuarioEnLista.Id, false); // pasa a estar inactivo
-                    }
+                    return "-2";
                 }
-                return -1;
+                else
+                {
+                    return respuesta;
+                }
+                return UsuarioD.Login(loginE); // Si es correcta, devuelve ID de usuario. Sino, devuelve una excepcion
             }
-
-            foreach (var usuarioEnLista in Usuarios)
+            catch (Exception ex) // Si captura excepcion, el logueo no fue correcto.
             {
-                if (usuarioEnLista.Usuario == usuario && usuarioEnLista.Contraseña == Contraseña)
-                {
-                    // Si el usuario y la contraseña son correctos, valida si hace falta cambio de contraseña.
-                    // Los supuestos de cambio de contraseña son 2:
-                    // 1) Cuándo es primer ingreso (pass = CAI20232 y fecha de baja no nula)
-                    // 2) Cuándo expira la contraseña (30 días después de la fecha de alta)
-                    // En ambos casos la función devuelve un -2 para mostrar menú de cambio
-
-                    DateTime fechaTope = usuarioEnLista.FechaAlta.AddDays(30);
-                    if ((usuarioEnLista.Contraseña == "CAI20232" && usuarioEnLista.FechaBaja != null) )//|| fechaTope >= DateTime.Now)
-                    {
-                        return -2;
-                    }
-                    else
-                    {
-                        // Autenticación exitosa, devuelve valor de host para armar menu: 1 SUPERVISOR, 2 VENDEDOR, 3 ADMIN
-                        return usuarioEnLista.Host;
-                    }
-                }
+                return "-1";
             }
-
-            // Si no se encuentra el usuario o las credenciales no coinciden, devolver 0
-            return 0;
         }
 
 
@@ -171,7 +154,7 @@ namespace Negocio
         //                                             CAMBIO DE CONTRASEÑA                                                          //
         //*****************************************************************************************************************************
 
-        public bool CambioContraseña(string usuario, string viejaContraseña, string nuevaContraseña, List<RespuestaConsultaUsuarios> listaUsuarios)
+        public bool CambioContraseña(string usuario, string viejaContraseña, string nuevaContraseña, List<UsuarioE> listaUsuarios)
         {
             UsuarioE UsuarioNuevo = null;
 
@@ -181,7 +164,7 @@ namespace Negocio
 
             foreach (var usuarioEnLista in listaUsuarios)
             {
-                if (usuarioEnLista.nombreUsuario == usuario)
+                if (usuarioEnLista.Usuario == usuario)
                 {
                     if (// nuevaContraseña != usuarioEnLista.Contraseña &&
                         nuevaContraseña != "CAI20232" &&
@@ -214,19 +197,19 @@ namespace Negocio
 
         public bool DarUsuariodeBaja(string nombreUsuarioABorrar, Guid idUsuarioAdmin)
         {
-            RespuestaConsultaUsuarios usuarioADarDeBaja = null;
+            UsuarioE usuarioADarDeBaja = null;
             Guid idUsuarioADarDeBaja = Guid.Parse("00000000-0000-0000-0000-000000000000"); // GUID default, instanciado para evitar errores;
 
-            List<RespuestaConsultaUsuarios> listaUsuarios = UsuarioD.ConsultarUsuarios(idUsuarioAdmin);
+            List<UsuarioE> listaUsuarios = UsuarioD.ConsultarUsuarios(idUsuarioAdmin);
 
             for (int i = 0; i < listaUsuarios.Count; i++)
             {
-                if (listaUsuarios[i].nombreUsuario == nombreUsuarioABorrar)
+                if (listaUsuarios[i].Usuario == nombreUsuarioABorrar)
                 {
                     usuarioADarDeBaja = listaUsuarios[i];
                     try
                     {
-                        idUsuarioADarDeBaja = usuarioADarDeBaja.id;
+                        //idUsuarioADarDeBaja = usuarioADarDeBaja.id;
                         UsuarioD.BorrarUsuario(idUsuarioADarDeBaja, idUsuarioAdmin);
                         break;
                     }

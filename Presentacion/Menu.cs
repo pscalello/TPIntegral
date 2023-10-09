@@ -106,11 +106,11 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
                     Console.WriteLine("Por favor aguarde mientras autenticamos su usuario.");
 
                     // hace intento de login
-                    idUsuario = UsuarioD.Login(NombreUsuario, password);
+                    //idUsuario = UsuarioD.Login(NombreUsuario, password);
                     salir = true;
 
                     // busca el numero de host
-                    listaUsuarios = UsuarioD.ConsultarUsuarios(new Guid("D347CE99-DB8D-4542-AA97-FC9F3CCE6969"));
+                    //listaUsuarios = UsuarioD.ConsultarUsuarios(new Guid("D347CE99-DB8D-4542-AA97-FC9F3CCE6969"));
                     hostUsuario = listaUsuarios.Find((usuario) => usuario.nombreUsuario == NombreUsuario).host;
 
                     // cambio de contraseña
@@ -176,17 +176,17 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
                 nuevoPassword = Utils.PedirPalabra("Ingrese su nueva contraseña (De entre 8 y 15 carácteres, una mayúscula y un número,\n +" +
                                                     "distinta a la anterior y a la que recibió para el primer logueo.\n");
 
-                if (UsuarioNuevo.CambioContraseña(nombreUsuario, password, nuevoPassword, listaUsuarios) == true)
-                {
-                    Console.WriteLine("Contraseña modificada con éxito! Presione cualquier tecla para volver a loguearse");
-                    Console.ReadKey();
-                    salir = true;
-                }
-                else
-                {
-                    Console.WriteLine("No puede usar esa contraseña, presione una tecla para volver a intentarlo.");
-                    Console.ReadKey();
-                }
+                //if (UsuarioNuevo.CambioContraseña(nombreUsuario, password, nuevoPassword, listaUsuarios) == true)
+                //{
+                //    Console.WriteLine("Contraseña modificada con éxito! Presione cualquier tecla para volver a loguearse");
+                //    Console.ReadKey();
+                //    salir = true;
+                //}
+                //else
+                //{
+                //    Console.WriteLine("No puede usar esa contraseña, presione una tecla para volver a intentarlo.");
+                //    Console.ReadKey();
+                //}
             }
         }
 
@@ -454,7 +454,7 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
                 {
                     // Llama al endpoint de AgregarUsuario
                     Console.WriteLine("Por favor aguarde mientras creamos el usuario.");
-                    UsuarioD.CrearUsuario(usuarioCreadoCorrectamente, idUsuarioAdmin);
+                    //UsuarioD.CrearUsuario(usuarioCreadoCorrectamente, idUsuarioAdmin);
                     Console.WriteLine("\n\nUsuario creado con éxito!\n");
                     Console.WriteLine("Desea cargar otro usuario? (1:Si / 2:No)\n");
                     OpcionMenu = Utils.PedirEntre(1, 2, ""); // hasta que no ingresa un nro de 1 a 2, error
@@ -511,11 +511,11 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
                     case 2:
                     case 3:
                     case 4:
-                        consultausuarios = UsuarioNegocio.ConsultarUsuarios(OpcionMenu, "", idAdmin); //Solucion para pasar string como parámetro ID
+                        //consultausuarios = UsuarioNegocio.ConsultarUsuarios(OpcionMenu, "", idAdmin); //Solucion para pasar string como parámetro ID
                         break;
                     case 5:
                         id = Utils.PedirPalabra("Ingresar el GUID deseado \n");
-                        consultausuarios = UsuarioNegocio.ConsultarUsuarios(OpcionMenu, id, idAdmin); //Solucion para pasar string como parámetro ID
+                        //consultausuarios = UsuarioNegocio.ConsultarUsuarios(OpcionMenu, id, idAdmin); //Solucion para pasar string como parámetro ID
                         break;
                 }
 
