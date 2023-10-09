@@ -1,5 +1,5 @@
 ﻿using Datos;
-using Datos.Modelos;
+//using Datos.Modelos;
 using Entidad;
 using Negocio;
 using System;
@@ -23,7 +23,7 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
             // Creación persistente de administrador
             UsuarioE Administrador = new UsuarioE("SOFIA", "GONZALEZ", "Rivadavia 333", "4444-5555", "admin@gmail.com", new DateTime(2023, 9, 1),
                                            new DateTime(2000, 6, 15), new DateTime(2023, 10, 1), "Administrador", 1, 40222888, "Admin1234");
-            UsuarioN.Usuarios.Add(Administrador);
+           // UsuarioN.usuarios.Add(Administrador);
 
 
             //SUPERVISOR: Se usa método "CrearUsuario" de "NEGOCIO" para ponerlo inactivo y con clave genérica
@@ -91,7 +91,7 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
             UsuarioN UsuarioNuevo = new UsuarioN();
             string NombreUsuario = "", password = "";
             Guid idUsuario = Guid.Parse("00000000-0000-0000-0000-000000000000"); // GUID default, instanciado para evitar errores
-            List<RespuestaConsultaUsuarios> listaUsuarios = new List<RespuestaConsultaUsuarios>();
+            List<UsuarioE> listaUsuarios = new List<UsuarioE>();
 
             while (!salir)
             {
@@ -161,7 +161,7 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
         //*****************************************************************************************************************************
 
 
-        static void CambioContraseña(string nombreUsuario, string password, List<RespuestaConsultaUsuarios> listaUsuarios)
+        static void CambioContraseña(string nombreUsuario, string password, List<UsuarioE> listaUsuarios)
         {
             bool salir = false;
             string nuevoPassword;
@@ -482,7 +482,7 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
 
         static void ConsultaUsuarios(Guid idAdmin)
         {
-            List<RespuestaConsultaUsuarios> consultausuarios = new List<RespuestaConsultaUsuarios>();
+            List<UsuarioE> consultausuarios = new List<UsuarioE>();
             UsuarioN UsuarioNegocio = new UsuarioN();
 
             bool salir = false;
@@ -528,14 +528,14 @@ namespace Presentacion // Note: actual namespace depends on the project name.HOL
                     else
                     {
                         Console.WriteLine();
-                        foreach (RespuestaConsultaUsuarios usuario in consultausuarios)
-                        {
-                            Console.WriteLine($"ID: {usuario.id}");
-                            Console.WriteLine($"Nombre: {usuario.nombre}");
-                            Console.WriteLine($"Apellido: {usuario.apellido}");
-                            //// Agrega más propiedades según tu objeto RespuestaConsultaUsuarios
-                            Console.WriteLine();
-                        }
+                        //foreach (usuarioE usuario in consultausuarios)
+                        //{
+                        //    Console.WriteLine($"ID: {usuario.id}");
+                        //    Console.WriteLine($"Nombre: {usuario.nombre}");
+                        //    Console.WriteLine($"Apellido: {usuario.apellido}");
+                        //    //// Agrega más propiedades según tu objeto RespuestaConsultaUsuarios
+                        //    Console.WriteLine();
+                        //}
                     }
 
 
