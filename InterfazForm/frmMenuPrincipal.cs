@@ -43,8 +43,13 @@ namespace InterfazForm
 
         private void btnABMUsuarios_Click(object sender, EventArgs e)
         {
-            frmABMUsuarios frmABMUsuarios = new frmABMUsuarios();   
-            frmABMUsuarios.ShowDialog();    
+            frmABMUsuarios frmABMUsuarios = new frmABMUsuarios();
+            frmABMUsuarios.ShowDialog();
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
