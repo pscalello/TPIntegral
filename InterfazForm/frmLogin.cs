@@ -10,7 +10,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Datos;
+using InterfazForm.Utils;
+
+
 
 namespace InterfazForm
 {
@@ -45,13 +47,13 @@ namespace InterfazForm
             string respuesta = UsuarioLogueadoN.Login(login);
 
             if (respuesta == "-1") // Si es -1, el password es malo
-            { 
+            {
                 if (intentos == 2) // Si además de ser malo, fue su tercer intento, bloquear
                 {
                     MessageBox.Show("Superó la cantidad de intentos. \n Comuníquese con un administrador para recuperar su contraseña");
 
                     // Falta desactivar usuario
-                    
+
                     this.Close();
                 }
                 else // Si no es su tercer intento, informar que los datos son incorrectos
@@ -76,31 +78,15 @@ namespace InterfazForm
                 // Está FALLANDO ESTE METODO buscarHost
                 ///////////////////////////////////////////////////////
 
-                //int hostUsuario =  UsuarioLogueadoN.BuscarHostUsuario(guid);
+                int hostUsuario =  UsuarioLogueadoN.BuscarHostUsuario(guid);
 
                 frmMenuPrincipal frmMenuPrincipal = new frmMenuPrincipal();
 
-
-                ///////////////////////////////////////////////////////
-                // Está trayendo TODOS los host en cero, revisar - Paso 3 para pasar a ver las altas
-                ///////////////////////////////////////////////////////
-
-
-                //frmMenuPrincipal.Host = hostUsuario;
-                frmMenuPrincipal.Host = 3;
-
+                frmMenuPrincipal.Host = hostUsuario;
                 frmMenuPrincipal.Show();
-                
-
-                this.Close();  
-
-                // 3 es Admin, 2 es Supervisor, 1 es Vendedor
+                this.Close();
 
             }
-
-            
-
-
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
@@ -109,5 +95,33 @@ namespace InterfazForm
         }
 
 
+        ////////////////////////////////////////////////////
+        ///    VALIDACIONES  DE INTEGRACION DE DATOS    ///
+        ///////////////////////////////////////////////////
+
+        private void txtUsuario_Validating(object sender, CancelEventArgs e)
+        {
+            string input = txtUsuario.Text.Trim();
+
+            if (!Validador.ValidaPalabra(input, 3))
+            {
+                // La entrada no es válida, muestra un mensaje de error y cancela el evento.
+                MessageBox.Show("El usuario debe tener al menos 3 caracteres y contener solo letras.");
+                e.Cancel = true;
+            }
+
+        }
+
+        private void txtContraseña_Validating(object sender, CancelEventArgs e)
+        {
+            string input = txtContraseña.Text.Trim();
+
+            if (!Validador.ValidaPalabra(input, 3))
+            {
+                // La entrada no es válida, muestra un mensaje de error y cancela el evento.
+                MessageBox.Show("La contraseña debe tener al menos 3 caracteres y contener solo letras.");
+                e.Cancel = true;
+            }
+        }
     }
 }

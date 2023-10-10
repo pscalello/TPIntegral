@@ -52,6 +52,7 @@
             txtContraseña.Name = "txtContraseña";
             txtContraseña.Size = new Size(170, 23);
             txtContraseña.TabIndex = 10;
+            txtContraseña.Validating += txtContraseña_Validating;
             // 
             // txtUsuario
             // 
@@ -59,6 +60,7 @@
             txtUsuario.Name = "txtUsuario";
             txtUsuario.Size = new Size(170, 23);
             txtUsuario.TabIndex = 9;
+            txtUsuario.Validating += txtUsuario_Validating;
             // 
             // label2
             // 

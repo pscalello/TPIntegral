@@ -10,7 +10,7 @@ namespace Entidad
     {
         public string nombre { get;  set; }
         public string apellido { get;  set; }
-        public DateTime FechaNacimiento { get;  set; }
-        public int DNI { get;  set; }
+        public DateTime fechaNacimiento { get;  set; }
+        public int dni { get;  set; }
     }
 }

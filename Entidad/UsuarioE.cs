@@ -4,21 +4,21 @@ namespace Entidad
 {
     public class UsuarioE : PersonaE
     {
-        public Guid Id { get; private set; }
-        public string Direccion { get; private set; }
-        public string Telefono { get; private set; }
-        public string Email { get; private set; }
-        public DateTime FechaAlta { get; private set; }
-        public DateTime? FechaBaja { get; private set; }
+        public Guid id { get; private set; }
+        public string direccion { get; private set; }
+        public string telefono { get; private set; }
+        public string email { get; private set; }
+        public DateTime fechaAlta { get; private set; }
+        public DateTime? fechaBaja { get; private set; }
         public string nombreUsuario { get; private set; }
         public int host { get; private set; }
-        public string Contraseña { get; private set; }
-        public DateTime UltimaActualizacionContraseña { get; private set; }
+        public string contraseña { get; private set; }
+        //public DateTime UltimaActualizacionContraseña { get; private set; }
 
         // Constructor vacío
         public UsuarioE()
         {
-            Id = Guid.NewGuid(); // Generar un nuevo ID cuando se crea una instancia vacía.
+            id = Guid.NewGuid(); // Generar un nuevo ID cuando se crea una instancia vacía.
         }
 
         // Constructor completo
@@ -29,38 +29,39 @@ namespace Entidad
         {
             nombre = nombre;
             apellido = apellido;
-            Direccion = direccion;
-            Telefono = telefono;
-            Email = email;
-            FechaAlta = fechaAlta;
-            FechaNacimiento = fechaNacimiento;
-            FechaBaja = fechaBaja;
+            direccion = direccion;
+            telefono = telefono;
+            email = email;
+            fechaAlta = fechaAlta;
+            fechaNacimiento = fechaNacimiento;
+            fechaBaja = fechaBaja;
             nombreUsuario = usuario;
             host = host;
-            DNI = dni;
-            Contraseña = contraseña;
-            UltimaActualizacionContraseña = FechaAlta;
+            dni = dni;
+            contraseña = contraseña;
+//            UltimaActualizacionContraseña = FechaAlta;
         }
+
 
         // Modificacion de atrubutos
         public void SetFechaBaja(DateTime? fecha)
         {
-            FechaBaja = fecha;
+            fechaBaja = fecha;
         }
 
         public void SetContraseña(string contraseña)
         {
-            Contraseña = contraseña;
+            contraseña = contraseña;
         }
 
-        public void SetUltimaActualizacionContraseña(DateTime fecha)
-        {
-            UltimaActualizacionContraseña = fecha;
-        }
+        //public void SetUltimaActualizacionContraseña(DateTime fecha)
+        //{
+        //    UltimaActualizacionContraseña = fecha;
+        //}
 
         public Guid GetId(string nombreUsuario)
         {
-            return Id;
+            return id;
         }
     }
 

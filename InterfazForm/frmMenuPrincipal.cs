@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InterfazForm.Usuarios;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -22,22 +23,28 @@ namespace InterfazForm
         {
             switch (Host)
             {
-                case 1: // Vendedor
-                    btnABMUsuarios.Enabled = false;
-                    btnABMProveedores.Enabled = false;
-                    btnABMProductos.Enabled = false;
-                    btnDevoluciones.Enabled = false;   
+                case 1: //Administrador
+                    btnVentas.Enabled = false;
+                    btnDevoluciones.Enabled = false;
                     break;
                 case 2: //Supervisor
                     btnABMUsuarios.Enabled = false;
                     btnABMProveedores.Enabled = false;
                     btnVentas.Enabled = false;
                     break;
-                case 3: //Administrador
-                    btnVentas.Enabled = false;
+                case 3: // Vendedor
+                    btnABMUsuarios.Enabled = false;
+                    btnABMProveedores.Enabled = false;
+                    btnABMProductos.Enabled = false;
                     btnDevoluciones.Enabled = false;
                     break;
             }
+        }
+
+        private void btnABMUsuarios_Click(object sender, EventArgs e)
+        {
+            frmABMUsuarios frmABMUsuarios = new frmABMUsuarios();   
+            frmABMUsuarios.ShowDialog();    
         }
     }
 }

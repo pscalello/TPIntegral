@@ -85,7 +85,7 @@ namespace Datos
 
         }
 
-        public static List<UsuarioE> ConsultarUsuarios(Guid idUsuarioAdmin)
+        public static List<RespuestaConsultaUsuarios> ConsultarUsuarios(Guid idUsuarioAdmin)
         {
             HttpResponseMessage response = WebHelper.Get("Usuario/TraerUsuariosActivos?id=" + idUsuarioAdmin);
 
@@ -95,7 +95,7 @@ namespace Datos
             }
             var reader = new StreamReader(response.Content.ReadAsStream());
 
-            List<UsuarioE> respuesta = JsonConvert.DeserializeObject<List<UsuarioE>>(reader.ReadToEnd());
+            List<RespuestaConsultaUsuarios> respuesta = JsonConvert.DeserializeObject<List<RespuestaConsultaUsuarios>>(reader.ReadToEnd());
 
             return respuesta;
         }

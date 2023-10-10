@@ -13,7 +13,7 @@ namespace Negocio
 
 
         // La llenamos con todos los usuarios activos con el ID de superusuario
-        private static List<UsuarioE> Usuarios = UsuarioD.ConsultarUsuarios(Guid.Parse("D347CE99-DB8D-4542-AA97-FC9F3CCE6969"));
+        private static List<RespuestaConsultaUsuarios> Usuarios = UsuarioD.ConsultarUsuarios(Guid.Parse("D347CE99-DB8D-4542-AA97-FC9F3CCE6969"));
 
 
 
@@ -44,7 +44,7 @@ namespace Negocio
                                                     fechaNacimiento, fechaBaja, usuario, host, dni, Contraseña);
 
                 // Lo guarda en lista de esta capa, simulando DATOS
-                Usuarios.Add(UsuarioNuevo);
+                //Usuarios.Add(UsuarioNuevo);
                 return UsuarioNuevo;
             }
             return null; //En caso que no pase las validaciones, le informa a PRESENTACION que el alta no fue realizada
@@ -57,7 +57,7 @@ namespace Negocio
 
 
         // METODO QUE CONSULTA USUARIOS EN BASE A UNA PETICION
-        public List<UsuarioE> ConsultarUsuarios(int tipoConsulta, string id, Guid idAdmin)
+        public List<RespuestaConsultaUsuarios> ConsultarUsuarios(int tipoConsulta, string id, Guid idAdmin)
         {
             Guid idParseado = Guid.Parse("00000000-0000-0000-0000-000000000000"); // GUID default, instanciado para evitar errores
 
@@ -68,8 +68,8 @@ namespace Negocio
             // 4: Devolver Administradores
             // 5: Devolver un usuario por nro de ID
 
-            List<UsuarioE> consultaUsuarios = UsuarioD.ConsultarUsuarios(idAdmin);
-            List<UsuarioE> usuariosADevolver = new List<UsuarioE>();
+            List<RespuestaConsultaUsuarios> consultaUsuarios = UsuarioD.ConsultarUsuarios(idAdmin);
+            List<RespuestaConsultaUsuarios> usuariosADevolver = new List<RespuestaConsultaUsuarios>();
 
             // Recorre la lista provisoria que simula la base de datos USUARIO y completa la lista Consultausuarios en base a los filtros definidos
 
@@ -80,7 +80,7 @@ namespace Negocio
 
             if (tipoConsulta == 2 || tipoConsulta == 3 || tipoConsulta == 4)
             {
-                foreach (UsuarioE usuarioEnLista in consultaUsuarios)
+                foreach (RespuestaConsultaUsuarios usuarioEnLista in consultaUsuarios)
                 {
                     if (usuarioEnLista.host == tipoConsulta - 1)
                     {
@@ -94,9 +94,9 @@ namespace Negocio
                 try
                 {
                     idParseado = Guid.Parse(id);
-                    foreach (UsuarioE usuarioEnLista in consultaUsuarios)
+                    foreach (RespuestaConsultaUsuarios usuarioEnLista in consultaUsuarios)
                     {
-                        if (usuarioEnLista.Id == idParseado) // Busca el usuario del id a cambiar estado
+                        if (usuarioEnLista.id == idParseado) // Busca el usuario del id a cambiar estado
                         {
                             usuariosADevolver.Add(usuarioEnLista);
                         }
@@ -183,16 +183,16 @@ namespace Negocio
         public Guid BuscarId(string nombreUsuario)
         {
             // busca entre todos los usuarios el que tenga el mismo nombre de usuario, y devuelve el Id.
-            return Usuarios.Find((usuario) => usuario.nombreUsuario == nombreUsuario).Id;
+            return Usuarios.Find((usuario) => usuario.nombreUsuario == nombreUsuario).id;
         }
 
         public int BuscarHostUsuario(Guid idUsuario)
         {
 
-            List<UsuarioE> listaUsuarios = UsuarioD.ConsultarUsuarios(Guid.Parse("D347CE99-DB8D-4542-AA97-FC9F3CCE6969"));
+            List<RespuestaConsultaUsuarios> listaUsuarios = UsuarioD.ConsultarUsuarios(Guid.Parse("D347CE99-DB8D-4542-AA97-FC9F3CCE6969"));
             try
             {
-                return listaUsuarios.Find((usuario) => usuario.Id == idUsuario).host;
+                return listaUsuarios.Find((usuario) => usuario.id == idUsuario).host;
             }
             catch (Exception ex)
             {
@@ -200,15 +200,20 @@ namespace Negocio
             }
         }
 
+        public List<RespuestaConsultaUsuarios> listaUsuarios ()
+        {
+            return UsuarioD.ConsultarUsuarios(Guid.Parse("D347CE99-DB8D-4542-AA97-FC9F3CCE6969"));
+        }
+
 
 
 
         public bool DarUsuariodeBaja(string nombreUsuarioABorrar, Guid idUsuarioAdmin)
         {
-            UsuarioE usuarioADarDeBaja = null;
+            RespuestaConsultaUsuarios usuarioADarDeBaja = null;
             Guid idUsuarioADarDeBaja = Guid.Parse("00000000-0000-0000-0000-000000000000"); // GUID default, instanciado para evitar errores;
 
-            List<UsuarioE> listaUsuarios = UsuarioD.ConsultarUsuarios(idUsuarioAdmin);
+            List<RespuestaConsultaUsuarios> listaUsuarios = UsuarioD.ConsultarUsuarios(idUsuarioAdmin);
 
             for (int i = 0; i < listaUsuarios.Count; i++)
             {
@@ -253,24 +258,24 @@ namespace Negocio
 
         // CAMBIA ESTADO ACTIVO O INACTIVO EN BASE A UN GUID Y EL ESTADO DESEADO
 
-        private void ActivoInactivo(Guid id, bool activo)
-        {
-            // Recibe un ID de usuario y cambia el estado
-            foreach (var usuarioEnLista in Usuarios)
-            {
-                if (usuarioEnLista.Id == id) // Busca el usuario del id a cambiar estado
-                {
-                    if (activo) // si tiene que estar activo, null a fecha de baja
-                    {
-                        usuarioEnLista.SetFechaBaja(null);
-                    }
-                    else // si tiene que estar inactivo, se pone la fecha de hoy
-                    {
-                        usuarioEnLista.SetFechaBaja(DateTime.Now);
-                    }
-                }
-            }
-        }
+        //private void ActivoInactivo(Guid id, bool activo)
+        //{
+        //    // Recibe un ID de usuario y cambia el estado
+        //    foreach (var usuarioEnLista in Usuarios)
+        //    {
+        //        if (usuarioEnLista.id == id) // Busca el usuario del id a cambiar estado
+        //        {
+        //            if (activo) // si tiene que estar activo, null a fecha de baja
+        //            {
+        //                usuarioEnLista.SetFechaBaja(null);
+        //            }
+        //            else // si tiene que estar inactivo, se pone la fecha de hoy
+        //            {
+        //                usuarioEnLista.SetFechaBaja(DateTime.Now);
+        //            }
+        //        }
+        //    }
+        //}
 
 
 
@@ -301,7 +306,7 @@ namespace Negocio
             return true; // Cumple con todas las condiciones
         }
 
-        private bool NoRepeticionUsuario(UsuarioE usuario)
+        private bool NoRepeticionUsuario(RespuestaConsultaUsuarios usuario)
         {
             // Verificar si el nombre de usuario ya existe en la lista
             if (Usuarios.Contains(usuario))

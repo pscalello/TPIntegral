@@ -90,6 +90,7 @@
             btnABMUsuarios.TabIndex = 6;
             btnABMUsuarios.Text = "ABM Usuarios";
             btnABMUsuarios.UseVisualStyleBackColor = true;
+            btnABMUsuarios.Click += btnABMUsuarios_Click;
             // 
             // btnDevoluciones
             // 
