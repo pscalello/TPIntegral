@@ -26,7 +26,7 @@ namespace InterfazForm
                     btnABMUsuarios.Enabled = false;
                     btnABMProveedores.Enabled = false;
                     btnABMProductos.Enabled = false;
-                    btnDevoluciones.Enabled = false;   
+                    btnDevoluciones.Enabled = false;
                     break;
                 case 2: //Supervisor
                     btnABMUsuarios.Enabled = false;
@@ -37,6 +37,7 @@ namespace InterfazForm
                     btnVentas.Enabled = false;
                     btnDevoluciones.Enabled = false;
                     break;
+                    
             }
         }
     }

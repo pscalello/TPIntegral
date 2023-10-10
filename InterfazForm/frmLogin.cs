@@ -45,13 +45,13 @@ namespace InterfazForm
             string respuesta = UsuarioLogueadoN.Login(login);
 
             if (respuesta == "-1") // Si es -1, el password es malo
-            { 
+            {
                 if (intentos == 2) // Si además de ser malo, fue su tercer intento, bloquear
                 {
                     MessageBox.Show("Superó la cantidad de intentos. \n Comuníquese con un administrador para recuperar su contraseña");
 
                     // Falta desactivar usuario
-                    
+
                     this.Close();
                 }
                 else // Si no es su tercer intento, informar que los datos son incorrectos
@@ -90,15 +90,15 @@ namespace InterfazForm
                 frmMenuPrincipal.Host = 3;
 
                 frmMenuPrincipal.Show();
-                
 
-                this.Close();  
+
+                this.Close();
 
                 // 3 es Admin, 2 es Supervisor, 1 es Vendedor
 
             }
 
-            
+
 
 
         }
