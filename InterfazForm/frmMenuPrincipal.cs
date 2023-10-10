@@ -37,8 +37,13 @@ namespace InterfazForm
                     btnVentas.Enabled = false;
                     btnDevoluciones.Enabled = false;
                     break;
-                    
+
             }
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
