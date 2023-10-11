@@ -22,9 +22,7 @@ namespace Negocio
         //*****************************************************************************************************************************
 
 
-        public UsuarioE CrearUsuario(string nombre, string apellido, string direccion, string telefono,
-                                    string email, DateTime fechaAltaEmpresa, DateTime fechaNacimiento,
-                                    string usuario, int host, int dni)
+        public bool CrearUsuario(int host, string nombre, string apellido, int dni, string direccion, string telefono, string email, DateTime fechaNacimiento, string nombreUsuario)
         {
 
 
@@ -32,22 +30,55 @@ namespace Negocio
 
 
 
-            UsuarioE UsuarioNuevo = null;
+            PayloadAgregarUsuario UsuarioNuevo = null;
 
-            if (ValidarNombreUsuario(usuario, nombre, apellido)) 
+            if (ValidarNombreUsuario(nombreUsuario, nombre, apellido)) 
 
             {
-                // Al crear un usuario, debe permanecesr inactivo (fecha de baja no null) y con una contraseña genérica hasta primer ingreso:
-                DateTime fechaBaja = DateTime.Now;
-                string Contraseña = "CAI20232";
-                UsuarioNuevo = new UsuarioE(nombre, apellido, direccion, telefono, email, fechaAltaEmpresa,
-                                                    fechaNacimiento, fechaBaja, usuario, host, dni, Contraseña);
+                string contraseña = "CAI20232";
+                Guid idUsuario = Guid.Parse("D347CE99-DB8D-4542-AA97-FC9F3CCE6969");
+                UsuarioNuevo = new PayloadAgregarUsuario(idUsuario, host, nombre, apellido, dni, direccion, telefono, email, fechaNacimiento, nombreUsuario, contraseña);
+                
+                try
+                {
+                    // Usuario creado con éxito
+                    UsuarioD.CrearUsuario(UsuarioNuevo);
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    // Hubo un error al crear el usuario
+                    return false;
+                }
 
-                // Lo guarda en lista de esta capa, simulando DATOS
-                //Usuarios.Add(UsuarioNuevo);
-                return UsuarioNuevo;
             }
-            return null; //En caso que no pase las validaciones, le informa a PRESENTACION que el alta no fue realizada
+            return false; //En caso que no pase las validaciones, le informa a PRESENTACION que el alta no fue realizada
+        }
+
+
+        // Valida Nombre de Usuario
+        public bool ValidarNombreUsuario(string usuario, string nombre, string apellido)
+        {
+            // El nombre de usuario debe de tener entre 8 y 15 caracteres
+            if (usuario.Length < 8 || usuario.Length > 15)
+            {
+                return false; // Fuera del rango de caracteres permitidos
+            }
+            // El nombre de usuario no puede contener ni el nombre ni el apellido del usuario 
+            if (usuario.ToUpper().Contains(nombre.ToUpper()) || usuario.ToUpper().Contains(apellido.ToUpper()))
+            {
+                return false; // Contiene el nombre o apellido del usuario
+            }
+
+            foreach (var usuarioEnLista in Usuarios)
+            {
+                if (usuarioEnLista.nombreUsuario == usuario)
+                {
+                    return false; // Nombre de usuario repetido
+                }
+            }
+
+            return true; // Cumple con todas las condiciones
         }
 
 
@@ -281,30 +312,7 @@ namespace Negocio
 
         // VALIDACIONES DE NEGOCIO
 
-        // Valida Nombre de Usuario
-        public bool ValidarNombreUsuario(string usuario, string nombre, string apellido)
-        {
-            // El nombre de usuario debe de tener entre 8 y 15 caracteres
-            if (usuario.Length < 8 || usuario.Length > 15)
-            {
-                return false; // Fuera del rango de caracteres permitidos
-            }
-            // El nombre de usuario no puede contener ni el nombre ni el apellido del usuario 
-            if (usuario.ToUpper().Contains(nombre.ToUpper()) || usuario.ToUpper().Contains(apellido.ToUpper()))
-            {
-                return false; // Contiene el nombre o apellido del usuario
-            }
 
-            foreach (var usuarioEnLista in Usuarios)
-            {
-                if (usuarioEnLista.nombreUsuario == usuario) 
-                {
-                    return false; // Nombre de usuario repetido
-                }
-            }
-
-            return true; // Cumple con todas las condiciones
-        }
 
         private bool NoRepeticionUsuario(RespuestaConsultaUsuarios usuario)
         {

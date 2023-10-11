@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMenuPrincipal));
-            btnSalir = new Button();
             btnReportes = new Button();
             btnVentas = new Button();
             btnABMProductos = new Button();
@@ -37,18 +36,9 @@
             btnABMUsuarios = new Button();
             btnDevoluciones = new Button();
             pictureBox1 = new PictureBox();
+            btnSalir = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
-            // 
-            // btnSalir
-            // 
-            btnSalir.Location = new Point(29, 326);
-            btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(218, 23);
-            btnSalir.TabIndex = 11;
-            btnSalir.Text = "Salir";
-            btnSalir.UseVisualStyleBackColor = true;
-            btnSalir.Click += btnSalir_Click;
             // 
             // btnReportes
             // 
@@ -114,14 +104,24 @@
             pictureBox1.TabIndex = 13;
             pictureBox1.TabStop = false;
             // 
+            // btnSalir
+            // 
+            btnSalir.Location = new Point(29, 325);
+            btnSalir.Name = "btnSalir";
+            btnSalir.Size = new Size(218, 23);
+            btnSalir.TabIndex = 14;
+            btnSalir.Text = "Salir";
+            btnSalir.UseVisualStyleBackColor = true;
+            btnSalir.Click += btnSalir_Click;
+            // 
             // frmMenuPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(284, 381);
+            Controls.Add(btnSalir);
             Controls.Add(pictureBox1);
             Controls.Add(btnDevoluciones);
-            Controls.Add(btnSalir);
             Controls.Add(btnReportes);
             Controls.Add(btnVentas);
             Controls.Add(btnABMProductos);
@@ -135,8 +135,6 @@
         }
 
         #endregion
-
-        private Button btnSalir;
         private Button btnReportes;
         private Button btnVentas;
         private Button btnABMProductos;
@@ -144,5 +142,6 @@
         private Button btnABMUsuarios;
         private Button btnDevoluciones;
         private PictureBox pictureBox1;
+        private Button btnSalir;
     }
 }

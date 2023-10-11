@@ -13,7 +13,7 @@ namespace Datos
     public static class UsuarioD
     {
 
-        public static void CrearUsuario(UsuarioE usuario)
+        public static void CrearUsuario(PayloadAgregarUsuario usuario)
         {
             var jsonRequest = JsonConvert.SerializeObject(usuario);
 

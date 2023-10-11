@@ -1,13 +1,16 @@
 ﻿using InterfazForm.Utils;
+using Negocio;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace InterfazForm.Usuarios
 {
@@ -93,6 +96,64 @@ namespace InterfazForm.Usuarios
                 MessageBox.Show("El DNI sólo debe contener números.");
                 e.Cancel = true;
             }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            if (validaVacios())
+            {
+                UsuarioN UsuarioNuevo = new UsuarioN();
+
+                int host = cboHost.SelectedIndex + 1;
+                string nombre = txtNombre.Text;
+                string apellido = txtApellido.Text;
+                int dni = int.Parse(txtDNI.Text);
+                string direccion = txtDireccion.Text;
+                string telefono = txtTelefono.Text;
+                string email = txtEmail.Text;
+                DateTime fechaNacimiento = dtiFechaNacimiento.Value;
+                string nombreUsuario = txtNombreUsuario.Text;
+                string contraseña = "CAI20232";
+
+                bool creacionCorrecta = UsuarioNuevo.CrearUsuario(host, nombre, apellido, dni, direccion, telefono, email, fechaNacimiento, nombreUsuario);
+                if (creacionCorrecta)
+                {
+                    MessageBox.Show("Creación de usuario exitosa!");
+                    this.Close(); 
+
+                }
+                else
+                {
+                    MessageBox.Show("Existen errores para la creación. Recuerde \n " +
+                                    "que el nombre de usuario debe tener entre 8\n" +
+                                    "y 15 carateres, y que el mismo no puede contener \n"+
+                                    "ni su nombre ni su apellido");
+                }
+            }
+        }
+
+        private bool validaVacios()
+        {
+            foreach (Control control in this.Controls)
+            {
+                if (control is System.Windows.Forms.TextBox)
+                {
+                    System.Windows.Forms.TextBox textBox = (System.Windows.Forms.TextBox)control;
+                    if (string.IsNullOrWhiteSpace(textBox.Text))
+                    {
+                        MessageBox.Show("El campo no puede estar vacío.");
+                        textBox.Focus();
+                        return false; // Al encontrar un TextBox vacío, retorna false.
+                    }
+                }
+            }
+
+            return true; // Si todos los TextBox están llenos, retorna true.
         }
     }
 }

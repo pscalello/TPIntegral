@@ -56,7 +56,7 @@
             txtEmail.Location = new Point(160, 174);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(211, 23);
-            txtEmail.TabIndex = 74;
+            txtEmail.TabIndex = 5;
             txtEmail.Validating += txtEmail_Validating;
             // 
             // txtTelefono
@@ -64,7 +64,7 @@
             txtTelefono.Location = new Point(160, 142);
             txtTelefono.Name = "txtTelefono";
             txtTelefono.Size = new Size(211, 23);
-            txtTelefono.TabIndex = 73;
+            txtTelefono.TabIndex = 4;
             txtTelefono.Validating += txtTelefono_Validating;
             // 
             // txtDireccion
@@ -72,7 +72,7 @@
             txtDireccion.Location = new Point(160, 110);
             txtDireccion.Name = "txtDireccion";
             txtDireccion.Size = new Size(211, 23);
-            txtDireccion.TabIndex = 72;
+            txtDireccion.TabIndex = 3;
             txtDireccion.Validating += txtDireccion_Validating;
             // 
             // txtApellido
@@ -80,7 +80,7 @@
             txtApellido.Location = new Point(160, 78);
             txtApellido.Name = "txtApellido";
             txtApellido.Size = new Size(211, 23);
-            txtApellido.TabIndex = 71;
+            txtApellido.TabIndex = 2;
             txtApellido.Validating += txtApellido_Validating;
             // 
             // txtNombre
@@ -88,7 +88,7 @@
             txtNombre.Location = new Point(160, 46);
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(211, 23);
-            txtNombre.TabIndex = 70;
+            txtNombre.TabIndex = 1;
             txtNombre.Validating += txtNombre_Validating;
             // 
             // label8
@@ -107,42 +107,45 @@
             btnCancelar.Location = new Point(296, 349);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(75, 23);
-            btnCancelar.TabIndex = 68;
+            btnCancelar.TabIndex = 11;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
+            btnCancelar.Click += btnCancelar_Click;
             // 
             // btnAgregar
             // 
             btnAgregar.Location = new Point(206, 349);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.Size = new Size(75, 23);
-            btnAgregar.TabIndex = 67;
+            btnAgregar.TabIndex = 10;
             btnAgregar.Text = "Agregar";
             btnAgregar.UseVisualStyleBackColor = true;
+            btnAgregar.Click += btnAgregar_Click;
             // 
             // txtDNI
             // 
             txtDNI.Location = new Point(160, 302);
             txtDNI.Name = "txtDNI";
             txtDNI.Size = new Size(211, 23);
-            txtDNI.TabIndex = 66;
+            txtDNI.TabIndex = 9;
             txtDNI.Validating += txtDNI_Validating;
             // 
             // cboHost
             // 
+            cboHost.DropDownStyle = ComboBoxStyle.DropDownList;
             cboHost.FormattingEnabled = true;
             cboHost.Items.AddRange(new object[] { "Administrador", "Supervisor", "Vendedor" });
             cboHost.Location = new Point(160, 270);
             cboHost.Name = "cboHost";
             cboHost.Size = new Size(121, 23);
-            cboHost.TabIndex = 65;
+            cboHost.TabIndex = 8;
             // 
             // txtNombreUsuario
             // 
             txtNombreUsuario.Location = new Point(160, 238);
             txtNombreUsuario.Name = "txtNombreUsuario";
             txtNombreUsuario.Size = new Size(211, 23);
-            txtNombreUsuario.TabIndex = 64;
+            txtNombreUsuario.TabIndex = 7;
             txtNombreUsuario.Validating += txtNombreUsuario_Validating;
             // 
             // dtiFechaNacimiento
@@ -153,7 +156,7 @@
             dtiFechaNacimiento.MinDate = new DateTime(1930, 1, 1, 0, 0, 0, 0);
             dtiFechaNacimiento.Name = "dtiFechaNacimiento";
             dtiFechaNacimiento.Size = new Size(121, 23);
-            dtiFechaNacimiento.TabIndex = 63;
+            dtiFechaNacimiento.TabIndex = 6;
             dtiFechaNacimiento.Value = new DateTime(2010, 12, 31, 0, 0, 0, 0);
             // 
             // label11

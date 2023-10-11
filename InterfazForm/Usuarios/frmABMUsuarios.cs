@@ -30,8 +30,13 @@ namespace InterfazForm.Usuarios
 
         private void btnAltaUsuario_Click(object sender, EventArgs e)
         {
-            frmAltaUsuario frmAltaUsuario = new frmAltaUsuario();   
-            frmAltaUsuario.ShowDialog();    
+            frmAltaUsuario frmAltaUsuario = new frmAltaUsuario();
+            frmAltaUsuario.ShowDialog();
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
