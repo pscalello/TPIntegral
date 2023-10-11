@@ -23,8 +23,10 @@ namespace InterfazForm
         {
             switch (Host)
             {
-                case 1: //Administrador
-                    btnVentas.Enabled = false;
+                case 1: // Vendedor
+                    btnABMUsuarios.Enabled = false;
+                    btnABMProveedores.Enabled = false;
+                    btnABMProductos.Enabled = false;
                     btnDevoluciones.Enabled = false;
                     break;
                 case 2: //Supervisor
@@ -38,6 +40,7 @@ namespace InterfazForm
                     btnABMProductos.Enabled = false;
                     btnDevoluciones.Enabled = false;
                     break;
+
             }
         }
 
@@ -45,6 +48,11 @@ namespace InterfazForm
         {
             frmABMUsuarios frmABMUsuarios = new frmABMUsuarios();
             frmABMUsuarios.ShowDialog();
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
