@@ -25,13 +25,7 @@ namespace Negocio
         public bool CrearUsuario(int host, string nombre, string apellido, int dni, string direccion, string telefono, string email, DateTime fechaNacimiento, string nombreUsuario)
         {
 
-
-            // VALIDACIONES DE USUARIO DE ACUERDO A REGLAS DE NEGOCIO ANTES DE INSERTAR
-
-
-
             PayloadAgregarUsuario UsuarioNuevo = null;
-
             if (ValidarNombreUsuario(nombreUsuario, nombre, apellido)) 
 
             {
@@ -54,7 +48,6 @@ namespace Negocio
             }
             return false; //En caso que no pase las validaciones, le informa a PRESENTACION que el alta no fue realizada
         }
-
 
         // Valida Nombre de Usuario
         public bool ValidarNombreUsuario(string usuario, string nombre, string apellido)
@@ -81,6 +74,24 @@ namespace Negocio
             return true; // Cumple con todas las condiciones
         }
 
+
+        //***************************************************************************************************************************** 
+        //                                             ELIMINACION DE USUARIO                                                         //
+        //*****************************************************************************************************************************
+
+        public bool EliminarUsuario(Guid idUsuario)
+        {
+            Guid idUsuarioAdmin = Guid.Parse("D347CE99-DB8D-4542-AA97-FC9F3CCE6969");
+            try
+                {
+                    UsuarioD.BorrarUsuario(idUsuario, idUsuarioAdmin);
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+        }
 
         //***************************************************************************************************************************** 
         //                                             CONSULTA DE USUARIO                                                           //

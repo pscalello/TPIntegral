@@ -20,9 +20,15 @@ namespace InterfazForm.Utils
             return !string.IsNullOrWhiteSpace(input) && Regex.IsMatch(input, @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
         }
 
-        public static bool ValidaNumero(string input)
+        public static bool ValidaNumero(string input, int min, int max)
         {
-            return !string.IsNullOrWhiteSpace(input) && Regex.IsMatch(input, @"^[0-9]+$");
+            if (string.IsNullOrWhiteSpace(input) || !Regex.IsMatch(input, @"^[0-9]+$"))
+            {
+                return false; // No es un número válido.
+            }
+
+            int numero = int.Parse(input); // Parsea input
+            return numero >= min && numero <= max; //Comprueba que el número esté entre los parámetros
         }
 
     }

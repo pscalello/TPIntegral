@@ -28,11 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmABMUsuarios));
             dgvUsuarios = new DataGridView();
             btnAltaUsuario = new Button();
             btnEliminar = new Button();
             btnSalir = new Button();
+            pictureBox1 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)dgvUsuarios).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // dgvUsuarios
@@ -62,6 +65,7 @@
             btnEliminar.TabIndex = 3;
             btnEliminar.Text = "Eliminar";
             btnEliminar.UseVisualStyleBackColor = true;
+            btnEliminar.Click += btnEliminar_Click;
             // 
             // btnSalir
             // 
@@ -73,11 +77,21 @@
             btnSalir.UseVisualStyleBackColor = true;
             btnSalir.Click += btnSalir_Click;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(12, 379);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(216, 46);
+            pictureBox1.TabIndex = 6;
+            pictureBox1.TabStop = false;
+            // 
             // frmABMUsuarios
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(775, 455);
+            Controls.Add(pictureBox1);
             Controls.Add(btnSalir);
             Controls.Add(btnEliminar);
             Controls.Add(btnAltaUsuario);
@@ -86,6 +100,7 @@
             Text = "ABM Usuarios";
             Load += frmABMUsuarios_Load;
             ((System.ComponentModel.ISupportInitialize)dgvUsuarios).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
@@ -95,5 +110,6 @@
         private Button btnAltaUsuario;
         private Button btnEliminar;
         private Button btnSalir;
+        private PictureBox pictureBox1;
     }
 }
