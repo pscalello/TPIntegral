@@ -36,7 +36,10 @@
             label1 = new Label();
             btnIngresar = new Button();
             pictureBox1 = new PictureBox();
+            backgroundLogoCarga = new System.ComponentModel.BackgroundWorker();
+            logoCarga = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)logoCarga).BeginInit();
             SuspendLayout();
             // 
             // btnSalir
@@ -92,6 +95,7 @@
             btnIngresar.Text = "Ingresar";
             btnIngresar.UseVisualStyleBackColor = true;
             btnIngresar.Click += btnIngresar_Click;
+            btnIngresar.KeyDown += btnIngresar_KeyDown;
             // 
             // pictureBox1
             // 
@@ -102,11 +106,22 @@
             pictureBox1.TabIndex = 12;
             pictureBox1.TabStop = false;
             // 
+            // logoCarga
+            // 
+            logoCarga.Image = (Image)resources.GetObject("logoCarga.Image");
+            logoCarga.Location = new Point(89, 137);
+            logoCarga.Name = "logoCarga";
+            logoCarga.Size = new Size(33, 36);
+            logoCarga.TabIndex = 13;
+            logoCarga.TabStop = false;
+            // 
             // frmLogin
             // 
+            AcceptButton = btnIngresar;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(316, 188);
+            Controls.Add(logoCarga);
             Controls.Add(pictureBox1);
             Controls.Add(btnSalir);
             Controls.Add(txtContraseña);
@@ -118,6 +133,7 @@
             Text = "Login";
             Load += frmLogin_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)logoCarga).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -131,5 +147,7 @@
         private Label label1;
         private Button btnIngresar;
         private PictureBox pictureBox1;
+        private System.ComponentModel.BackgroundWorker backgroundLogoCarga;
+        private PictureBox logoCarga;
     }
 }

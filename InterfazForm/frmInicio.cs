@@ -1,3 +1,5 @@
+using System.Drawing;
+
 namespace InterfazForm
 {
     public partial class frmInicio : Form
@@ -5,6 +7,7 @@ namespace InterfazForm
         public frmInicio()
         {
             InitializeComponent();
+
         }
 
 
@@ -28,5 +31,8 @@ namespace InterfazForm
         {
             this.Close();
         }
+
+     
+      
     }
 }

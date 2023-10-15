@@ -28,14 +28,14 @@ namespace InterfazForm
                     btnDevoluciones.Enabled = false;
                     break;
                 case 2: //Supervisor
-                    btnABMUsuarios.Enabled = false;
-                    btnABMProveedores.Enabled = false;
+                    btnABMUsuarios.Enabled = true;
+                    btnABMProveedores.Enabled = true;
                     btnVentas.Enabled = false;
                     break;
                 case 3: // Vendedor
-                    btnABMUsuarios.Enabled = false;
-                    btnABMProveedores.Enabled = false;
-                    btnABMProductos.Enabled = false;
+                    btnABMUsuarios.Enabled = true;
+                    btnABMProveedores.Enabled = true;
+                    btnABMProductos.Enabled = true;
                     btnDevoluciones.Enabled = false;
                     break;
 

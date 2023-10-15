@@ -25,15 +25,21 @@ namespace InterfazForm
         public frmLogin()
         {
             InitializeComponent();
+            backgroundLogoCarga.DoWork += backgroundLogoCarga_DoWork;
+            backgroundLogoCarga.RunWorkerCompleted += backgroundLogoCarga_RunWorkerCompleted;
+            logoCarga.Visible = false;
         }
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
             intentos = 0;
+            txtContraseña.PasswordChar = '*';
         }
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
+            logoCarga.Visible = true;
+            backgroundLogoCarga.RunWorkerAsync();
 
             // validar consistencia
             string respuestas;
@@ -78,7 +84,7 @@ namespace InterfazForm
                 // Está FALLANDO ESTE METODO buscarHost
                 ///////////////////////////////////////////////////////
 
-                int hostUsuario =  UsuarioLogueadoN.BuscarHostUsuario(guid);
+                int hostUsuario = UsuarioLogueadoN.BuscarHostUsuario(guid);
 
                 frmMenuPrincipal frmMenuPrincipal = new frmMenuPrincipal();
 
@@ -121,6 +127,26 @@ namespace InterfazForm
                 // La entrada no es válida, muestra un mensaje de error y cancela el evento.
                 MessageBox.Show("La contraseña debe tener al menos 3 caracteres y contener solo letras.");
                 e.Cancel = true;
+            }
+        }
+
+        private void backgroundLogoCarga_DoWork(object sender, DoWorkEventArgs e)
+        {
+            System.Threading.Thread.Sleep(3000);
+        }
+
+        private void backgroundLogoCarga_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+        
+            logoCarga.Visible = false;
+
+        }
+        // que funcione el Enter como click, con el boton ingresar
+        private void btnIngresar_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnIngresar.PerformClick();
             }
         }
     }
