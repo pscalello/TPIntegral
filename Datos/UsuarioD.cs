@@ -70,18 +70,18 @@ namespace Datos
 
         public static void BorrarUsuario(Guid idUsuarioABorrar, Guid idUsuarioAdmin)
         {
-            Dictionary<String, Guid> map = new Dictionary<string, Guid>();
-            map.Add("id", idUsuarioABorrar);
-            map.Add("idUsuario", idUsuarioAdmin);
+                Dictionary<String, Guid> map = new Dictionary<string, Guid>();
+                map.Add("id", idUsuarioABorrar);
+                map.Add("idUsuario", idUsuarioAdmin);
 
-            var jsonRequest = JsonConvert.SerializeObject(map);
+                var jsonRequest = JsonConvert.SerializeObject(map);
 
-            HttpResponseMessage response = WebHelper.DeleteConBody("Usuario/BajaUsuario", jsonRequest);
+                HttpResponseMessage response = WebHelper.DeleteConBody("Usuario/BajaUsuario", jsonRequest);
 
-            if (!response.IsSuccessStatusCode)
-            {
-                throw new Exception("Verifique los datos ingresados");
-            }
+                if (!response.IsSuccessStatusCode)
+                {
+                    throw new Exception("Verifique los datos ingresados");
+                }
 
         }
 

@@ -57,28 +57,33 @@ namespace InterfazForm.Usuarios
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            if (dgvUsuarios.SelectedRows.Count > 0)
+            DialogResult result = MessageBox.Show("¿Está seguro de que desea eliminar este usuario?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
             {
-                DataGridViewRow filaSeleccionada = dgvUsuarios.SelectedRows[0]; //captura id que está oculta
-                //MessageBox.Show(filaSeleccionada.Cells[0].Value.ToString());
-                Guid guid = Guid.Parse(filaSeleccionada.Cells[0].Value.ToString());
-
-
-                bool eliminaUsuario = usuarioN.EliminarUsuario(guid);
-                if (eliminaUsuario)
+                if (dgvUsuarios.SelectedRows.Count > 0)
                 {
-                    llenaDataGriedUsuarios();
-                    MessageBox.Show("Usuario eliminado correctamente.");
+                    DataGridViewRow filaSeleccionada = dgvUsuarios.SelectedRows[0]; //captura id que está oculta
+                                                                                    //MessageBox.Show(filaSeleccionada.Cells[0].Value.ToString());
+                    Guid guid = Guid.Parse(filaSeleccionada.Cells[0].Value.ToString());
+
+
+                    bool eliminaUsuario = usuarioN.EliminarUsuario(guid);
+                    if (eliminaUsuario)
+                    {
+                        llenaDataGriedUsuarios();
+                        MessageBox.Show("Usuario eliminado correctamente.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Falló la eliminación, por favor vuelva a intentarlo");
+                    }
+
                 }
                 else
                 {
-                    MessageBox.Show("Falló la eliminación, por favor vuelva a intentarlo");
+                    MessageBox.Show("Debe seleccionar una fila de la grilla a eliminar.");
                 }
-
-            }
-            else
-            {
-                MessageBox.Show("Debe seleccionar una fila de la grilla a eliminar.");
             }
         }
     }
