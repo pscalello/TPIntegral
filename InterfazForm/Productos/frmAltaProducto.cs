@@ -1,6 +1,4 @@
-﻿using InterfazForm.Utils;
-using Negocio;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,13 +10,16 @@ using System.Windows.Forms;
 
 namespace InterfazForm.Proveedores
 {
-    public partial class frmAltaProveedor : Form
+    public partial class frmAltaProducto : Form
     {
-        public frmAltaProveedor()
+        public frmAltaProducto()
         {
             InitializeComponent();
         }
 
+        private void frmAltaProducto_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
-

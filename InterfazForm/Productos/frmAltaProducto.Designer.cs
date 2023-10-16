@@ -1,6 +1,6 @@
 ﻿namespace InterfazForm.Proveedores
 {
-    partial class frmAltaProveedor
+    partial class frmAltaProducto
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAltaProveedor));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAltaProducto));
             btnCancelar = new Button();
             btnAgregar = new Button();
             txtApellido = new TextBox();
@@ -138,7 +138,7 @@
             pictureBox1.TabIndex = 50;
             pictureBox1.TabStop = false;
             // 
-            // frmAltaProveedor
+            // frmAltaProducto
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -154,8 +154,9 @@
             Controls.Add(txtNombre);
             Controls.Add(label9);
             Controls.Add(label1);
-            Name = "frmAltaProveedor";
-            Text = "Alta de Proveedores";
+            Name = "frmAltaProducto";
+            Text = "Alta de Producto";
+            Load += frmAltaProducto_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();

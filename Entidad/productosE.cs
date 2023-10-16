@@ -33,12 +33,39 @@ namespace Entidad
         public Guid IdUsuario { get => _idUsuario; set => _idUsuario = value; }
         public Guid IdProveedor { get => _idProveedor; set => _idProveedor = value; }
 
+        // Constructor vacío
+        public productosE()
+        {
+            Id = Guid.NewGuid(); // Generar un nuevo ID cuando se crea una instancia vacía.
+        }
+
+        public productosE(Guid id, Guid idCategoria, string nombre, DateTime fechaAlta, DateTime? fechaBaja, double precio, int stock, Guid idUsuario, Guid idProveedor)
+                        : this() // Llama al constructor vacío para generar un nuevo ID
+        {
+            Id = id;
+            IdCategoria = idCategoria;
+            Nombre = nombre;
+            FechaAlta = fechaAlta;
+            FechaBaja = fechaBaja;
+            Precio = precio;
+            Stock = stock;
+            IdUsuario = idUsuario;
+            IdProveedor = idProveedor;
+            
+            //            UltimaActualizacionContraseña = FechaAlta;
+        }
+
         //metodos
 
         public void RegistrarProducto()
         {
 
 
+        }
+
+        public void SetFechaBaja(DateTime? fecha)
+        {
+            FechaBaja = fecha;
         }
 
     }
