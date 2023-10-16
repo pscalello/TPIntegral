@@ -1,4 +1,5 @@
 ﻿using InterfazForm.Usuarios;
+using InterfazForm.Proveedores;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,7 +25,7 @@ namespace InterfazForm
             switch (Host)
             {
                 case 1: // Administrador
-                    btnVentas.Enabled = false;  
+                    btnVentas.Enabled = false;
                     btnDevoluciones.Enabled = false;
                     break;
                 case 2: //Supervisor
@@ -51,6 +52,12 @@ namespace InterfazForm
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnABMProveedores_Click(object sender, EventArgs e)
+        {
+            frmABMProveedores frmABMProveedores = new frmABMProveedores();
+            frmABMProveedores.ShowDialog();
         }
     }
 }

@@ -29,23 +29,23 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmABMProveedores));
-            dataGridView1 = new DataGridView();
+            dgvProveedores = new DataGridView();
             btnSalir = new Button();
             btnEliminar = new Button();
             btnAgregar = new Button();
             pictureBox1 = new PictureBox();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvProveedores).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
-            // dataGridView1
+            // dgvProveedores
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(12, 12);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(593, 267);
-            dataGridView1.TabIndex = 0;
+            dgvProveedores.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvProveedores.Location = new Point(12, 12);
+            dgvProveedores.Name = "dgvProveedores";
+            dgvProveedores.RowTemplate.Height = 25;
+            dgvProveedores.Size = new Size(593, 267);
+            dgvProveedores.TabIndex = 0;
             // 
             // btnSalir
             // 
@@ -93,17 +93,18 @@
             Controls.Add(btnSalir);
             Controls.Add(btnEliminar);
             Controls.Add(btnAgregar);
-            Controls.Add(dataGridView1);
+            Controls.Add(dgvProveedores);
             Name = "frmABMProveedores";
             Text = "ABM de Proveedores";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            Load += frmABMProveedores_Load;
+            ((System.ComponentModel.ISupportInitialize)dgvProveedores).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private DataGridView dataGridView1;
+        private DataGridView dgvProveedores;
         private Button btnSalir;
         private Button btnEliminar;
         private Button btnAgregar;

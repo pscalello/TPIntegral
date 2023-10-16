@@ -75,6 +75,7 @@
             btnABMProveedores.TabIndex = 7;
             btnABMProveedores.Text = "ABM Proveedores";
             btnABMProveedores.UseVisualStyleBackColor = true;
+            btnABMProveedores.Click += btnABMProveedores_Click;
             // 
             // btnABMUsuarios
             // 

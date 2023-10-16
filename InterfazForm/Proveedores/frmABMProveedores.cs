@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using Entidad;
+using Negocio;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +15,9 @@ namespace InterfazForm.Proveedores
 {
     public partial class frmABMProveedores : Form
     {
+
+        private ProveedorN proveedorN = new ProveedorN();
+
         public frmABMProveedores()
         {
             InitializeComponent();
@@ -24,8 +29,35 @@ namespace InterfazForm.Proveedores
 
             if (result == DialogResult.Yes)
             {
-                
+
             }
         }
+
+        private void frmABMProveedores_Load(object sender, EventArgs e)
+        {
+            llenaDataGriedProveedores();
+        }
+
+
+
+        private void llenaDataGriedProveedores()
+        {
+            List<RespuestaConsultaProveedores> listaProvedores = proveedorN.listaProveedores();
+            dgvProveedores.SuspendLayout(); // reduce el parpadeo al dibujar el control. Al final se vuelve a activar
+            dgvProveedores.DataSource = null;
+            dgvProveedores.DataSource = listaProvedores;
+            dgvProveedores.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvProveedores.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+            dgvProveedores.Columns[0].Visible = false; // Oculto id
+            dgvProveedores.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvProveedores.Columns["nombre"].HeaderText = "Nombre";
+            dgvProveedores.Columns["apellido"].HeaderText = "Apellido";
+            dgvProveedores.Columns["email"].HeaderText = "Email";
+            dgvProveedores.Columns["cuit"].HeaderText = "CUIT";
+            dgvProveedores.Columns["fechaAlta"].HeaderText = "fechaAlta";
+            dgvProveedores.ResumeLayout();
+        }
+
+
     }
 }
