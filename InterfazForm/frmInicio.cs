@@ -23,8 +23,7 @@ namespace InterfazForm
         {
             MessageBox.Show("TP INTEGRAL CAI 2 - LOGIN \n" +
                         "Esta opción de Auto Registro estará disponible en versiones posteriores para clientes. \n" +
-                        "Sólo se pueden registrar Supervisores y Vendedores mediante el login de un Administrador. \n" +
-                        "Presiones cualquier tecla para volver al menú anterior.");
+                        "Sólo se pueden registrar Supervisores y Vendedores mediante el login de un Administrador.");
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
