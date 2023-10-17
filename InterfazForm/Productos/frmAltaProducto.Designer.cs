@@ -31,21 +31,23 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAltaProducto));
             btnCancelar = new Button();
             btnAgregar = new Button();
-            txtApellido = new TextBox();
             label2 = new Label();
             txtEmail = new TextBox();
             label5 = new Label();
-            txtCUIT = new TextBox();
             txtNombre = new TextBox();
             label9 = new Label();
             label1 = new Label();
             pictureBox1 = new PictureBox();
+            dateTimePicker1 = new DateTimePicker();
+            cboHost = new ComboBox();
+            textBox1 = new TextBox();
+            label3 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // btnCancelar
             // 
-            btnCancelar.Location = new Point(227, 220);
+            btnCancelar.Location = new Point(228, 218);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(75, 23);
             btnCancelar.TabIndex = 49;
@@ -54,33 +56,26 @@
             // 
             // btnAgregar
             // 
-            btnAgregar.Location = new Point(137, 220);
+            btnAgregar.Location = new Point(138, 218);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.Size = new Size(75, 23);
             btnAgregar.TabIndex = 48;
             btnAgregar.Text = "Agregar";
             btnAgregar.UseVisualStyleBackColor = true;
             // 
-            // txtApellido
-            // 
-            txtApellido.Location = new Point(91, 112);
-            txtApellido.Name = "txtApellido";
-            txtApellido.Size = new Size(211, 23);
-            txtApellido.TabIndex = 46;
-            // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(31, 115);
+            label2.Location = new Point(30, 96);
             label2.Name = "label2";
-            label2.Size = new Size(54, 15);
+            label2.Size = new Size(61, 15);
             label2.TabIndex = 45;
-            label2.Text = "Apellido:";
+            label2.Text = "Categoría:";
             label2.TextAlign = ContentAlignment.MiddleRight;
             // 
             // txtEmail
             // 
-            txtEmail.Location = new Point(91, 178);
+            txtEmail.Location = new Point(91, 151);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(211, 23);
             txtEmail.TabIndex = 44;
@@ -88,23 +83,16 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(46, 181);
+            label5.Location = new Point(48, 154);
             label5.Name = "label5";
-            label5.Size = new Size(39, 15);
+            label5.Size = new Size(43, 15);
             label5.TabIndex = 43;
-            label5.Text = "Email:";
+            label5.Text = "Precio:";
             label5.TextAlign = ContentAlignment.MiddleRight;
-            // 
-            // txtCUIT
-            // 
-            txtCUIT.Location = new Point(91, 146);
-            txtCUIT.Name = "txtCUIT";
-            txtCUIT.Size = new Size(211, 23);
-            txtCUIT.TabIndex = 42;
             // 
             // txtNombre
             // 
-            txtNombre.Location = new Point(91, 80);
+            txtNombre.Location = new Point(91, 64);
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(211, 23);
             txtNombre.TabIndex = 39;
@@ -112,21 +100,21 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(50, 149);
+            label9.Location = new Point(13, 127);
             label9.Name = "label9";
-            label9.Size = new Size(35, 15);
+            label9.Size = new Size(79, 15);
             label9.TabIndex = 38;
-            label9.Text = "CUIT:";
+            label9.Text = "Fecha de alta:";
             label9.TextAlign = ContentAlignment.MiddleRight;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(31, 83);
+            label1.Location = new Point(71, 67);
             label1.Name = "label1";
-            label1.Size = new Size(54, 15);
+            label1.Size = new Size(20, 15);
             label1.TabIndex = 35;
-            label1.Text = "Nombre:";
+            label1.Text = "Id:";
             label1.TextAlign = ContentAlignment.MiddleRight;
             // 
             // pictureBox1
@@ -138,19 +126,55 @@
             pictureBox1.TabIndex = 50;
             pictureBox1.TabStop = false;
             // 
+            // dateTimePicker1
+            // 
+            dateTimePicker1.Location = new Point(91, 122);
+            dateTimePicker1.Name = "dateTimePicker1";
+            dateTimePicker1.Size = new Size(211, 23);
+            dateTimePicker1.TabIndex = 51;
+            // 
+            // cboHost
+            // 
+            cboHost.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboHost.FormattingEnabled = true;
+            cboHost.Items.AddRange(new object[] { "Administrador", "Supervisor", "Vendedor" });
+            cboHost.Location = new Point(91, 93);
+            cboHost.Name = "cboHost";
+            cboHost.Size = new Size(211, 23);
+            cboHost.TabIndex = 52;
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(91, 180);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(211, 23);
+            textBox1.TabIndex = 54;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(53, 183);
+            label3.Name = "label3";
+            label3.Size = new Size(39, 15);
+            label3.TabIndex = 53;
+            label3.Text = "Stock:";
+            label3.TextAlign = ContentAlignment.MiddleRight;
+            // 
             // frmAltaProducto
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(346, 272);
+            ClientSize = new Size(346, 263);
+            Controls.Add(textBox1);
+            Controls.Add(label3);
+            Controls.Add(cboHost);
+            Controls.Add(dateTimePicker1);
             Controls.Add(pictureBox1);
             Controls.Add(btnCancelar);
             Controls.Add(btnAgregar);
-            Controls.Add(txtApellido);
             Controls.Add(label2);
             Controls.Add(txtEmail);
             Controls.Add(label5);
-            Controls.Add(txtCUIT);
             Controls.Add(txtNombre);
             Controls.Add(label9);
             Controls.Add(label1);
@@ -166,14 +190,27 @@
 
         private Button btnCancelar;
         private Button btnAgregar;
-        private TextBox txtApellido;
         private Label label2;
         private TextBox txtEmail;
         private Label label5;
-        private TextBox txtCUIT;
         private TextBox txtNombre;
         private Label label9;
         private Label label1;
         private PictureBox pictureBox1;
+        private DateTimePicker dateTimePicker1;
+        private ComboBox cboHost;
+        private TextBox textBox1;
+        private Label label3;
     }
+
+    /*Id = id;
+            IdCategoria = idCategoria;
+            Nombre = nombre;
+            FechaAlta = fechaAlta;
+            FechaBaja = fechaBaja;
+            Precio = precio;
+            Stock = stock;
+            IdUsuario = idUsuario;
+            IdProveedor = idProveedor;
+    */
 }

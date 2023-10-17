@@ -59,5 +59,6 @@ namespace InterfazForm
             frmABMProveedores frmABMProveedores = new frmABMProveedores();
             frmABMProveedores.ShowDialog();
         }
+
     }
 }
