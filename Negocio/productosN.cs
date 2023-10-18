@@ -8,23 +8,24 @@ using System.Threading.Tasks;
 
 namespace Negocio
 {
-    public class productosN
+    public class ProductosN
     {
+        // La llenamos con todos los productos activos con el ID
+        private static List<RespuestaConsultaProducto> Productos = ProductoD.ConsultarProductos();
 
-        public bool CrearProducto(Guid id, Guid idCategoria, string nombre, DateTime fechaAlta, DateTime? fechaBaja, double precio, int stock, Guid idUsuario, Guid idProveedor)
+        public bool CrearProducto(int host, Guid id, Guid idCategoria, string nombre, DateTime fechaAlta, DateTime? fechaBaja, double precio, int stock, Guid idUsuario, Guid idProveedor)
         {
-
-            PayloadAgregarProducto ProductoNuevo = null;
- 
-            //acá iria un if?
-            
-                //Guid id = Guid.Parse("D347CE99-DB8D-4542-AA97-FC9F3CCE6969");
-                ProductoNuevo = new PayloadAgregarProducto(id, idCategoria, nombre, fechaAlta, fechaBaja, precio, stock, idUsuario, idProveedor);
+            PayloadAgregarProducto producto = null;
+            if (ValidarNombreProducto(nombre))
+            {
+                
+                id = Guid.Parse("D347CE99-DB8D-4542-AA97-FC9F3CCE6969");
+                producto = new PayloadAgregarProducto(id, idCategoria, nombre, fechaAlta, fechaBaja, precio, stock, idUsuario, idProveedor);
 
                 try
                 {
                     // Producto creado con éxito
-                    ProductoD.CrearProducto(ProductoNuevo);
+                    ProductoD.CrearProducto(producto);
                     return true;
                 }
                 catch (Exception ex)
@@ -33,8 +34,24 @@ namespace Negocio
                     return false;
                 }
 
-            
-            //return false; (faltaria un if?) //En caso que no pase las validaciones, le informa a PRESENTACION que el alta no fue realizada
+            }
+            return false;
+
+
+        }
+
+        public bool ValidarNombreProducto(string nombre)
+        {
+
+            foreach (var nombreEnLista in Productos)
+            {
+                if (nombreEnLista.nombre == nombre)
+                {
+                    return false; // Nombre de producto repetido
+                }
+            }
+
+            return true; // Cumple con la condicion
         }
     }
 }

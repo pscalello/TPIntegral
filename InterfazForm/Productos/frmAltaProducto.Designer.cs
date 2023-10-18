@@ -31,91 +31,94 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAltaProducto));
             btnCancelar = new Button();
             btnAgregar = new Button();
-            label2 = new Label();
-            txtEmail = new TextBox();
-            label5 = new Label();
-            txtNombre = new TextBox();
-            label9 = new Label();
-            label1 = new Label();
+            categoria = new Label();
+            txtPrecio = new TextBox();
+            Precio = new Label();
+            txtId = new TextBox();
+            fechaAlta = new Label();
+            id = new Label();
             pictureBox1 = new PictureBox();
-            dateTimePicker1 = new DateTimePicker();
+            fechaAltaPicker = new DateTimePicker();
             cboHost = new ComboBox();
-            textBox1 = new TextBox();
-            label3 = new Label();
+            txtStock = new TextBox();
+            Stock = new Label();
+            txtNombre = new TextBox();
+            Nombre = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // btnCancelar
             // 
-            btnCancelar.Location = new Point(228, 218);
+            btnCancelar.Location = new Point(227, 252);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(75, 23);
             btnCancelar.TabIndex = 49;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
+            btnCancelar.Click += btnCancelar_Click;
             // 
             // btnAgregar
             // 
-            btnAgregar.Location = new Point(138, 218);
+            btnAgregar.Location = new Point(137, 252);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.Size = new Size(75, 23);
             btnAgregar.TabIndex = 48;
             btnAgregar.Text = "Agregar";
             btnAgregar.UseVisualStyleBackColor = true;
             // 
-            // label2
+            // categoria
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(30, 96);
-            label2.Name = "label2";
-            label2.Size = new Size(61, 15);
-            label2.TabIndex = 45;
-            label2.Text = "Categoría:";
-            label2.TextAlign = ContentAlignment.MiddleRight;
+            categoria.AutoSize = true;
+            categoria.Location = new Point(30, 96);
+            categoria.Name = "categoria";
+            categoria.Size = new Size(61, 15);
+            categoria.TabIndex = 45;
+            categoria.Text = "Categoría:";
+            categoria.TextAlign = ContentAlignment.MiddleRight;
             // 
-            // txtEmail
+            // txtPrecio
             // 
-            txtEmail.Location = new Point(91, 151);
-            txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(211, 23);
-            txtEmail.TabIndex = 44;
+            txtPrecio.Location = new Point(90, 185);
+            txtPrecio.Name = "txtPrecio";
+            txtPrecio.Size = new Size(211, 23);
+            txtPrecio.TabIndex = 44;
             // 
-            // label5
+            // Precio
             // 
-            label5.AutoSize = true;
-            label5.Location = new Point(48, 154);
-            label5.Name = "label5";
-            label5.Size = new Size(43, 15);
-            label5.TabIndex = 43;
-            label5.Text = "Precio:";
-            label5.TextAlign = ContentAlignment.MiddleRight;
+            Precio.AutoSize = true;
+            Precio.Location = new Point(47, 188);
+            Precio.Name = "Precio";
+            Precio.Size = new Size(43, 15);
+            Precio.TabIndex = 43;
+            Precio.Text = "Precio:";
+            Precio.TextAlign = ContentAlignment.MiddleRight;
             // 
-            // txtNombre
+            // txtId
             // 
-            txtNombre.Location = new Point(91, 64);
-            txtNombre.Name = "txtNombre";
-            txtNombre.Size = new Size(211, 23);
-            txtNombre.TabIndex = 39;
+            txtId.Location = new Point(91, 64);
+            txtId.Name = "txtId";
+            txtId.Size = new Size(211, 23);
+            txtId.TabIndex = 39;
             // 
-            // label9
+            // fechaAlta
             // 
-            label9.AutoSize = true;
-            label9.Location = new Point(13, 127);
-            label9.Name = "label9";
-            label9.Size = new Size(79, 15);
-            label9.TabIndex = 38;
-            label9.Text = "Fecha de alta:";
-            label9.TextAlign = ContentAlignment.MiddleRight;
+            fechaAlta.AutoSize = true;
+            fechaAlta.Location = new Point(12, 161);
+            fechaAlta.Name = "fechaAlta";
+            fechaAlta.Size = new Size(79, 15);
+            fechaAlta.TabIndex = 38;
+            fechaAlta.Text = "Fecha de alta:";
+            fechaAlta.TextAlign = ContentAlignment.MiddleRight;
             // 
-            // label1
+            // id
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(71, 67);
-            label1.Name = "label1";
-            label1.Size = new Size(20, 15);
-            label1.TabIndex = 35;
-            label1.Text = "Id:";
-            label1.TextAlign = ContentAlignment.MiddleRight;
+            id.AutoSize = true;
+            id.Location = new Point(71, 67);
+            id.Name = "id";
+            id.Size = new Size(20, 15);
+            id.TabIndex = 35;
+            id.Text = "Id:";
+            id.TextAlign = ContentAlignment.MiddleRight;
             // 
             // pictureBox1
             // 
@@ -126,12 +129,12 @@
             pictureBox1.TabIndex = 50;
             pictureBox1.TabStop = false;
             // 
-            // dateTimePicker1
+            // fechaAltaPicker
             // 
-            dateTimePicker1.Location = new Point(91, 122);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(211, 23);
-            dateTimePicker1.TabIndex = 51;
+            fechaAltaPicker.Location = new Point(90, 156);
+            fechaAltaPicker.Name = "fechaAltaPicker";
+            fechaAltaPicker.Size = new Size(211, 23);
+            fechaAltaPicker.TabIndex = 51;
             // 
             // cboHost
             // 
@@ -143,41 +146,60 @@
             cboHost.Size = new Size(211, 23);
             cboHost.TabIndex = 52;
             // 
-            // textBox1
+            // txtStock
             // 
-            textBox1.Location = new Point(91, 180);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(211, 23);
-            textBox1.TabIndex = 54;
+            txtStock.Location = new Point(90, 214);
+            txtStock.Name = "txtStock";
+            txtStock.Size = new Size(211, 23);
+            txtStock.TabIndex = 54;
             // 
-            // label3
+            // Stock
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(53, 183);
-            label3.Name = "label3";
-            label3.Size = new Size(39, 15);
-            label3.TabIndex = 53;
-            label3.Text = "Stock:";
-            label3.TextAlign = ContentAlignment.MiddleRight;
+            Stock.AutoSize = true;
+            Stock.Location = new Point(52, 217);
+            Stock.Name = "Stock";
+            Stock.Size = new Size(39, 15);
+            Stock.TabIndex = 53;
+            Stock.Text = "Stock:";
+            Stock.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // txtNombre
+            // 
+            txtNombre.Location = new Point(91, 125);
+            txtNombre.Name = "txtNombre";
+            txtNombre.Size = new Size(211, 23);
+            txtNombre.TabIndex = 56;
+            // 
+            // Nombre
+            // 
+            Nombre.AutoSize = true;
+            Nombre.Location = new Point(37, 128);
+            Nombre.Name = "Nombre";
+            Nombre.Size = new Size(54, 15);
+            Nombre.TabIndex = 55;
+            Nombre.Text = "Nombre:";
+            Nombre.TextAlign = ContentAlignment.MiddleRight;
             // 
             // frmAltaProducto
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(346, 263);
-            Controls.Add(textBox1);
-            Controls.Add(label3);
+            ClientSize = new Size(346, 312);
+            Controls.Add(txtNombre);
+            Controls.Add(Nombre);
+            Controls.Add(txtStock);
+            Controls.Add(Stock);
             Controls.Add(cboHost);
-            Controls.Add(dateTimePicker1);
+            Controls.Add(fechaAltaPicker);
             Controls.Add(pictureBox1);
             Controls.Add(btnCancelar);
             Controls.Add(btnAgregar);
-            Controls.Add(label2);
-            Controls.Add(txtEmail);
-            Controls.Add(label5);
-            Controls.Add(txtNombre);
-            Controls.Add(label9);
-            Controls.Add(label1);
+            Controls.Add(categoria);
+            Controls.Add(txtPrecio);
+            Controls.Add(Precio);
+            Controls.Add(txtId);
+            Controls.Add(fechaAlta);
+            Controls.Add(id);
             Name = "frmAltaProducto";
             Text = "Alta de Producto";
             Load += frmAltaProducto_Load;
@@ -190,17 +212,19 @@
 
         private Button btnCancelar;
         private Button btnAgregar;
-        private Label label2;
-        private TextBox txtEmail;
-        private Label label5;
-        private TextBox txtNombre;
-        private Label label9;
-        private Label label1;
+        private Label categoria;
+        private TextBox txtPrecio;
+        private Label Precio;
+        private TextBox txtId;
+        private Label fechaAlta;
+        private Label id;
         private PictureBox pictureBox1;
-        private DateTimePicker dateTimePicker1;
+        private DateTimePicker fechaAltaPicker;
         private ComboBox cboHost;
-        private TextBox textBox1;
-        private Label label3;
+        private TextBox txtStock;
+        private Label Stock;
+        private TextBox txtNombre;
+        private Label Nombre;
     }
 
     /*Id = id;

@@ -15,6 +15,11 @@ namespace InterfazForm.Utils
             return !string.IsNullOrWhiteSpace(input) && input.Length >= largoAdmitido && Regex.IsMatch(input, @"^[^\s]+$");
         }
 
+        public static bool ValidaNombreProd(string input, int largoAdmitido)
+        {
+            return !string.IsNullOrWhiteSpace(input) && input.Length >= largoAdmitido;
+        }
+
         public static bool ValidaEmail(string input)
         {
             return !string.IsNullOrWhiteSpace(input) && Regex.IsMatch(input, @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");

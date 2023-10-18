@@ -9,6 +9,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using InterfazForm;
+using InterfazForm.Productos;
 
 namespace InterfazForm
 {
@@ -60,5 +62,10 @@ namespace InterfazForm
             frmABMProveedores.ShowDialog();
         }
 
+        private void btnABMProductos_Click(object sender, EventArgs e)
+        {
+            frmABMProductos frmABMProductos = new frmABMProductos();
+            frmABMProductos.ShowDialog();
+        }
     }
 }

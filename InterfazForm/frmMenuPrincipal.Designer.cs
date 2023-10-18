@@ -66,6 +66,7 @@
             btnABMProductos.TabIndex = 8;
             btnABMProductos.Text = "ABM Productos";
             btnABMProductos.UseVisualStyleBackColor = true;
+            btnABMProductos.Click += btnABMProductos_Click;
             // 
             // btnABMProveedores
             // 
