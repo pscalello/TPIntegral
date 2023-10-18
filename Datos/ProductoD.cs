@@ -23,5 +23,39 @@ namespace Datos
             }
         }
 
+        public static void BorrarProducto(Guid idProductoABorrar, Guid idUsuarioAdmin)
+        {
+            Dictionary<String, Guid> map = new Dictionary<string, Guid>();
+            map.Add("id", idProductoABorrar);
+            map.Add("idUsuario", idUsuarioAdmin);
+
+            var jsonRequest = JsonConvert.SerializeObject(map);
+
+            HttpResponseMessage response = WebHelper.DeleteConBody("Producto/BajaProducto", jsonRequest);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("Verifique los datos ingresados");
+            }
+
+        }
+
+        public static List<RespuestaConsultaProducto> ConsultarProductos()
+        {
+            HttpResponseMessage response = WebHelper.Get("Productos/TraerProductos");
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("Verifique los datos ingresados");
+            }
+            var reader = new StreamReader(response.Content.ReadAsStream());
+
+            List<RespuestaConsultaProducto> respuesta = JsonConvert.DeserializeObject<List<RespuestaConsultaProducto>>(reader.ReadToEnd());
+
+            return respuesta;
+        }
+
+
+
     }
 }
