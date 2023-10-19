@@ -42,7 +42,7 @@ namespace Datos
 
         public static List<RespuestaConsultaProducto> ConsultarProductos()
         {
-            HttpResponseMessage response = WebHelper.Get("Productos/TraerProductos");
+            HttpResponseMessage response = WebHelper.Get("Producto/TraerProductos");
 
             if (!response.IsSuccessStatusCode)
             {

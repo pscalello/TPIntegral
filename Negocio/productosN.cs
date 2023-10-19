@@ -12,6 +12,7 @@ namespace Negocio
     {
         // La llenamos con todos los productos activos con el ID
         private static List<RespuestaConsultaProducto> Productos = ProductoD.ConsultarProductos();
+
         public List<RespuestaConsultaProducto> listaProductos()
         {
             return ProductoD.ConsultarProductos();
