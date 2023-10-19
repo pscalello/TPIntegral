@@ -83,14 +83,14 @@ namespace Negocio
         {
             Guid idUsuarioAdmin = Guid.Parse("D347CE99-DB8D-4542-AA97-FC9F3CCE6969");
             try
-                {
+            {
                     UsuarioD.BorrarUsuario(idUsuario, idUsuarioAdmin);
                     return true;
-                }
-                catch (Exception ex)
-                {
+            }
+            catch (Exception ex)
+            {
                     return false;
-                }
+            }
         }
 
         //***************************************************************************************************************************** 

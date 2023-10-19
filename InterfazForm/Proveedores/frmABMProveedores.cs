@@ -1,4 +1,5 @@
-﻿using Entidad;
+﻿using Datos;
+using Entidad;
 using Negocio;
 using Newtonsoft.Json;
 using System;
@@ -29,7 +30,29 @@ namespace InterfazForm.Proveedores
 
             if (result == DialogResult.Yes)
             {
+                if (dgvProveedores.SelectedRows.Count > 0)
+                {
+                    DataGridViewRow filaSeleccionada = dgvProveedores.SelectedRows[0]; //captura id que está oculta
+                                                                                    //MessageBox.Show(filaSeleccionada.Cells[0].Value.ToString());
+                    Guid guid = Guid.Parse(filaSeleccionada.Cells[0].Value.ToString());
+                   
 
+                    bool eliminaProveedor = proveedorN.EliminarProveedor(guid);
+                    if (eliminaProveedor)
+                    {
+                        llenaDataGriedProveedores();
+                        MessageBox.Show("Proveedor eliminado correctamente.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Falló la eliminación, por favor vuelva a intentarlo");
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("Debe seleccionar una fila de la grilla a eliminar.");
+                }
             }
         }
 
