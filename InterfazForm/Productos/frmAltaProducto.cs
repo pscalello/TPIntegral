@@ -1,4 +1,5 @@
-﻿using InterfazForm.Utils;
+﻿using Entidad;
+using InterfazForm.Utils;
 using Negocio;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ namespace InterfazForm.Proveedores
 {
     public partial class frmAltaProducto : Form
     {
+        private ProveedorN proveedorN = new ProveedorN();
         public frmAltaProducto()
         {
             InitializeComponent();
@@ -22,7 +24,14 @@ namespace InterfazForm.Proveedores
 
         private void frmAltaProducto_Load(object sender, EventArgs e)
         {
-
+            List<RespuestaConsultaProveedores> listaProveedores = proveedorN.listaProveedores();
+            cboCategoria.SelectedIndex = 0;
+            foreach (var proveedor in listaProveedores)
+            {
+                cboProveedor.Items.Add(proveedor.nombre + " " + proveedor.apellido);
+                cboGuidProveedor.Items.Add(proveedor.id);
+            }
+            cboProveedor.SelectedIndex = 0;
         }
 
         //DEJO COMO COMENTARIO PORQUE NO ANDA
@@ -122,6 +131,39 @@ namespace InterfazForm.Proveedores
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void cboProveedor_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cboGuidProveedor.SelectedIndex = cboProveedor.SelectedIndex;
+        }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            if (validaVacios() && validaIntegracion())
+            {
+                ProductosN ProductoNuevo = new ProductosN();
+
+                int idCategoria = cboCategoria.SelectedIndex + 1;
+                Guid idUsuario = Guid.Parse("D347CE99-DB8D-4542-AA97-FC9F3CCE6969");
+                Guid idProveedor = Guid.Parse(cboGuidProveedor.SelectedItem.ToString());
+                string nombre = txtNombre.Text;
+                double precio = Convert.ToDouble(txtPrecio.Text);
+                int stock = Convert.ToInt32(txtStock.Text);
+
+
+                bool creacionCorrecta = ProductoNuevo.CrearProducto(idCategoria, idUsuario, idProveedor, nombre, precio, stock);
+
+                if (creacionCorrecta)
+                {
+                    MessageBox.Show("Creación de producto exitosa!");
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Existen errores para la creación del producto");
+                }
+            }
         }
     }
 

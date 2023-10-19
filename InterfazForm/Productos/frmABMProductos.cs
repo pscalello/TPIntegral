@@ -1,4 +1,4 @@
-﻿using Datos;
+﻿//using Datos;
 using Entidad;
 using InterfazForm.Proveedores;
 using Negocio;
@@ -16,6 +16,7 @@ namespace InterfazForm.Productos
 {
     public partial class frmABMProductos : Form
     {
+        private ProductosN productoN = new ProductosN();    
         public frmABMProductos()
         {
             InitializeComponent();
@@ -28,7 +29,7 @@ namespace InterfazForm.Productos
 
         private void llenaDataGriedProductos()
         {
-            List<RespuestaConsultaProducto> listaProductos = ProductoD.ConsultarProductos();
+            List<RespuestaConsultaProducto> listaProductos = productoN.listaProductos();
             dgvProductos.SuspendLayout(); // reduce el parpadeo al dibujar el control. Al final se vuelve a activar
             dgvProductos.DataSource = null;
             dgvProductos.DataSource = listaProductos;
@@ -52,7 +53,5 @@ namespace InterfazForm.Productos
             frmAltaProducto frmAltaProducto = new frmAltaProducto();
             frmAltaProducto.ShowDialog();
         }
-
-        
     }
 }

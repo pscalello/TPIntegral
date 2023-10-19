@@ -17,6 +17,7 @@ namespace InterfazForm
     public partial class frmMenuPrincipal : Form
     {
         internal int Host;
+        //internal Guid idUsuario;
         public frmMenuPrincipal()
         {
             InitializeComponent();

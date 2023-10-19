@@ -12,15 +12,17 @@ namespace Negocio
     {
         // La llenamos con todos los productos activos con el ID
         private static List<RespuestaConsultaProducto> Productos = ProductoD.ConsultarProductos();
+        public List<RespuestaConsultaProducto> listaProductos()
+        {
+            return ProductoD.ConsultarProductos();
+        }
 
-        public bool CrearProducto(int host, Guid id, Guid idCategoria, string nombre, DateTime fechaAlta, DateTime? fechaBaja, double precio, int stock, Guid idUsuario, Guid idProveedor)
+        public bool CrearProducto(int idCategoria, Guid idUsuario, Guid idProveedor, string nombre, double precio, int stock)
         {
             PayloadAgregarProducto producto = null;
             if (ValidarNombreProducto(nombre))
             {
-                
-                id = Guid.Parse("D347CE99-DB8D-4542-AA97-FC9F3CCE6969");
-                producto = new PayloadAgregarProducto(id, idCategoria, nombre, fechaAlta, fechaBaja, precio, stock, idUsuario, idProveedor);
+                producto = new PayloadAgregarProducto(idCategoria, idUsuario, idProveedor, nombre, precio, stock);
 
                 try
                 {
@@ -42,16 +44,23 @@ namespace Negocio
 
         public bool ValidarNombreProducto(string nombre)
         {
-
-            foreach (var nombreEnLista in Productos)
+            try
             {
-                if (nombreEnLista.nombre == nombre)
+                foreach (var nombreEnLista in Productos)
                 {
-                    return false; // Nombre de producto repetido
+                    if (nombreEnLista.nombre == nombre)
+                    {
+                        return false; // Nombre de producto repetido
+                    }
                 }
             }
-
-            return true; // Cumple con la condicion
+            catch
+            {
+                return true;
+            }
+            return true;
         }
     }
 }
+
+           
