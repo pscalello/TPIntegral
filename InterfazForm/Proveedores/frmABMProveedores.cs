@@ -24,6 +24,29 @@ namespace InterfazForm.Proveedores
             InitializeComponent();
         }
 
+        private void frmABMProveedores_Load(object sender, EventArgs e)
+        {
+            llenaDataGridProveedores();
+        }
+
+        private void llenaDataGridProveedores()
+        {
+            List<RespuestaConsultaProveedores> listaProveedores = proveedorN.listaProveedores();
+            dgvProveedores.SuspendLayout(); // reduce el parpadeo al dibujar el control. Al final se vuelve a activar
+            dgvProveedores.DataSource = null;
+            dgvProveedores.DataSource = listaProveedores;
+            dgvProveedores.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvProveedores.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+            dgvProveedores.Columns[0].Visible = false; // Oculto id
+            dgvProveedores.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvProveedores.Columns["nombre"].HeaderText = "Nombre";
+            dgvProveedores.Columns["apellido"].HeaderText = "Apellido";
+            dgvProveedores.Columns["email"].HeaderText = "Email";
+            dgvProveedores.Columns["cuit"].HeaderText = "CUIT";
+            dgvProveedores.Columns["fechaAlta"].HeaderText = "Fecha Alta";
+            dgvProveedores.ResumeLayout();
+        }
+
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("¿Está seguro de que desea eliminar este usuario?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -33,14 +56,14 @@ namespace InterfazForm.Proveedores
                 if (dgvProveedores.SelectedRows.Count > 0)
                 {
                     DataGridViewRow filaSeleccionada = dgvProveedores.SelectedRows[0]; //captura id que está oculta
-                                                                                    //MessageBox.Show(filaSeleccionada.Cells[0].Value.ToString());
+                                                                                       //MessageBox.Show(filaSeleccionada.Cells[0].Value.ToString());
                     Guid guid = Guid.Parse(filaSeleccionada.Cells[0].Value.ToString());
-                   
+
 
                     bool eliminaProveedor = proveedorN.EliminarProveedor(guid);
                     if (eliminaProveedor)
                     {
-                        llenaDataGriedProveedores();
+                        llenaDataGridProveedores();
                         MessageBox.Show("Proveedor eliminado correctamente.");
                     }
                     else
@@ -55,32 +78,6 @@ namespace InterfazForm.Proveedores
                 }
             }
         }
-
-        private void frmABMProveedores_Load(object sender, EventArgs e)
-        {
-            llenaDataGriedProveedores();
-        }
-
-
-
-        private void llenaDataGriedProveedores()
-        {
-            List<RespuestaConsultaProveedores> listaProvedores = proveedorN.listaProveedores();
-            dgvProveedores.SuspendLayout(); // reduce el parpadeo al dibujar el control. Al final se vuelve a activar
-            dgvProveedores.DataSource = null;
-            dgvProveedores.DataSource = listaProvedores;
-            dgvProveedores.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvProveedores.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
-            dgvProveedores.Columns[0].Visible = false; // Oculto id
-            dgvProveedores.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvProveedores.Columns["nombre"].HeaderText = "Nombre";
-            dgvProveedores.Columns["apellido"].HeaderText = "Apellido";
-            dgvProveedores.Columns["email"].HeaderText = "Email";
-            dgvProveedores.Columns["cuit"].HeaderText = "CUIT";
-            dgvProveedores.Columns["fechaAlta"].HeaderText = "fechaAlta";
-            dgvProveedores.ResumeLayout();
-        }
-
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
