@@ -38,13 +38,15 @@
             pictureBox1 = new PictureBox();
             backgroundLogoCarga = new System.ComponentModel.BackgroundWorker();
             logoCarga = new PictureBox();
+            btnMostrarContraseña = new Label();
+            btnOcultarContraseña = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)logoCarga).BeginInit();
             SuspendLayout();
             // 
             // btnSalir
             // 
-            btnSalir.Location = new Point(209, 140);
+            btnSalir.Location = new Point(209, 144);
             btnSalir.Name = "btnSalir";
             btnSalir.Size = new Size(75, 23);
             btnSalir.TabIndex = 11;
@@ -88,7 +90,7 @@
             // 
             // btnIngresar
             // 
-            btnIngresar.Location = new Point(128, 140);
+            btnIngresar.Location = new Point(128, 144);
             btnIngresar.Name = "btnIngresar";
             btnIngresar.Size = new Size(75, 23);
             btnIngresar.TabIndex = 6;
@@ -108,12 +110,39 @@
             // 
             // logoCarga
             // 
-            logoCarga.Image = (Image)resources.GetObject("logoCarga.Image");
+            logoCarga.Image = Properties.Resources.icnLogoCarga;
             logoCarga.Location = new Point(89, 137);
             logoCarga.Name = "logoCarga";
             logoCarga.Size = new Size(33, 36);
+            logoCarga.SizeMode = PictureBoxSizeMode.CenterImage;
             logoCarga.TabIndex = 13;
             logoCarga.TabStop = false;
+            // 
+            // btnMostrarContraseña
+            // 
+            btnMostrarContraseña.AutoSize = true;
+            btnMostrarContraseña.FlatStyle = FlatStyle.Popup;
+            btnMostrarContraseña.Font = new Font("Segoe UI", 7F, FontStyle.Underline, GraphicsUnit.Point);
+            btnMostrarContraseña.ForeColor = SystemColors.HotTrack;
+            btnMostrarContraseña.Location = new Point(196, 121);
+            btnMostrarContraseña.Name = "btnMostrarContraseña";
+            btnMostrarContraseña.Size = new Size(89, 12);
+            btnMostrarContraseña.TabIndex = 14;
+            btnMostrarContraseña.Text = "Mostrar contraseña";
+            btnMostrarContraseña.Click += btnMostrarContraseña_Click;
+            // 
+            // btnOcultarContraseña
+            // 
+            btnOcultarContraseña.AutoSize = true;
+            btnOcultarContraseña.FlatStyle = FlatStyle.Popup;
+            btnOcultarContraseña.Font = new Font("Segoe UI", 7F, FontStyle.Underline, GraphicsUnit.Point);
+            btnOcultarContraseña.ForeColor = Color.RoyalBlue;
+            btnOcultarContraseña.Location = new Point(196, 121);
+            btnOcultarContraseña.Name = "btnOcultarContraseña";
+            btnOcultarContraseña.Size = new Size(88, 12);
+            btnOcultarContraseña.TabIndex = 15;
+            btnOcultarContraseña.Text = "Ocultar contraseña";
+            btnOcultarContraseña.Click += btnOcultarContraseña_Click;
             // 
             // frmLogin
             // 
@@ -121,6 +150,8 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(316, 188);
+            Controls.Add(btnOcultarContraseña);
+            Controls.Add(btnMostrarContraseña);
             Controls.Add(logoCarga);
             Controls.Add(pictureBox1);
             Controls.Add(btnSalir);
@@ -149,5 +180,7 @@
         private PictureBox pictureBox1;
         private System.ComponentModel.BackgroundWorker backgroundLogoCarga;
         private PictureBox logoCarga;
+        private Label btnMostrarContraseña;
+        private Label btnOcultarContraseña;
     }
 }

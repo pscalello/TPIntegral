@@ -46,17 +46,15 @@ namespace InterfazForm.Productos
             dgvProductos.ResumeLayout();
         }
 
-        private void btnSalir_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         private void btnAltaProducto_Click(object sender, EventArgs e)
         {
             frmAltaProducto frmAltaProducto = new frmAltaProducto();
             frmAltaProducto.ShowDialog();
         }
 
-
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

@@ -59,5 +59,15 @@ namespace InterfazForm.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icnLogoCarga {
+            get {
+                object obj = ResourceManager.GetObject("icnLogoCarga", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

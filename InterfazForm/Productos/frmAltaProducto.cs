@@ -83,7 +83,7 @@ namespace InterfazForm.Proveedores
             {
                 if (string.IsNullOrWhiteSpace(textBox.Text))
                 {
-                    MessageBox.Show("El campo no puede estar vacío.");
+                    MessageBox.Show("No puede haber campos vacíos.");
                     textBox.Focus();
                     return false; // Al encontrar un TextBox vacío, retorna false.
                 }
@@ -102,7 +102,7 @@ namespace InterfazForm.Proveedores
             }
             else if (!double.TryParse(txtPrecio.Text, out double salidaPrecio))
             {
-                MessageBox.Show("El precio debe ser numérico.");
+                MessageBox.Show("El precio debe ser numérico. Ej: 100.05");
                 txtPrecio.Focus();
                 return false;
             }

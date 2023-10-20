@@ -34,10 +34,12 @@ namespace InterfazForm
         {
             intentos = 0;
             txtContraseña.PasswordChar = '*';
+            btnOcultarContraseña.Visible = false;
         }
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
+            logoCarga.Load("icnLogoCarga.gif");
             logoCarga.Visible = true;
             backgroundLogoCarga.RunWorkerAsync();
 
@@ -132,12 +134,13 @@ namespace InterfazForm
 
         private void backgroundLogoCarga_DoWork(object sender, DoWorkEventArgs e)
         {
+
             System.Threading.Thread.Sleep(3000);
         }
 
         private void backgroundLogoCarga_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-        
+            
             logoCarga.Visible = false;
 
         }
@@ -148,6 +151,21 @@ namespace InterfazForm
             {
                 btnIngresar.PerformClick();
             }
+        }
+
+        private void btnMostrarContraseña_Click(object sender, EventArgs e)
+        {
+            txtContraseña.PasswordChar = '\0';
+            btnMostrarContraseña.Visible = false;
+            btnOcultarContraseña.Visible = true;
+        }
+
+        private void btnOcultarContraseña_Click(object sender, EventArgs e)
+        {
+
+            txtContraseña.PasswordChar = '*';
+            btnOcultarContraseña.Visible = false;
+            btnMostrarContraseña.Visible = true;
         }
     }
 }
