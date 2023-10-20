@@ -25,8 +25,7 @@ namespace InterfazForm
         public frmLogin()
         {
             InitializeComponent();
-            backgroundLogoCarga.DoWork += backgroundLogoCarga_DoWork;
-            backgroundLogoCarga.RunWorkerCompleted += backgroundLogoCarga_RunWorkerCompleted;
+            logoCarga.Image = Properties.Resources.icnLogoCarga;
             logoCarga.Visible = false;
         }
 
@@ -39,12 +38,11 @@ namespace InterfazForm
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
-            logoCarga.Load("icnLogoCarga.gif");
-            logoCarga.Visible = true;
-            backgroundLogoCarga.RunWorkerAsync();
+            logoCarga.Image = Properties.Resources.icnLogoCarga;
 
-            // validar consistencia
-            string respuestas;
+            IniciarLogoCarga();
+          
+            //string respuestas;
 
 
             LoginE login = new LoginE();
@@ -95,6 +93,7 @@ namespace InterfazForm
                 this.Close();
 
             }
+            
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
@@ -131,19 +130,8 @@ namespace InterfazForm
                 e.Cancel = true;
             }
         }
+        
 
-        private void backgroundLogoCarga_DoWork(object sender, DoWorkEventArgs e)
-        {
-
-            System.Threading.Thread.Sleep(3000);
-        }
-
-        private void backgroundLogoCarga_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            
-            logoCarga.Visible = false;
-
-        }
         // que funcione el Enter como click, con el boton ingresar
         private void btnIngresar_KeyDown(object sender, KeyEventArgs e)
         {
@@ -167,5 +155,26 @@ namespace InterfazForm
             btnOcultarContraseña.Visible = false;
             btnMostrarContraseña.Visible = true;
         }
+
+        private void IniciarLogoCarga()
+        {
+            // Muestra el icono de carga
+            
+            logoCarga.Visible = true;
+
+            BackgroundWorker worker = new BackgroundWorker();
+            worker.DoWork += (sender, e) =>
+            {
+                btnIngresar_Click(sender,e);
+
+            };
+            worker.RunWorkerCompleted += (sender, e) =>
+            {
+                // Oculta el icono de carga después de que el proceso termina
+                logoCarga.Visible = false;
+            };
+            worker.RunWorkerAsync();
+        }
+
     }
 }
