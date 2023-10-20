@@ -43,6 +43,21 @@ namespace Negocio
 
         }
 
+
+        public bool EliminarProducto(Guid id)
+        {
+            Guid idUsuarioAdmin = Guid.Parse("D347CE99-DB8D-4542-AA97-FC9F3CCE6969");
+            try
+            {
+                ProductoD.BorrarProducto(id, idUsuarioAdmin);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
         public bool ValidarNombreProducto(string nombre)
         {
             try

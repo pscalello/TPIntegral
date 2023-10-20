@@ -34,7 +34,8 @@ namespace InterfazForm
             {
                 MessageBox.Show("Su contraseña ha sido modificada de forma exitosa. Por favor vuelva a ingresar con su nueva contraseña.");
                 this.Close();
-            } else
+            }
+            else
             {
                 MessageBox.Show("No puede usar esa contraseña. La contraseña debe ser de entre 8 y 15 carácteres, " +
                     "con una mayúscula y un número, distinta a la que recibió para el primer logueo.");

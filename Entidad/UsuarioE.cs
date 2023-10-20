@@ -51,6 +51,7 @@ namespace Entidad
 
         public void SetContraseña(string contraseña)
         {
+            //aca iria un this.contraseña = contraseña; ?
             contraseña = contraseña;
         }
 

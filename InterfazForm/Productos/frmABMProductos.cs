@@ -1,4 +1,5 @@
 ﻿//using Datos;
+using Datos;
 using Entidad;
 using InterfazForm.Proveedores;
 using Negocio;
@@ -33,10 +34,10 @@ namespace InterfazForm.Productos
             dgvProductos.SuspendLayout(); // reduce el parpadeo al dibujar el control. Al final se vuelve a activar
             dgvProductos.DataSource = null;
             dgvProductos.DataSource = listaProductos;
-            //dgvProductos.Columns[0].Visible = false; // Oculto id
-            dgvProductos.Columns[1].Visible = false; // Oculto idUsuario
-            dgvProductos.Columns[2].Visible = false; // Oculto idProveedor
+            dgvProductos.Columns[0].Visible = false; // Oculto id
             dgvProductos.Columns["idCategoria"].HeaderText = "ID Categoria";
+            dgvProductos.Columns[2].Visible = false; // Oculto idUsuario
+            dgvProductos.Columns[3].Visible = false; // Oculto idProveedor
             dgvProductos.Columns["nombre"].HeaderText = "Nombre";
             dgvProductos.Columns["precio"].HeaderText = "Precio";
             dgvProductos.Columns["stock"].HeaderText = "Stock";
@@ -50,6 +51,36 @@ namespace InterfazForm.Productos
         {
             frmAltaProducto frmAltaProducto = new frmAltaProducto();
             frmAltaProducto.ShowDialog();
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("¿Está seguro de que desea eliminar este producto?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                if (dgvProductos.SelectedRows.Count > 0)
+                {
+                    DataGridViewRow filaSeleccionada = dgvProductos.SelectedRows[0]; //captura id que está oculta
+                                                                                     //MessageBox.Show(filaSeleccionada.Cells[0].Value.ToString());
+                    Guid guid = Guid.Parse(filaSeleccionada.Cells[0].Value.ToString());
+
+                    bool eliminaProducto = productoN.EliminarProducto(guid);
+                    if (eliminaProducto)
+                    {
+                        llenaDataGriedProductos();
+                        MessageBox.Show("Producto eliminado correctamente.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Falló la eliminación, por favor vuelva a intentarlo");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Debe seleccionar una fila de la grilla a eliminar.");
+                }
+            }
         }
 
         private void btnSalir_Click(object sender, EventArgs e)

@@ -57,16 +57,7 @@ namespace Entidad
         //Deberá permitir registrar la categoría de productos para cada proveedor (un proveedor puede estar en más de una categoría)
         //siguiendo el anexo Categoría de productos 
 
-        public void RegistroCategoriaProd()
-        {
-            
-        }
-
-
-        public void BajaProveedor()
-        {
-
-        }
+ 
     }
 }
 

@@ -57,11 +57,6 @@ namespace Entidad
 
         //metodos
 
-        public void RegistrarProducto()
-        {
-
-
-        }
 
         public void SetFechaBaja(DateTime? fecha)
         {

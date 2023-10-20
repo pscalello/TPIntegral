@@ -58,7 +58,7 @@
             // 
             // btnAgregar
             // 
-            btnAgregar.Location = new Point(122, 237);
+            btnAgregar.Location = new Point(131, 237);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.Size = new Size(75, 23);
             btnAgregar.TabIndex = 48;

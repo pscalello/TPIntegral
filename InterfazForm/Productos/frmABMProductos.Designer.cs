@@ -51,7 +51,7 @@
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(24, 380);
+            pictureBox1.Location = new Point(24, 392);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(216, 46);
             pictureBox1.TabIndex = 7;
@@ -59,7 +59,7 @@
             // 
             // btnSalir
             // 
-            btnSalir.Location = new Point(700, 409);
+            btnSalir.Location = new Point(700, 419);
             btnSalir.Name = "btnSalir";
             btnSalir.Size = new Size(75, 23);
             btnSalir.TabIndex = 10;
@@ -75,6 +75,7 @@
             btnEliminar.TabIndex = 9;
             btnEliminar.Text = "Eliminar";
             btnEliminar.UseVisualStyleBackColor = true;
+            btnEliminar.Click += btnEliminar_Click;
             // 
             // btnAltaProducto
             // 

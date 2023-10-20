@@ -42,30 +42,27 @@
             // 
             // btnReportes
             // 
-            btnReportes.Location = new Point(41, 475);
-            btnReportes.Margin = new Padding(4, 5, 4, 5);
+            btnReportes.Location = new Point(29, 298);
             btnReportes.Name = "btnReportes";
-            btnReportes.Size = new Size(311, 38);
+            btnReportes.Size = new Size(218, 23);
             btnReportes.TabIndex = 10;
             btnReportes.Text = "Reportes";
             btnReportes.UseVisualStyleBackColor = true;
             // 
             // btnVentas
             // 
-            btnVentas.Location = new Point(41, 338);
-            btnVentas.Margin = new Padding(4, 5, 4, 5);
+            btnVentas.Location = new Point(29, 216);
             btnVentas.Name = "btnVentas";
-            btnVentas.Size = new Size(311, 38);
+            btnVentas.Size = new Size(218, 23);
             btnVentas.TabIndex = 9;
             btnVentas.Text = "Ventas";
             btnVentas.UseVisualStyleBackColor = true;
             // 
             // btnABMProductos
             // 
-            btnABMProductos.Location = new Point(41, 270);
-            btnABMProductos.Margin = new Padding(4, 5, 4, 5);
+            btnABMProductos.Location = new Point(29, 175);
             btnABMProductos.Name = "btnABMProductos";
-            btnABMProductos.Size = new Size(311, 38);
+            btnABMProductos.Size = new Size(218, 23);
             btnABMProductos.TabIndex = 8;
             btnABMProductos.Text = "ABM Productos";
             btnABMProductos.UseVisualStyleBackColor = true;
@@ -73,10 +70,9 @@
             // 
             // btnABMProveedores
             // 
-            btnABMProveedores.Location = new Point(41, 202);
-            btnABMProveedores.Margin = new Padding(4, 5, 4, 5);
+            btnABMProveedores.Location = new Point(29, 134);
             btnABMProveedores.Name = "btnABMProveedores";
-            btnABMProveedores.Size = new Size(311, 38);
+            btnABMProveedores.Size = new Size(218, 23);
             btnABMProveedores.TabIndex = 7;
             btnABMProveedores.Text = "ABM Proveedores";
             btnABMProveedores.UseVisualStyleBackColor = true;
@@ -84,10 +80,9 @@
             // 
             // btnABMUsuarios
             // 
-            btnABMUsuarios.Location = new Point(41, 133);
-            btnABMUsuarios.Margin = new Padding(4, 5, 4, 5);
+            btnABMUsuarios.Location = new Point(29, 93);
             btnABMUsuarios.Name = "btnABMUsuarios";
-            btnABMUsuarios.Size = new Size(311, 38);
+            btnABMUsuarios.Size = new Size(218, 23);
             btnABMUsuarios.TabIndex = 6;
             btnABMUsuarios.Text = "ABM Usuarios";
             btnABMUsuarios.UseVisualStyleBackColor = true;
@@ -95,10 +90,9 @@
             // 
             // btnDevoluciones
             // 
-            btnDevoluciones.Location = new Point(41, 407);
-            btnDevoluciones.Margin = new Padding(4, 5, 4, 5);
+            btnDevoluciones.Location = new Point(29, 257);
             btnDevoluciones.Name = "btnDevoluciones";
-            btnDevoluciones.Size = new Size(311, 38);
+            btnDevoluciones.Size = new Size(218, 23);
             btnDevoluciones.TabIndex = 12;
             btnDevoluciones.Text = "Devoluciones";
             btnDevoluciones.UseVisualStyleBackColor = true;
@@ -106,19 +100,17 @@
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(41, 20);
-            pictureBox1.Margin = new Padding(4, 5, 4, 5);
+            pictureBox1.Location = new Point(29, 25);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(311, 80);
+            pictureBox1.Size = new Size(218, 48);
             pictureBox1.TabIndex = 13;
             pictureBox1.TabStop = false;
             // 
             // btnSalir
             // 
-            btnSalir.Location = new Point(41, 542);
-            btnSalir.Margin = new Padding(4, 5, 4, 5);
+            btnSalir.Location = new Point(29, 338);
             btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(311, 38);
+            btnSalir.Size = new Size(218, 23);
             btnSalir.TabIndex = 14;
             btnSalir.Text = "Salir";
             btnSalir.UseVisualStyleBackColor = true;
@@ -126,9 +118,9 @@
             // 
             // frmMenuPrincipal
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(406, 635);
+            ClientSize = new Size(273, 381);
             Controls.Add(btnSalir);
             Controls.Add(pictureBox1);
             Controls.Add(btnDevoluciones);
@@ -137,7 +129,6 @@
             Controls.Add(btnABMProductos);
             Controls.Add(btnABMProveedores);
             Controls.Add(btnABMUsuarios);
-            Margin = new Padding(4, 5, 4, 5);
             Name = "frmMenuPrincipal";
             Text = "Menú Principal";
             Load += frmMenuPrincipal_Load;

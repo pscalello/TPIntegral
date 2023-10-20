@@ -281,16 +281,6 @@ namespace Negocio
 
 
 
-
-
-
-
-
-
-
-
-
-
         // CAMBIA ESTADO ACTIVO O INACTIVO EN BASE A UN GUID Y EL ESTADO DESEADO
 
         //private void ActivoInactivo(Guid id, bool activo)
