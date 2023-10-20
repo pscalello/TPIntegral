@@ -36,5 +36,16 @@ namespace InterfazForm.Utils
             return numero >= min && numero <= max; //Comprueba que el número esté entre los parámetros
         }
 
+        public static bool ValidaNumeroLargo(string input, long min, long max)
+        {
+            if (string.IsNullOrWhiteSpace(input) || !Regex.IsMatch(input, @"^[0-9]+$"))
+            {
+                return false; // No es un número válido.
+            }
+
+            long numero = long.Parse(input); // Parsea input
+            return numero >= min && numero <= max; //Comprueba que el número esté entre los parámetros
+        }
+
     }
 }

@@ -41,17 +41,20 @@
             // dgvProveedores
             // 
             dgvProveedores.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvProveedores.Location = new Point(12, 12);
+            dgvProveedores.Location = new Point(17, 20);
+            dgvProveedores.Margin = new Padding(4, 5, 4, 5);
             dgvProveedores.Name = "dgvProveedores";
+            dgvProveedores.RowHeadersWidth = 62;
             dgvProveedores.RowTemplate.Height = 25;
-            dgvProveedores.Size = new Size(593, 267);
+            dgvProveedores.Size = new Size(847, 445);
             dgvProveedores.TabIndex = 0;
             // 
             // btnSalir
             // 
-            btnSalir.Location = new Point(526, 338);
+            btnSalir.Location = new Point(751, 563);
+            btnSalir.Margin = new Padding(4, 5, 4, 5);
             btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(75, 23);
+            btnSalir.Size = new Size(107, 38);
             btnSalir.TabIndex = 7;
             btnSalir.Text = "Salir";
             btnSalir.UseVisualStyleBackColor = true;
@@ -59,9 +62,10 @@
             // 
             // btnEliminar
             // 
-            btnEliminar.Location = new Point(526, 299);
+            btnEliminar.Location = new Point(751, 498);
+            btnEliminar.Margin = new Padding(4, 5, 4, 5);
             btnEliminar.Name = "btnEliminar";
-            btnEliminar.Size = new Size(75, 23);
+            btnEliminar.Size = new Size(107, 38);
             btnEliminar.TabIndex = 6;
             btnEliminar.Text = "Eliminar";
             btnEliminar.UseVisualStyleBackColor = true;
@@ -69,32 +73,36 @@
             // 
             // btnAgregar
             // 
-            btnAgregar.Location = new Point(445, 299);
+            btnAgregar.Location = new Point(636, 498);
+            btnAgregar.Margin = new Padding(4, 5, 4, 5);
             btnAgregar.Name = "btnAgregar";
-            btnAgregar.Size = new Size(75, 23);
+            btnAgregar.Size = new Size(107, 38);
             btnAgregar.TabIndex = 5;
             btnAgregar.Text = "Agregar";
             btnAgregar.UseVisualStyleBackColor = true;
+            btnAgregar.Click += btnAgregar_Click;
             // 
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(12, 299);
+            pictureBox1.Location = new Point(17, 498);
+            pictureBox1.Margin = new Padding(4, 5, 4, 5);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(216, 46);
+            pictureBox1.Size = new Size(309, 77);
             pictureBox1.TabIndex = 8;
             pictureBox1.TabStop = false;
             // 
             // frmABMProveedores
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(626, 394);
+            ClientSize = new Size(894, 657);
             Controls.Add(pictureBox1);
             Controls.Add(btnSalir);
             Controls.Add(btnEliminar);
             Controls.Add(btnAgregar);
             Controls.Add(dgvProveedores);
+            Margin = new Padding(4, 5, 4, 5);
             Name = "frmABMProveedores";
             Text = "ABM de Proveedores";
             Load += frmABMProveedores_Load;

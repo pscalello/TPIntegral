@@ -40,5 +40,20 @@ namespace Negocio
             }
         }
 
+        public bool AgregarProveedor(string nombre, string apellido, string cuit, string email)
+        {
+            Guid idUsuarioAdmin = Guid.Parse("D347CE99-DB8D-4542-AA97-FC9F3CCE6969");
+            PayloadAgregarProveedor payloadAgregarProveedor = new PayloadAgregarProveedor(idUsuarioAdmin, nombre, apellido, email, cuit);
+            try
+            {
+                ProveedorD.CrearProveedor(payloadAgregarProveedor);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
     }
 }

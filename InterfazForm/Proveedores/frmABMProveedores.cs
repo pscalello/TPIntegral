@@ -82,5 +82,11 @@ namespace InterfazForm.Proveedores
         {
             this.Close();
         }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            frmAltaProveedor frmAltaProveedor = new frmAltaProveedor();
+            frmAltaProveedor.ShowDialog();
+        }
     }
 }
