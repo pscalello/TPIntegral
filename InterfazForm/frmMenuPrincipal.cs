@@ -11,6 +11,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using InterfazForm;
 using InterfazForm.Productos;
+using System.Reflection.Emit;
+using Negocio;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using Entidad;
 
 namespace InterfazForm
 {
@@ -18,6 +22,7 @@ namespace InterfazForm
     {
         internal int Host;
         //internal Guid idUsuario;
+        private ProductosN productoN = new ProductosN();
         public frmMenuPrincipal()
         {
             InitializeComponent();
@@ -25,6 +30,36 @@ namespace InterfazForm
 
         private void frmMenuPrincipal_Load(object sender, EventArgs e)
         {
+            List<RespuestaConsultaProducto> listaProductos = productoN.listaProductos();
+
+            if (Host == 1 || Host == 2)
+            {
+                //if (condicion de stock){
+                lblAlertaStock.Visible = true;
+                string acumuladorProductoBajoStock = "";
+                foreach (var productoBajoStock in listaProductos)
+                {
+                    if (productoBajoStock != null)
+                    {
+                        acumuladorProductoBajoStock += productoBajoStock.nombre + "\n"; 
+                    }
+                }
+
+                tlDesplegableProductos.SetToolTip(lblAlertaStock, "Acá irian los productos que estén por debajo del 25% del stock designado, por ahora trae \ntodos los productos. Falta la condición que indique cuál es el 25% del stock.\n" + acumuladorProductoBajoStock);
+                /*
+                }
+                else
+                {
+                    lblAlertaStock.Visible = false;
+                }
+                */
+            }
+            else
+            {
+                lblAlertaStock.Visible = false;
+            }
+                
+
             switch (Host)
             {
                 case 1: // Administrador
