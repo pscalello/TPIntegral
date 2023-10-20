@@ -39,9 +39,8 @@ namespace InterfazForm
         private void btnIngresar_Click(object sender, EventArgs e)
         {
             logoCarga.Image = Properties.Resources.icnLogoCarga;
+            logoCarga.Visible = true;
 
-            IniciarLogoCarga();
-          
             //string respuestas;
 
 
@@ -96,7 +95,7 @@ namespace InterfazForm
 
             txtUsuario.Text = "";
             txtContraseña.Text = "";
-
+            logoCarga.Visible = false;
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
@@ -177,6 +176,7 @@ namespace InterfazForm
             btnMostrarContraseña.Visible = true;
         }
 
+        /*
         private void IniciarLogoCarga()
         {
             // Muestra el icono de carga
@@ -196,6 +196,7 @@ namespace InterfazForm
             };
             worker.RunWorkerAsync();
         }
+        */
 
     }
 }
