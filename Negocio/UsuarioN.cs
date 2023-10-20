@@ -192,18 +192,13 @@ namespace Negocio
         //                                             CAMBIO DE CONTRASEÑA                                                          //
         //*****************************************************************************************************************************
 
-        public bool CambioContraseña(string usuario, string viejaContraseña, string nuevaContraseña, List<UsuarioE> listaUsuarios)
+        public bool CambioContraseña(string usuario, string viejaContraseña, string nuevaContraseña)
         {
             UsuarioE UsuarioNuevo = null;
 
             // Valida que la contraseña no sea igual a la anterior, ni igual a la default, que tenga entre 8
             // y 15 caracteres y que tenga una mayúscula y un número
 
-
-            foreach (var usuarioEnLista in listaUsuarios)
-            {
-                if (usuarioEnLista.nombreUsuario == usuario)
-                {
                     if (// nuevaContraseña != usuarioEnLista.Contraseña &&
                         nuevaContraseña != "CAI20232" &&
                         nuevaContraseña.Length >= 8 && nuevaContraseña.Length <= 15 &&
@@ -213,8 +208,6 @@ namespace Negocio
                         UsuarioD.CambiarContraseña(usuario, viejaContraseña, nuevaContraseña);
                         return true;
                     }
-                }
-            }
 
             // Si no retornó verdadero, no comprobó reglas de negocio y no actualiza contraseña, devuelve falso
 

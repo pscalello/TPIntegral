@@ -71,7 +71,7 @@ namespace InterfazForm
             else if (respuesta == "-2") // Si la respuesta es -2, es que pudo loguearse pero con pass genérico (CAI20232)
             {
                 MessageBox.Show("Primer ingreso, por favor modifique su contraseña");
-                frmModificaContraseña frmModificaContraseña = new frmModificaContraseña();
+                frmModificaContraseña frmModificaContraseña = new frmModificaContraseña(login);
                 frmModificaContraseña.Show();
                 this.Close();
             }
