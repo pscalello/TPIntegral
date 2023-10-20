@@ -93,7 +93,10 @@ namespace InterfazForm
                 this.Close();
 
             }
-            
+
+            txtUsuario.Text = "";
+            txtContraseña.Text = "";
+
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
@@ -107,9 +110,17 @@ namespace InterfazForm
         ////////////////////////////////////////////////////
         ///    VALIDACIONES  DE INTEGRACION DE DATOS    ///
         ///////////////////////////////////////////////////
+        private bool validacionActiva = false;
 
         private void txtUsuario_Validating(object sender, CancelEventArgs e)
         {
+            if (validacionActiva)
+            {
+                return; // Evita que la validación se ejecute nuevamente al cancelar el formulario
+            }
+
+            validacionActiva = true;
+
             string input = txtUsuario.Text.Trim();
 
             if (!Validador.ValidaPalabra(input, 3))
@@ -118,11 +129,19 @@ namespace InterfazForm
                 MessageBox.Show("El usuario debe tener al menos 3 caracteres y contener solo letras.");
                 e.Cancel = true;
             }
+            validacionActiva = false;
 
         }
-
+        
         private void txtContraseña_Validating(object sender, CancelEventArgs e)
         {
+            if (validacionActiva)
+            {
+                return; // Evita que la validación se ejecute nuevamente al cancelar el formulario
+            }
+
+            validacionActiva = true;
+
             string input = txtContraseña.Text.Trim();
 
             if (!Validador.ValidaPalabra(input, 3))
@@ -131,8 +150,8 @@ namespace InterfazForm
                 MessageBox.Show("La contraseña debe tener al menos 3 caracteres y contener solo letras.");
                 e.Cancel = true;
             }
+            validacionActiva = false;
         }
-        
 
         // que funcione el Enter como click, con el boton ingresar
         private void btnIngresar_KeyDown(object sender, KeyEventArgs e)
