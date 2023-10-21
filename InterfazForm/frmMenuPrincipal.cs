@@ -62,21 +62,31 @@ namespace InterfazForm
 
             switch (Host)
             {
-                case 1: // Administrador
-                    btnVentas.Enabled = false;
-                    btnDevoluciones.Enabled = false;
-                    break;
-                case 2: //Supervisor
-                    btnABMUsuarios.Enabled = true;
-                    btnABMProveedores.Enabled = true;
-                    btnVentas.Enabled = false;
-                    break;
-                case 3: // Vendedor
+                case 3: // Administrador
                     btnABMUsuarios.Enabled = true;
                     btnABMProveedores.Enabled = true;
                     btnABMProductos.Enabled = true;
+                    btnVentas.Enabled = false;
                     btnDevoluciones.Enabled = false;
+                    btnReportes.Enabled = true;
                     break;
+                case 2: //Supervisor
+                    btnABMUsuarios.Enabled = false;
+                    btnABMProveedores.Enabled = false;
+                    btnABMProductos.Enabled = true;
+                    btnVentas.Enabled = false;
+                    btnDevoluciones.Enabled = true;
+                    btnReportes.Enabled = true;
+                    break;
+                case 1: // Vendedor
+                    btnABMUsuarios.Enabled = false;
+                    btnABMProveedores.Enabled = false;
+                    btnABMProductos.Enabled = false;
+                    btnVentas.Enabled = true;
+                    btnDevoluciones.Enabled = false;
+                    btnReportes.Enabled = true;
+                    break;
+
 
             }
         }
