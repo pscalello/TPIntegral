@@ -41,7 +41,7 @@ namespace InterfazForm
                 {
                     if (productoBajoStock != null)
                     {
-                        acumuladorProductoBajoStock += productoBajoStock.nombre + "\n"; 
+                        acumuladorProductoBajoStock += productoBajoStock.nombre + "\n";
                     }
                 }
 
@@ -58,7 +58,7 @@ namespace InterfazForm
             {
                 lblAlertaStock.Visible = false;
             }
-                
+
 
             switch (Host)
             {
@@ -102,6 +102,21 @@ namespace InterfazForm
         {
             frmABMProductos frmABMProductos = new frmABMProductos();
             frmABMProductos.ShowDialog();
+        }
+
+        private void btnVentas_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Esta funcionalidad estará disponible en las próximas versiones del sistema.");
+        }
+
+        private void btnReportes_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Esta funcionalidad estará disponible en las próximas versiones del sistema.");
+        }
+
+        private void btnDevoluciones_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Esta funcionalidad estará disponible en las próximas versiones del sistema.");
         }
     }
 }
