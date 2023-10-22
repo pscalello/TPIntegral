@@ -32,7 +32,7 @@ namespace InterfazForm
         {
             List<RespuestaConsultaProducto> listaProductos = productoN.listaProductos();
 
-            if (Host == 1 || Host == 2)
+            if (Host == 3 || Host == 2)
             {
                 //if (condicion de stock){
                 lblAlertaStock.Visible = true;

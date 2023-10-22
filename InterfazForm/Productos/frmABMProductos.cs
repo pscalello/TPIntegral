@@ -51,6 +51,7 @@ namespace InterfazForm.Productos
         {
             frmAltaProducto frmAltaProducto = new frmAltaProducto();
             frmAltaProducto.ShowDialog();
+            llenaDataGriedProductos();
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)

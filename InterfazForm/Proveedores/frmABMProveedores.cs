@@ -87,6 +87,7 @@ namespace InterfazForm.Proveedores
         {
             frmAltaProveedor frmAltaProveedor = new frmAltaProveedor();
             frmAltaProveedor.ShowDialog();
+            llenaDataGridProveedores();
         }
     }
 }

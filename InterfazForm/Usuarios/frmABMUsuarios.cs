@@ -48,6 +48,7 @@ namespace InterfazForm.Usuarios
         {
             frmAltaUsuario frmAltaUsuario = new frmAltaUsuario();
             frmAltaUsuario.ShowDialog();
+            llenaDataGriedUsuarios();
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
