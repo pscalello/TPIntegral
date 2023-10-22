@@ -113,7 +113,7 @@ namespace InterfazForm
 
         private void txtUsuario_Validating(object sender, CancelEventArgs e)
         {
-            if (validacionActiva)
+            if (validacionActiva || btnSalir.Focused)
             {
                 return; // Evita que la validación se ejecute nuevamente al cancelar el formulario
             }
@@ -131,10 +131,10 @@ namespace InterfazForm
             validacionActiva = false;
 
         }
-        
+
         private void txtContraseña_Validating(object sender, CancelEventArgs e)
         {
-            if (validacionActiva)
+            if (validacionActiva || btnSalir.Focused)
             {
                 return; // Evita que la validación se ejecute nuevamente al cancelar el formulario
             }

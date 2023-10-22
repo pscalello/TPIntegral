@@ -36,25 +36,30 @@
             // 
             // txtNuevaContraseña
             // 
-            txtNuevaContraseña.Location = new Point(125, 19);
+            txtNuevaContraseña.Location = new Point(179, 32);
+            txtNuevaContraseña.Margin = new Padding(4, 5, 4, 5);
             txtNuevaContraseña.Name = "txtNuevaContraseña";
-            txtNuevaContraseña.Size = new Size(170, 23);
+            txtNuevaContraseña.Size = new Size(241, 31);
             txtNuevaContraseña.TabIndex = 13;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(12, 22);
+            label1.Location = new Point(17, 37);
+            label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(107, 15);
+            label1.Size = new Size(160, 25);
             label1.TabIndex = 11;
             label1.Text = "Nueva Contraseña:";
             // 
             // btnSalir
             // 
-            btnSalir.Location = new Point(220, 60);
+            btnSalir.CausesValidation = false;
+            btnSalir.DialogResult = DialogResult.Cancel;
+            btnSalir.Location = new Point(314, 100);
+            btnSalir.Margin = new Padding(4, 5, 4, 5);
             btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(75, 23);
+            btnSalir.Size = new Size(107, 38);
             btnSalir.TabIndex = 15;
             btnSalir.Text = "Cancelar";
             btnSalir.UseVisualStyleBackColor = true;
@@ -62,9 +67,10 @@
             // 
             // btnAceptar
             // 
-            btnAceptar.Location = new Point(139, 60);
+            btnAceptar.Location = new Point(199, 100);
+            btnAceptar.Margin = new Padding(4, 5, 4, 5);
             btnAceptar.Name = "btnAceptar";
-            btnAceptar.Size = new Size(75, 23);
+            btnAceptar.Size = new Size(107, 38);
             btnAceptar.TabIndex = 14;
             btnAceptar.Text = "Aceptar";
             btnAceptar.UseVisualStyleBackColor = true;
@@ -72,13 +78,14 @@
             // 
             // frmModificaContraseña
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(315, 106);
+            ClientSize = new Size(450, 177);
             Controls.Add(btnSalir);
             Controls.Add(btnAceptar);
             Controls.Add(txtNuevaContraseña);
             Controls.Add(label1);
+            Margin = new Padding(4, 5, 4, 5);
             Name = "frmModificaContraseña";
             Text = "Modificación de Contraseña";
             ResumeLayout(false);
