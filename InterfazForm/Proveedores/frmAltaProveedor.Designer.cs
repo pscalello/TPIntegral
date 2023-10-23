@@ -71,7 +71,7 @@
             txtApellido.Margin = new Padding(4, 5, 4, 5);
             txtApellido.Name = "txtApellido";
             txtApellido.Size = new Size(300, 31);
-            txtApellido.TabIndex = 46;
+            txtApellido.TabIndex = 42;
             // 
             // label2
             // 
@@ -90,7 +90,7 @@
             txtEmail.Margin = new Padding(4, 5, 4, 5);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(300, 31);
-            txtEmail.TabIndex = 44;
+            txtEmail.TabIndex = 46;
             // 
             // label5
             // 
@@ -109,7 +109,7 @@
             txtCUIT.Margin = new Padding(4, 5, 4, 5);
             txtCUIT.Name = "txtCUIT";
             txtCUIT.Size = new Size(300, 31);
-            txtCUIT.TabIndex = 42;
+            txtCUIT.TabIndex = 44;
             // 
             // txtNombre
             // 

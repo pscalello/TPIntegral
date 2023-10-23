@@ -52,7 +52,7 @@
             btnSalir.Margin = new Padding(4, 5, 4, 5);
             btnSalir.Name = "btnSalir";
             btnSalir.Size = new Size(107, 38);
-            btnSalir.TabIndex = 11;
+            btnSalir.TabIndex = 12;
             btnSalir.Text = "Cancelar";
             btnSalir.UseVisualStyleBackColor = true;
             btnSalir.Click += btnSalir_Click;
@@ -63,7 +63,7 @@
             txtContraseña.Margin = new Padding(4, 5, 4, 5);
             txtContraseña.Name = "txtContraseña";
             txtContraseña.Size = new Size(241, 31);
-            txtContraseña.TabIndex = 10;
+            txtContraseña.TabIndex = 9;
             txtContraseña.Validating += txtContraseña_Validating;
             // 
             // txtUsuario
@@ -72,7 +72,7 @@
             txtUsuario.Margin = new Padding(4, 5, 4, 5);
             txtUsuario.Name = "txtUsuario";
             txtUsuario.Size = new Size(241, 31);
-            txtUsuario.TabIndex = 9;
+            txtUsuario.TabIndex = 6;
             txtUsuario.Validating += txtUsuario_Validating;
             // 
             // label2
@@ -101,7 +101,7 @@
             btnIngresar.Margin = new Padding(4, 5, 4, 5);
             btnIngresar.Name = "btnIngresar";
             btnIngresar.Size = new Size(107, 38);
-            btnIngresar.TabIndex = 6;
+            btnIngresar.TabIndex = 11;
             btnIngresar.Text = "Ingresar";
             btnIngresar.UseVisualStyleBackColor = true;
             btnIngresar.Click += btnIngresar_Click;
@@ -152,7 +152,7 @@
             btnOcultarContraseña.Margin = new Padding(4, 0, 4, 0);
             btnOcultarContraseña.Name = "btnOcultarContraseña";
             btnOcultarContraseña.Size = new Size(125, 19);
-            btnOcultarContraseña.TabIndex = 15;
+            btnOcultarContraseña.TabIndex = 10;
             btnOcultarContraseña.Text = "Ocultar contraseña";
             btnOcultarContraseña.Click += btnOcultarContraseña_Click;
             // 
