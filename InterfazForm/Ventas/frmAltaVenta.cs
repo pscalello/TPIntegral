@@ -16,5 +16,20 @@ namespace InterfazForm.Ventas
         {
             InitializeComponent();
         }
+
+        private void frmAltaVenta_Load(object sender, EventArgs e)
+        {
+            // Agregar las columnas al DataGridView
+            dgvVenta.Columns.Add("IDProducto", "ID Producto");
+            dgvVenta.Columns.Add("Descripcion", "Descripcion");
+            dgvVenta.Columns.Add("Cantidad", "Cantidad");
+            dgvVenta.Columns.Add("MontoUnitario", "Monto Unitario");
+            dgvVenta.Columns.Add("MontoTotal", "Monto Total");
+
+            // Formato Columnas
+            dgvVenta.Columns["Cantidad"].DefaultCellStyle.Format = "N0";      // N0 para formato numérico sin decimales y con separador de miles
+            dgvVenta.Columns["MontoUnitario"].DefaultCellStyle.Format = "N"; // N para formato numérico sin separador de miles ni decimales
+            dgvVenta.Columns["MontoTotal"].DefaultCellStyle.Format = "N2";   // N2 para formato numérico con dos decimales y separador de miles
+        }
     }
 }

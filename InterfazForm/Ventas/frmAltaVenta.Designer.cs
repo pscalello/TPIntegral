@@ -28,33 +28,96 @@
         /// </summary>
         private void InitializeComponent()
         {
-            dataGridView1 = new DataGridView();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            dgvVenta = new DataGridView();
+            label1 = new Label();
+            dtiFechaVenta = new DateTimePicker();
+            label2 = new Label();
+            txtCliente = new TextBox();
+            button1 = new Button();
+            ((System.ComponentModel.ISupportInitialize)dgvVenta).BeginInit();
             SuspendLayout();
             // 
-            // dataGridView1
+            // dgvVenta
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(23, 12);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(751, 309);
-            dataGridView1.TabIndex = 0;
+            dgvVenta.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvVenta.Location = new Point(27, 120);
+            dgvVenta.Margin = new Padding(3, 4, 3, 4);
+            dgvVenta.Name = "dgvVenta";
+            dgvVenta.RowHeadersWidth = 51;
+            dgvVenta.RowTemplate.Height = 25;
+            dgvVenta.Size = new Size(858, 412);
+            dgvVenta.TabIndex = 0;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(36, 27);
+            label1.Name = "label1";
+            label1.Size = new Size(50, 20);
+            label1.TabIndex = 1;
+            label1.Text = "Fecha:";
+            // 
+            // dtiFechaVenta
+            // 
+            dtiFechaVenta.Format = DateTimePickerFormat.Custom;
+            dtiFechaVenta.Location = new Point(109, 22);
+            dtiFechaVenta.Name = "dtiFechaVenta";
+            dtiFechaVenta.Size = new Size(124, 27);
+            dtiFechaVenta.TabIndex = 2;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(36, 65);
+            label2.Name = "label2";
+            label2.Size = new Size(58, 20);
+            label2.TabIndex = 3;
+            label2.Text = "Cliente:";
+            // 
+            // txtCliente
+            // 
+            txtCliente.Enabled = false;
+            txtCliente.Location = new Point(109, 65);
+            txtCliente.Name = "txtCliente";
+            txtCliente.Size = new Size(229, 27);
+            txtCliente.TabIndex = 4;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(351, 65);
+            button1.Name = "button1";
+            button1.Size = new Size(94, 29);
+            button1.TabIndex = 5;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
             // 
             // frmAltaVenta
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(dataGridView1);
+            ClientSize = new Size(914, 600);
+            Controls.Add(button1);
+            Controls.Add(txtCliente);
+            Controls.Add(label2);
+            Controls.Add(dtiFechaVenta);
+            Controls.Add(label1);
+            Controls.Add(dgvVenta);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "frmAltaVenta";
             Text = "frmAltaVenta";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            Load += frmAltaVenta_Load;
+            ((System.ComponentModel.ISupportInitialize)dgvVenta).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
-        private DataGridView dataGridView1;
+        private DataGridView dgvVenta;
+        private Label label1;
+        private DateTimePicker dtiFechaVenta;
+        private Label label2;
+        private TextBox txtCliente;
+        private Button button1;
     }
 }
