@@ -33,7 +33,7 @@
             dtiFechaVenta = new DateTimePicker();
             label2 = new Label();
             txtCliente = new TextBox();
-            button1 = new Button();
+            btnSeleccionarCliente = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvVenta).BeginInit();
             SuspendLayout();
             // 
@@ -82,21 +82,22 @@
             txtCliente.Size = new Size(229, 27);
             txtCliente.TabIndex = 4;
             // 
-            // button1
+            // btnSeleccionarCliente
             // 
-            button1.Location = new Point(351, 65);
-            button1.Name = "button1";
-            button1.Size = new Size(94, 29);
-            button1.TabIndex = 5;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
+            btnSeleccionarCliente.Location = new Point(351, 65);
+            btnSeleccionarCliente.Name = "btnSeleccionarCliente";
+            btnSeleccionarCliente.Size = new Size(94, 29);
+            btnSeleccionarCliente.TabIndex = 5;
+            btnSeleccionarCliente.Text = "Seleccionar";
+            btnSeleccionarCliente.UseVisualStyleBackColor = true;
+            btnSeleccionarCliente.Click += btnSeleccionarCliente_Click;
             // 
             // frmAltaVenta
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(914, 600);
-            Controls.Add(button1);
+            Controls.Add(btnSeleccionarCliente);
             Controls.Add(txtCliente);
             Controls.Add(label2);
             Controls.Add(dtiFechaVenta);
@@ -118,6 +119,6 @@
         private DateTimePicker dtiFechaVenta;
         private Label label2;
         private TextBox txtCliente;
-        private Button button1;
+        private Button btnSeleccionarCliente;
     }
 }

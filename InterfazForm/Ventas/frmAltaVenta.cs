@@ -31,5 +31,11 @@ namespace InterfazForm.Ventas
             dgvVenta.Columns["MontoUnitario"].DefaultCellStyle.Format = "N"; // N para formato numérico sin separador de miles ni decimales
             dgvVenta.Columns["MontoTotal"].DefaultCellStyle.Format = "N2";   // N2 para formato numérico con dos decimales y separador de miles
         }
+
+        private void btnSeleccionarCliente_Click(object sender, EventArgs e)
+        {
+            frmConsultarCliente frmConsultarCliente = new frmConsultarCliente();
+            frmConsultarCliente.ShowDialog();
+        }
     }
 }

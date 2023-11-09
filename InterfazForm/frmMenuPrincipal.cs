@@ -16,6 +16,7 @@ using Negocio;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Entidad;
 using InterfazForm.Clientes;
+using InterfazForm.Ventas;
 
 namespace InterfazForm
 {
@@ -117,7 +118,8 @@ namespace InterfazForm
 
         private void btnVentas_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Esta funcionalidad estará disponible en las próximas versiones del sistema.");
+            frmAltaVenta frmAltaVenta = new frmAltaVenta();
+            frmAltaVenta.ShowDialog();
         }
 
         private void btnReportes_Click(object sender, EventArgs e)
