@@ -17,8 +17,10 @@ namespace Entidad
         public string email { get; private set; } //
         public DateTime fechaNacimiento { get; private set; } //
 
+        public string host { get; private set; } //
 
-        public PayloadAgregarCliente(Guid idUsuario, string nombre, string apellido, int dni, string direccion, string telefono, string email, DateTime fechaNacimiento)
+
+        public PayloadAgregarCliente(Guid idUsuario, string nombre, string apellido, int dni, string direccion, string telefono, string email, DateTime fechaNacimiento, string host)
         {
             this.idUsuario = idUsuario;
             this.nombre = nombre;
@@ -28,7 +30,7 @@ namespace Entidad
             this.telefono = telefono;
             this.email = email;
             this.fechaNacimiento = fechaNacimiento;
-
+            this.host = host;
         }
     }
 }

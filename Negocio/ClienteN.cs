@@ -42,7 +42,7 @@ namespace Negocio
         //        CREACION DE CLIENTES   //                                                   //
         //************************************
 
-        public bool AgregarCliente(string nombre, string apellido, int dni, string domicilio, string telefono, string email, DateTime fechaNacimiento)
+        public bool AgregarCliente(string nombre, string apellido, int dni, string domicilio, string telefono, string email, DateTime fechaNacimiento, string host)
         {
             Guid idUsuarioAdmin = Guid.Parse("D347CE99-DB8D-4542-AA97-FC9F3CCE6969");
             PayloadAgregarCliente payloadAgregarCliente = new PayloadAgregarCliente(idUsuarioAdmin, nombre,apellido, dni, domicilio, telefono, email, fechaNacimiento);
