@@ -34,13 +34,13 @@ namespace InterfazForm.Clientes
             dgvClientes.DataSource = null;
             dgvClientes.DataSource = listaClientes;
             dgvClientes.Columns[0].Visible = false; // Oculto id
-            dgvClientes.Columns["Nombre"].HeaderText = "Nombre";
-            dgvClientes.Columns["Apellido"].HeaderText = "Apellido";
-            dgvClientes.Columns["DNI"].HeaderText = "DNI";
-            dgvClientes.Columns["Dirección"].HeaderText = "Dirección";
-            dgvClientes.Columns["Teléfono"].HeaderText = "Teléfono";
-            dgvClientes.Columns["Email"].HeaderText = "Email";
-            dgvClientes.Columns["Fecha de nacimiento"].HeaderText = "Fecha de nacimiento";
+            dgvClientes.Columns["nombre"].HeaderText = "Nombre";
+            dgvClientes.Columns["apellido"].HeaderText = "Apellido";
+            dgvClientes.Columns["dni"].HeaderText = "DNI";
+            dgvClientes.Columns["direccion"].HeaderText = "Dirección";
+            dgvClientes.Columns["telefono"].HeaderText = "Teléfono";
+            dgvClientes.Columns["email"].HeaderText = "Email";
+            dgvClientes.Columns["fechaNacimiento"].HeaderText = "Fecha de nacimiento";
             dgvClientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvClientes.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
             dgvClientes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;

@@ -16,9 +16,13 @@ namespace Entidad
         public string telefono { get; private set; } //
         public string email { get; private set; } //
         public DateTime fechaNacimiento { get; private set; } //
+
+        public DateTime fechaAlta { get; private set; } //
+
+        public DateTime? fechaBaja { get; private set; } //
         public string host { get; private set; } //
 
-        public RespuestaConsultaCliente(Guid idUsuario, string nombre, string apellido, int dni, string direccion, string telefono, string email, DateTime fechaNacimiento, string host)
+        public RespuestaConsultaCliente(Guid idUsuario, string nombre, string apellido, int dni, string direccion, string telefono, string email, DateTime fechaNacimiento, DateTime fechaAlta, DateTime? fechaBaja, string host)
         {
             this.idUsuario = idUsuario;
             this.nombre = nombre;
@@ -28,6 +32,8 @@ namespace Entidad
             this.telefono = telefono;
             this.email = email;
             this.fechaNacimiento = fechaNacimiento;
+            this.fechaAlta = fechaAlta;
+            this.fechaBaja = fechaBaja;
             this.host = host;
         }
     }

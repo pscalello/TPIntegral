@@ -43,7 +43,7 @@ namespace Datos
 
         public static List<RespuestaConsultaCliente> ConsultarClientes()
         {
-            HttpResponseMessage response = WebHelper.Get("Cliente/GetCliente"); //ver si es cliente o clienteS
+            HttpResponseMessage response = WebHelper.Get("Cliente/GetClientes"); 
 
             if (!response.IsSuccessStatusCode)
             {
