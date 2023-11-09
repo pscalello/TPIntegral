@@ -8,7 +8,7 @@ namespace Entidad
 {
     public class RespuestaConsultaCliente
     {
-        public Guid idUsuario { get; private set; } //
+        public Guid id { get; private set; } //
         public string nombre { get; private set; } //
         public string apellido { get; private set; } //
         public int dni { get; private set; } //
@@ -22,9 +22,9 @@ namespace Entidad
         public DateTime? fechaBaja { get; private set; } //
         public string host { get; private set; } //
 
-        public RespuestaConsultaCliente(Guid idUsuario, string nombre, string apellido, int dni, string direccion, string telefono, string email, DateTime fechaNacimiento, DateTime fechaAlta, DateTime? fechaBaja, string host)
+        public RespuestaConsultaCliente(Guid id, string nombre, string apellido, int dni, string direccion, string telefono, string email, DateTime fechaNacimiento, DateTime fechaAlta, DateTime? fechaBaja, string host)
         {
-            this.idUsuario = idUsuario;
+            this.id = id;
             this.nombre = nombre;
             this.apellido = apellido;
             this.dni = dni;

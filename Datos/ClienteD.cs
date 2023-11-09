@@ -32,7 +32,7 @@ namespace Datos
 
             var jsonRequest = JsonConvert.SerializeObject(map);
 
-            HttpResponseMessage response = WebHelper.DeleteConBody("Cliente/BajaCliente", jsonRequest);
+            HttpResponseMessage response = WebHelper.DeleteConBody("Cliente/BajaCliente?id=" + idClienteABorrar, jsonRequest);
 
             if (!response.IsSuccessStatusCode)
             {

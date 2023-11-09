@@ -66,6 +66,8 @@ namespace InterfazForm.Clientes
                                                                                     //MessageBox.Show(filaSeleccionada.Cells[0].Value.ToString());
                     Guid guid = Guid.Parse(filaSeleccionada.Cells[0].Value.ToString());
 
+                    //MessageBox.Show(guid);
+
 
                     bool eliminaCliente = clienteN.EliminarClientes(guid);
                     if (eliminaCliente)

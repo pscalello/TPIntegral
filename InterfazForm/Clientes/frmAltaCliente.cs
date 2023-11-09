@@ -23,9 +23,8 @@ namespace InterfazForm.Clientes
         {
             if (validaVacios() && validaIntegracion())
             {
-                UsuarioN UsuarioNuevo = new UsuarioN();
+                ClienteN clienteNuevo = new ClienteN();
 
-                //int host = cboHost.SelectedIndex + 1;
                 string nombre = txtNombre.Text;
                 string apellido = txtApellido.Text;
                 int dni = int.Parse(txtDNI.Text);
@@ -34,20 +33,17 @@ namespace InterfazForm.Clientes
                 string email = txtEmail.Text;
                 DateTime fechaNacimiento = dtiFechaNacimiento.Value;
                 //string nombreUsuario = txtNombreUsuario.Text;
-                string host = "GRUPO 6";
 
-                bool creacionCorrecta = UsuarioNuevo.CrearUsuario(host, nombre, apellido, dni, direccion, telefono, email, fechaNacimiento, nombreUsuario);
+                bool creacionCorrecta = clienteNuevo.AgregarCliente(nombre, apellido, dni, direccion, telefono, email, fechaNacimiento);
 
                 if (creacionCorrecta)
                 {
-                    MessageBox.Show("Creación de usuario exitosa!");
+                    MessageBox.Show("Creación de cliente exitosa!");
                     this.Close();
                 }
                 else
                 {
-                    MessageBox.Show("Existen errores para la creación del usuario. El nombre de\n" +
-                                    "usuario debe tener entre 8 y 15 caracteres, y el mismo no\n" +
-                                    "puede contener ni su nombre ni su apellido");
+                    MessageBox.Show("Existen errores para la creación del cliente.");
                 }
             }
         }
@@ -114,6 +110,11 @@ namespace InterfazForm.Clientes
                 return false;
             }
             return true;
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 
