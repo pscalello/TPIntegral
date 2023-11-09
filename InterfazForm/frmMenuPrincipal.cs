@@ -15,6 +15,7 @@ using System.Reflection.Emit;
 using Negocio;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Entidad;
+using InterfazForm.Clientes;
 
 namespace InterfazForm
 {
@@ -127,6 +128,12 @@ namespace InterfazForm
         private void btnDevoluciones_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Esta funcionalidad estará disponible en las próximas versiones del sistema.");
+        }
+
+        private void btnABMClientes_Click(object sender, EventArgs e)
+        {
+            frmABMClientes frmABMClientes = new frmABMClientes();
+            frmABMClientes.ShowDialog();
         }
     }
 }

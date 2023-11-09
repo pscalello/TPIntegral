@@ -41,6 +41,21 @@ namespace Datos
 
         }
 
+        public static List<RespuestaConsultaCliente> ConsultarClientes()
+        {
+            HttpResponseMessage response = WebHelper.Get("Cliente/GetCliente"); //ver si es cliente o clienteS
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("Verifique los datos ingresados"); //da error acá
+            }
+            var reader = new StreamReader(response.Content.ReadAsStream());
+
+            List<RespuestaConsultaCliente> respuesta = JsonConvert.DeserializeObject<List<RespuestaConsultaCliente>>(reader.ReadToEnd());
+
+            return respuesta;
+        }
+
 
     }
 }

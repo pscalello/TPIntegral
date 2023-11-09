@@ -143,6 +143,7 @@
             btnABMClientes.TabIndex = 8;
             btnABMClientes.Text = "ABM Clientes";
             btnABMClientes.UseVisualStyleBackColor = true;
+            btnABMClientes.Click += btnABMClientes_Click;
             // 
             // frmMenuPrincipal
             // 
