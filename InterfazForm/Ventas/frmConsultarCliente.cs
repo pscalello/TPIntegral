@@ -18,6 +18,7 @@ namespace InterfazForm.Ventas
         public frmConsultarCliente()
         {
             InitializeComponent();
+
         }
 
         private void frmConsultarCliente_Load(object sender, EventArgs e)
@@ -43,6 +44,30 @@ namespace InterfazForm.Ventas
             dgvClientes.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
             dgvClientes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvClientes.ResumeLayout();
+        }
+
+        private void btnSeleccionar_Click(object sender, EventArgs e)
+        {
+            DatosCliente();
+            this.Close();
+        }
+
+        private void DatosCliente()
+        {
+            DataGridViewRow filaSeleccionada = dgvClientes.SelectedRows[0];
+            frmAltaVenta.nombreCliente = filaSeleccionada.Cells[1].Value.ToString() + " " + filaSeleccionada.Cells[2].Value.ToString();
+            frmAltaVenta.idCliente = Guid.Parse(filaSeleccionada.Cells[0].Value.ToString());
+        }
+
+        private void dgvClientes_DoubleClick(object sender, EventArgs e)
+        {
+            DatosCliente();
+            this.Close();
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

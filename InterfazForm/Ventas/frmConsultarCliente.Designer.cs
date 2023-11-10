@@ -44,6 +44,7 @@
             dgvClientes.RowTemplate.Height = 25;
             dgvClientes.Size = new Size(678, 356);
             dgvClientes.TabIndex = 10;
+            dgvClientes.DoubleClick += dgvClientes_DoubleClick;
             // 
             // btnSeleccionar
             // 
@@ -53,6 +54,7 @@
             btnSeleccionar.TabIndex = 11;
             btnSeleccionar.Text = "Seleccionar";
             btnSeleccionar.UseVisualStyleBackColor = true;
+            btnSeleccionar.Click += btnSeleccionar_Click;
             // 
             // btnCancelar
             // 
@@ -62,6 +64,7 @@
             btnCancelar.TabIndex = 12;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
+            btnCancelar.Click += btnCancelar_Click;
             // 
             // frmConsultarCliente
             // 

@@ -106,6 +106,7 @@
             Margin = new Padding(3, 4, 3, 4);
             Name = "frmAltaVenta";
             Text = "frmAltaVenta";
+            Activated += frmAltaVenta_Activated;
             Load += frmAltaVenta_Load;
             ((System.ComponentModel.ISupportInitialize)dgvVenta).EndInit();
             ResumeLayout(false);

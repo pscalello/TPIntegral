@@ -12,6 +12,8 @@ namespace InterfazForm.Ventas
 {
     public partial class frmAltaVenta : Form
     {
+        public static string nombreCliente { get; set; }
+        public static Guid idCliente { get; set; }
         public frmAltaVenta()
         {
             InitializeComponent();
@@ -36,6 +38,11 @@ namespace InterfazForm.Ventas
         {
             frmConsultarCliente frmConsultarCliente = new frmConsultarCliente();
             frmConsultarCliente.ShowDialog();
+        }
+
+        private void frmAltaVenta_Activated(object sender, EventArgs e)
+        {
+            txtCliente.Text = nombreCliente;
         }
     }
 }
