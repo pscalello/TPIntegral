@@ -37,19 +37,19 @@
             // dgvProductos
             // 
             dgvProductos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvProductos.Location = new Point(75, 26);
-            dgvProductos.Margin = new Padding(3, 4, 3, 4);
+            dgvProductos.Location = new Point(12, 12);
             dgvProductos.Name = "dgvProductos";
             dgvProductos.RowHeadersWidth = 51;
             dgvProductos.RowTemplate.Height = 25;
-            dgvProductos.Size = new Size(645, 361);
+            dgvProductos.Size = new Size(564, 271);
             dgvProductos.TabIndex = 2;
             // 
             // btnSeleccionarProducto
             // 
-            btnSeleccionarProducto.Location = new Point(97, 403);
+            btnSeleccionarProducto.Location = new Point(406, 294);
+            btnSeleccionarProducto.Margin = new Padding(3, 2, 3, 2);
             btnSeleccionarProducto.Name = "btnSeleccionarProducto";
-            btnSeleccionarProducto.Size = new Size(94, 29);
+            btnSeleccionarProducto.Size = new Size(82, 22);
             btnSeleccionarProducto.TabIndex = 3;
             btnSeleccionarProducto.Text = "Seleccionar";
             btnSeleccionarProducto.UseVisualStyleBackColor = true;
@@ -57,21 +57,23 @@
             // 
             // btnCancelar
             // 
-            btnCancelar.Location = new Point(597, 400);
+            btnCancelar.Location = new Point(494, 294);
+            btnCancelar.Margin = new Padding(3, 2, 3, 2);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(94, 29);
+            btnCancelar.Size = new Size(82, 22);
             btnCancelar.TabIndex = 4;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
             // 
             // frmConsultarProducto
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(589, 328);
             Controls.Add(btnCancelar);
             Controls.Add(btnSeleccionarProducto);
             Controls.Add(dgvProductos);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "frmConsultarProducto";
             Text = "frmConsultarProducto";
             Load += frmConsultarProducto_Load;

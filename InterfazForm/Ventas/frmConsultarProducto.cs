@@ -48,19 +48,21 @@ namespace InterfazForm.Ventas
         private void btnSeleccionarProducto_Click(object sender, EventArgs e)
         {
             DatosProducto();
-            frmAltaVenta.llenaDataGriedProductos();
+            frmAltaVenta.agregaRenglon = true;           
             this.Close();
         }
 
         private void DatosProducto()
         {
             DataGridViewRow filaSeleccionada = dgvProductos.SelectedRows[0];
-            frmAltaVenta.nombreProducto = filaSeleccionada.Cells[1].Value.ToString();
+            frmAltaVenta.nombreProducto = filaSeleccionada.Cells[4].Value.ToString();
             frmAltaVenta.idProducto = Guid.Parse(filaSeleccionada.Cells[0].Value.ToString());
             frmAltaVenta.precioProducto = float.Parse(filaSeleccionada.Cells[5].Value.ToString());
             frmAltaVenta.stockProducto = Int32.Parse(filaSeleccionada.Cells[6].Value.ToString());
-            listaDeProductos.Add(new object[] {frmAltaVenta.nombreProducto, frmAltaVenta.idProducto, frmAltaVenta.precioProducto, frmAltaVenta.stockProducto });
+            frmAltaVenta.idCategoria = Int32.Parse(filaSeleccionada.Cells[1].Value.ToString());
+            
         }
+
 
     }
 }
