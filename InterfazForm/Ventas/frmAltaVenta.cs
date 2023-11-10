@@ -23,7 +23,7 @@ namespace InterfazForm.Ventas
 
         public static string nombreProducto { get; set; }
 
-        public static int cantidad { get; set; }
+        public static int cantidadProducto { get; set; }
 
         public static float precioProducto { get; set; }
 
@@ -62,8 +62,7 @@ namespace InterfazForm.Ventas
 
         private void llenaDataGriedProductos()
         {
-            cantidad = 4; //lo trae el forms
-            object[] fila1 = { idProducto, nombreProducto, cantidad, precioProducto, cantidad * precioProducto, idCategoria };
+            object[] fila1 = { idProducto, nombreProducto, cantidadProducto, precioProducto, cantidadProducto * precioProducto, idCategoria };
             dgvVenta.Rows.Add(fila1);
         }
 
@@ -124,7 +123,7 @@ namespace InterfazForm.Ventas
 
         private void btnEliminarProducto_Click(object sender, EventArgs e)
         {
-            if(dgvVenta.SelectedRows.Count > 0)
+            if (dgvVenta.SelectedRows.Count > 0)
             {
                 DialogResult result = MessageBox.Show("¿Está seguro de que desea eliminar este producto?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -145,6 +144,32 @@ namespace InterfazForm.Ventas
             {
                 MessageBox.Show("Debe seleccionar una fila de la grilla a eliminar.");
             }
+
+        }
+
+
+        private void btnCalcularMonto_Click(object sender, EventArgs e)
+        {
+            decimal suma = 0;
+            decimal descuentoelectro = 0;
+            decimal descuentocliente = 0;
+            decimal montofinal = 0;
+
+            foreach (DataGridViewRow fila in dgvVenta.Rows)
+            {
+                if (fila.Cells["MontoTotal"].Value != null && decimal.TryParse(fila.Cells["MontoTotal"].Value.ToString(), out decimal valor))
+                {
+                    suma = suma + valor;
+                }
+            }
+            descuentoelectro = suma * 0.05m;
+            descuentocliente = suma * 0.05m;
+            montofinal = suma - descuentoelectro - descuentocliente;
+
+            txtMontoTotal.Text = suma.ToString();
+            txtPromoElectroHogar.Text = descuentoelectro.ToString();
+            txtPromoClienteNuevo.Text = descuentocliente.ToString();
+            txtMontoFinal.Text = montofinal.ToString();
 
         }
     }

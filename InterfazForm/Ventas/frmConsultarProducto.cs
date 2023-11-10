@@ -45,11 +45,21 @@ namespace InterfazForm.Ventas
             dgvProductos.ResumeLayout();
         }
 
-        private void btnSeleccionarProducto_Click(object sender, EventArgs e)
+        private void btnAgregarProducto_Click(object sender, EventArgs e)
         {
+            bool cantidadvalidada = false;
             DatosProducto();
-            frmAltaVenta.agregaRenglon = true;           
-            this.Close();
+            cantidadvalidada = ValidacionCantidadProducto();
+            if (cantidadvalidada)
+            {
+                frmAltaVenta.cantidadProducto = Convert.ToInt32(txtCantidadProducto.Text);
+                frmAltaVenta.agregaRenglon = true;
+                this.Close();
+            }
+            else
+            {
+                frmAltaVenta.agregaRenglon = false;
+            }
         }
 
         private void DatosProducto()
@@ -60,7 +70,30 @@ namespace InterfazForm.Ventas
             frmAltaVenta.precioProducto = float.Parse(filaSeleccionada.Cells[5].Value.ToString());
             frmAltaVenta.stockProducto = Int32.Parse(filaSeleccionada.Cells[6].Value.ToString());
             frmAltaVenta.idCategoria = Int32.Parse(filaSeleccionada.Cells[1].Value.ToString());
-            
+        }
+
+        private bool  ValidacionCantidadProducto ()
+        {
+            DataGridViewRow filaSeleccionada = dgvProductos.SelectedRows[0];
+            if (String.IsNullOrEmpty(txtCantidadProducto.Text))
+            {
+                MessageBox.Show("Debe ingresar una cantidad del producto", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            else if (!Int32.TryParse(txtCantidadProducto.Text, out int salida))
+            {
+                MessageBox.Show("Debe ingresar una cantidad del producto válida", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            else if (salida> Int32.Parse(filaSeleccionada.Cells[6].Value.ToString()))
+            {
+                MessageBox.Show("Debe ingresar una cantidad del producto que sea menor o igual al stock.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
 

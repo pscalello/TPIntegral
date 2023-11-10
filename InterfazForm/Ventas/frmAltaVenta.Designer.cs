@@ -39,6 +39,15 @@
             btnConfirmarVenta = new Button();
             btnCancelarVenta = new Button();
             pictureBox1 = new PictureBox();
+            txtPromoElectroHogar = new TextBox();
+            txtPromoClienteNuevo = new TextBox();
+            txtMontoFinal = new TextBox();
+            txtMontoTotal = new TextBox();
+            lblMontoTotal = new Label();
+            lblPromoElectroHogar = new Label();
+            lblPromoClienteNuevo = new Label();
+            lblMontoFinal = new Label();
+            btnCalcularMonto = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvVenta).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -47,11 +56,11 @@
             // 
             dgvVenta.AllowUserToAddRows = false;
             dgvVenta.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvVenta.Location = new Point(24, 90);
+            dgvVenta.Location = new Point(24, 78);
             dgvVenta.Name = "dgvVenta";
             dgvVenta.RowHeadersWidth = 51;
             dgvVenta.RowTemplate.Height = 25;
-            dgvVenta.Size = new Size(740, 309);
+            dgvVenta.Size = new Size(740, 243);
             dgvVenta.TabIndex = 0;
             // 
             // label1
@@ -103,7 +112,7 @@
             // 
             // btnAgregarProducto
             // 
-            btnAgregarProducto.Location = new Point(24, 408);
+            btnAgregarProducto.Location = new Point(24, 340);
             btnAgregarProducto.Margin = new Padding(3, 2, 3, 2);
             btnAgregarProducto.Name = "btnAgregarProducto";
             btnAgregarProducto.Size = new Size(122, 22);
@@ -114,7 +123,7 @@
             // 
             // btnEliminarProducto
             // 
-            btnEliminarProducto.Location = new Point(24, 434);
+            btnEliminarProducto.Location = new Point(24, 376);
             btnEliminarProducto.Margin = new Padding(3, 2, 3, 2);
             btnEliminarProducto.Name = "btnEliminarProducto";
             btnEliminarProducto.Size = new Size(122, 22);
@@ -125,7 +134,7 @@
             // 
             // btnConfirmarVenta
             // 
-            btnConfirmarVenta.Location = new Point(654, 408);
+            btnConfirmarVenta.Location = new Point(519, 488);
             btnConfirmarVenta.Margin = new Padding(3, 2, 3, 2);
             btnConfirmarVenta.Name = "btnConfirmarVenta";
             btnConfirmarVenta.Size = new Size(110, 22);
@@ -135,7 +144,7 @@
             // 
             // btnCancelarVenta
             // 
-            btnCancelarVenta.Location = new Point(654, 434);
+            btnCancelarVenta.Location = new Point(644, 488);
             btnCancelarVenta.Margin = new Padding(3, 2, 3, 2);
             btnCancelarVenta.Name = "btnCancelarVenta";
             btnCancelarVenta.Size = new Size(110, 22);
@@ -152,11 +161,94 @@
             pictureBox1.TabIndex = 10;
             pictureBox1.TabStop = false;
             // 
+            // txtPromoElectroHogar
+            // 
+            txtPromoElectroHogar.Location = new Point(654, 390);
+            txtPromoElectroHogar.Name = "txtPromoElectroHogar";
+            txtPromoElectroHogar.Size = new Size(100, 23);
+            txtPromoElectroHogar.TabIndex = 11;
+            // 
+            // txtPromoClienteNuevo
+            // 
+            txtPromoClienteNuevo.Location = new Point(654, 419);
+            txtPromoClienteNuevo.Name = "txtPromoClienteNuevo";
+            txtPromoClienteNuevo.Size = new Size(100, 23);
+            txtPromoClienteNuevo.TabIndex = 12;
+            // 
+            // txtMontoFinal
+            // 
+            txtMontoFinal.Location = new Point(654, 449);
+            txtMontoFinal.Name = "txtMontoFinal";
+            txtMontoFinal.Size = new Size(100, 23);
+            txtMontoFinal.TabIndex = 13;
+            // 
+            // txtMontoTotal
+            // 
+            txtMontoTotal.Location = new Point(654, 361);
+            txtMontoTotal.Name = "txtMontoTotal";
+            txtMontoTotal.Size = new Size(100, 23);
+            txtMontoTotal.TabIndex = 14;
+            // 
+            // lblMontoTotal
+            // 
+            lblMontoTotal.AutoSize = true;
+            lblMontoTotal.Location = new Point(568, 364);
+            lblMontoTotal.Name = "lblMontoTotal";
+            lblMontoTotal.Size = new Size(74, 15);
+            lblMontoTotal.TabIndex = 15;
+            lblMontoTotal.Text = "Monto Total:";
+            // 
+            // lblPromoElectroHogar
+            // 
+            lblPromoElectroHogar.AutoSize = true;
+            lblPromoElectroHogar.Location = new Point(439, 393);
+            lblPromoElectroHogar.Name = "lblPromoElectroHogar";
+            lblPromoElectroHogar.Size = new Size(203, 15);
+            lblPromoElectroHogar.TabIndex = 16;
+            lblPromoElectroHogar.Text = "Promo Electro Hogar(5% descuento):";
+            // 
+            // lblPromoClienteNuevo
+            // 
+            lblPromoClienteNuevo.AutoSize = true;
+            lblPromoClienteNuevo.Location = new Point(433, 422);
+            lblPromoClienteNuevo.Name = "lblPromoClienteNuevo";
+            lblPromoClienteNuevo.Size = new Size(209, 15);
+            lblPromoClienteNuevo.TabIndex = 17;
+            lblPromoClienteNuevo.Text = "Promo Cliente Nuevo (5% descuento):";
+            // 
+            // lblMontoFinal
+            // 
+            lblMontoFinal.AutoSize = true;
+            lblMontoFinal.Location = new Point(568, 449);
+            lblMontoFinal.Name = "lblMontoFinal";
+            lblMontoFinal.Size = new Size(74, 15);
+            lblMontoFinal.TabIndex = 18;
+            lblMontoFinal.Text = "Monto Final:";
+            // 
+            // btnCalcularMonto
+            // 
+            btnCalcularMonto.Location = new Point(654, 327);
+            btnCalcularMonto.Name = "btnCalcularMonto";
+            btnCalcularMonto.Size = new Size(105, 23);
+            btnCalcularMonto.TabIndex = 19;
+            btnCalcularMonto.Text = "Calcular Monto";
+            btnCalcularMonto.UseVisualStyleBackColor = true;
+            btnCalcularMonto.Click += btnCalcularMonto_Click;
+            // 
             // frmAltaVenta
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(786, 474);
+            ClientSize = new Size(786, 521);
+            Controls.Add(btnCalcularMonto);
+            Controls.Add(lblMontoFinal);
+            Controls.Add(lblPromoClienteNuevo);
+            Controls.Add(lblPromoElectroHogar);
+            Controls.Add(lblMontoTotal);
+            Controls.Add(txtMontoTotal);
+            Controls.Add(txtMontoFinal);
+            Controls.Add(txtPromoClienteNuevo);
+            Controls.Add(txtPromoElectroHogar);
             Controls.Add(pictureBox1);
             Controls.Add(btnCancelarVenta);
             Controls.Add(btnConfirmarVenta);
@@ -191,5 +283,14 @@
         private Button btnConfirmarVenta;
         private Button btnCancelarVenta;
         private PictureBox pictureBox1;
+        private TextBox txtPromoElectroHogar;
+        private TextBox txtPromoClienteNuevo;
+        private TextBox txtMontoFinal;
+        private TextBox txtMontoTotal;
+        private Label lblMontoTotal;
+        private Label lblPromoElectroHogar;
+        private Label lblPromoClienteNuevo;
+        private Label lblMontoFinal;
+        private Button btnCalcularMonto;
     }
 }

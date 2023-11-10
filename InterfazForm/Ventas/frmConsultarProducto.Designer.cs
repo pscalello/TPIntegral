@@ -29,8 +29,10 @@
         private void InitializeComponent()
         {
             dgvProductos = new DataGridView();
-            btnSeleccionarProducto = new Button();
+            btnAgregarProducto = new Button();
             btnCancelar = new Button();
+            lblCantidadProducto = new Label();
+            txtCantidadProducto = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dgvProductos).BeginInit();
             SuspendLayout();
             // 
@@ -44,20 +46,20 @@
             dgvProductos.Size = new Size(564, 271);
             dgvProductos.TabIndex = 2;
             // 
-            // btnSeleccionarProducto
+            // btnAgregarProducto
             // 
-            btnSeleccionarProducto.Location = new Point(406, 294);
-            btnSeleccionarProducto.Margin = new Padding(3, 2, 3, 2);
-            btnSeleccionarProducto.Name = "btnSeleccionarProducto";
-            btnSeleccionarProducto.Size = new Size(82, 22);
-            btnSeleccionarProducto.TabIndex = 3;
-            btnSeleccionarProducto.Text = "Seleccionar";
-            btnSeleccionarProducto.UseVisualStyleBackColor = true;
-            btnSeleccionarProducto.Click += btnSeleccionarProducto_Click;
+            btnAgregarProducto.Location = new Point(408, 323);
+            btnAgregarProducto.Margin = new Padding(3, 2, 3, 2);
+            btnAgregarProducto.Name = "btnAgregarProducto";
+            btnAgregarProducto.Size = new Size(82, 22);
+            btnAgregarProducto.TabIndex = 3;
+            btnAgregarProducto.Text = "Agregar";
+            btnAgregarProducto.UseVisualStyleBackColor = true;
+            btnAgregarProducto.Click += btnAgregarProducto_Click;
             // 
             // btnCancelar
             // 
-            btnCancelar.Location = new Point(494, 294);
+            btnCancelar.Location = new Point(496, 323);
             btnCancelar.Margin = new Padding(3, 2, 3, 2);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(82, 22);
@@ -65,13 +67,31 @@
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
             // 
+            // lblCantidadProducto
+            // 
+            lblCantidadProducto.AutoSize = true;
+            lblCantidadProducto.Location = new Point(12, 294);
+            lblCantidadProducto.Name = "lblCantidadProducto";
+            lblCantidadProducto.Size = new Size(58, 15);
+            lblCantidadProducto.TabIndex = 5;
+            lblCantidadProducto.Text = "Cantidad:";
+            // 
+            // txtCantidadProducto
+            // 
+            txtCantidadProducto.Location = new Point(76, 289);
+            txtCantidadProducto.Name = "txtCantidadProducto";
+            txtCantidadProducto.Size = new Size(100, 23);
+            txtCantidadProducto.TabIndex = 6;
+            // 
             // frmConsultarProducto
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(589, 328);
+            ClientSize = new Size(589, 356);
+            Controls.Add(txtCantidadProducto);
+            Controls.Add(lblCantidadProducto);
             Controls.Add(btnCancelar);
-            Controls.Add(btnSeleccionarProducto);
+            Controls.Add(btnAgregarProducto);
             Controls.Add(dgvProductos);
             Margin = new Padding(3, 2, 3, 2);
             Name = "frmConsultarProducto";
@@ -79,12 +99,15 @@
             Load += frmConsultarProducto_Load;
             ((System.ComponentModel.ISupportInitialize)dgvProductos).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private DataGridView dgvProductos;
-        private Button btnSeleccionarProducto;
+        private Button btnAgregarProducto;
         private Button btnCancelar;
+        private Label lblCantidadProducto;
+        private TextBox txtCantidadProducto;
     }
 }
