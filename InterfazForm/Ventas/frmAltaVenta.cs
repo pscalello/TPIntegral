@@ -5,11 +5,13 @@ using System.Data;
 using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Entidad;
 using Negocio;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace InterfazForm.Ventas
 {
@@ -33,9 +35,11 @@ namespace InterfazForm.Ventas
 
         public static bool agregaRenglon = false;
 
+        public Guid idUsuario { get; set; }
 
-        public frmAltaVenta()
+        public frmAltaVenta(Guid idUsuario)
         {
+            this.idUsuario = idUsuario;
             InitializeComponent();
         }
 
@@ -48,7 +52,7 @@ namespace InterfazForm.Ventas
             dgvVenta.Columns.Add("Descripcion", "Descripcion");
             dgvVenta.Columns.Add("Cantidad", "Cantidad");
             dgvVenta.Columns.Add("MontoUnitario", "Monto Unitario");
-            dgvVenta.Columns.Add("MontoTotal", "Monto Total");
+            dgvVenta.Columns.Add("MontoTotal", "Monto Total Previo A Descuento");
             dgvVenta.Columns.Add("IdCategoria", "idcategoria");
 
             dgvVenta.Columns[5].Visible = false;
@@ -111,7 +115,7 @@ namespace InterfazForm.Ventas
         {
             if (!string.IsNullOrWhiteSpace(txtCliente.Text))
             {
-                frmConsultarProducto frmConsultarProducto = new frmConsultarProducto();
+                frmConsultarProducto frmConsultarProducto = new frmConsultarProducto(idUsuario);
                 frmConsultarProducto.ShowDialog();
             }
             else
@@ -131,8 +135,10 @@ namespace InterfazForm.Ventas
                 {
                     if (dgvVenta.SelectedRows.Count > 0)
                     {
-                        DataGridViewRow filaSeleccionada = dgvVenta.SelectedRows[0]; //captura id que está oculta
-                        dgvVenta.Rows.Remove(filaSeleccionada);
+                        foreach (DataGridViewRow filaSeleccionada in dgvVenta.SelectedRows)
+                        {
+                            dgvVenta.Rows.Remove(filaSeleccionada);
+                        }
                     }
                     else
                     {
@@ -171,6 +177,53 @@ namespace InterfazForm.Ventas
             txtPromoClienteNuevo.Text = descuentocliente.ToString();
             txtMontoFinal.Text = montofinal.ToString();
 
+        }
+
+        private void btnConfirmarVenta_Click(object sender, EventArgs e)
+        {
+            VentaN ventaNueva = new VentaN();
+            List<bool> creacionCorrecta = new List<bool>();
+
+            if (dgvVenta.Rows.Count > 0 && txtMontoFinal.Text.Length != 0)
+            {
+                foreach (DataGridViewRow fila in dgvVenta.Rows)
+                {
+                    Guid guidIdProducto = Guid.Parse(fila?.Cells["IDProducto"]?.Value?.ToString());
+                    int cantidadParseada = Convert.ToInt32(fila.Cells["Cantidad"].Value);
+
+                    bool creacionCorrectaDeFila = ventaNueva.AgregarVenta(idCliente, idUsuario, guidIdProducto, cantidadParseada);
+
+                    creacionCorrecta.Add(creacionCorrectaDeFila);
+
+                    // que salga del loop si hay alguna creacion incorrecta.
+                    if (!creacionCorrectaDeFila) break;
+                }
+
+                // si la creacion fue correcta para todas las filas
+                if (creacionCorrecta.All((resultado) => resultado == true))
+                {
+                    MessageBox.Show("Creación de venta exitosa!");
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Existen errores para la creación de la venta.");
+                }
+            }
+            else if (dgvVenta.Rows.Count == 0)
+            { // si no agregó ningún producto.
+                MessageBox.Show("Debe ingresar un cliente y al menos un producto para confirmar la venta.");
+                return;
+            } else
+            { // si no calculó el monto final.
+                MessageBox.Show("Presione el botón \"Calcular Monto\" para conocer el monto final con descuento.");
+                return;
+            }
+        }
+
+        private void btnCancelarVenta_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

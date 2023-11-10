@@ -76,16 +76,16 @@ namespace InterfazForm
             }
             else // Loquego ok, tenemos el ID del usuario logueado
             {
-                Guid guid = new Guid(respuesta.Replace("\"", "")); //Viene con comillas la respuesta - reemplazo y parsea a GUID
+                Guid idUsuario = new Guid(respuesta.Replace("\"", "")); //Viene con comillas la respuesta - reemplazo y parsea a GUID
 
 
                 ///////////////////////////////////////////////////////
                 // Está FALLANDO ESTE METODO buscarHost
                 ///////////////////////////////////////////////////////
 
-                int hostUsuario = UsuarioLogueadoN.BuscarHostUsuario(guid);
+                int hostUsuario = UsuarioLogueadoN.BuscarHostUsuario(idUsuario);
 
-                frmMenuPrincipal frmMenuPrincipal = new frmMenuPrincipal();
+                frmMenuPrincipal frmMenuPrincipal = new frmMenuPrincipal(idUsuario);
 
                 frmMenuPrincipal.Host = hostUsuario;
                 frmMenuPrincipal.Show();

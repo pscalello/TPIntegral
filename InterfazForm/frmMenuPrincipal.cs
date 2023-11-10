@@ -23,11 +23,12 @@ namespace InterfazForm
     public partial class frmMenuPrincipal : Form
     {
         internal int Host;
-        //internal Guid idUsuario;
+        internal Guid idUsuario;
         private ProductosN productoN = new ProductosN();
-        public frmMenuPrincipal()
+        public frmMenuPrincipal(Guid idUsuario)
         {
             InitializeComponent();
+            this.idUsuario = idUsuario;
         }
 
         private void frmMenuPrincipal_Load(object sender, EventArgs e)
@@ -118,7 +119,7 @@ namespace InterfazForm
 
         private void btnVentas_Click(object sender, EventArgs e)
         {
-            frmAltaVenta frmAltaVenta = new frmAltaVenta();
+            frmAltaVenta frmAltaVenta = new frmAltaVenta(idUsuario);
             frmAltaVenta.ShowDialog();
         }
 

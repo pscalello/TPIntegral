@@ -56,55 +56,58 @@
             // 
             dgvVenta.AllowUserToAddRows = false;
             dgvVenta.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvVenta.Location = new Point(24, 78);
+            dgvVenta.Location = new Point(34, 130);
+            dgvVenta.Margin = new Padding(4, 5, 4, 5);
             dgvVenta.Name = "dgvVenta";
             dgvVenta.RowHeadersWidth = 51;
             dgvVenta.RowTemplate.Height = 25;
-            dgvVenta.Size = new Size(740, 243);
+            dgvVenta.Size = new Size(1057, 405);
             dgvVenta.TabIndex = 0;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(24, 21);
+            label1.Location = new Point(34, 35);
+            label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(41, 15);
+            label1.Size = new Size(61, 25);
             label1.TabIndex = 1;
             label1.Text = "Fecha:";
             // 
             // dtiFechaVenta
             // 
             dtiFechaVenta.Format = DateTimePickerFormat.Custom;
-            dtiFechaVenta.Location = new Point(71, 17);
-            dtiFechaVenta.Margin = new Padding(3, 2, 3, 2);
+            dtiFechaVenta.Location = new Point(101, 28);
+            dtiFechaVenta.Margin = new Padding(4, 3, 4, 3);
             dtiFechaVenta.Name = "dtiFechaVenta";
-            dtiFechaVenta.Size = new Size(109, 23);
+            dtiFechaVenta.Size = new Size(154, 31);
             dtiFechaVenta.TabIndex = 2;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(24, 55);
+            label2.Location = new Point(34, 92);
+            label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
-            label2.Size = new Size(47, 15);
+            label2.Size = new Size(69, 25);
             label2.TabIndex = 3;
             label2.Text = "Cliente:";
             // 
             // txtCliente
             // 
             txtCliente.Enabled = false;
-            txtCliente.Location = new Point(71, 50);
-            txtCliente.Margin = new Padding(3, 2, 3, 2);
+            txtCliente.Location = new Point(101, 83);
+            txtCliente.Margin = new Padding(4, 3, 4, 3);
             txtCliente.Name = "txtCliente";
-            txtCliente.Size = new Size(201, 23);
+            txtCliente.Size = new Size(285, 31);
             txtCliente.TabIndex = 4;
             // 
             // btnSeleccionarCliente
             // 
-            btnSeleccionarCliente.Location = new Point(278, 50);
-            btnSeleccionarCliente.Margin = new Padding(3, 2, 3, 2);
+            btnSeleccionarCliente.Location = new Point(397, 83);
+            btnSeleccionarCliente.Margin = new Padding(4, 3, 4, 3);
             btnSeleccionarCliente.Name = "btnSeleccionarCliente";
-            btnSeleccionarCliente.Size = new Size(82, 22);
+            btnSeleccionarCliente.Size = new Size(117, 37);
             btnSeleccionarCliente.TabIndex = 5;
             btnSeleccionarCliente.Text = "Seleccionar";
             btnSeleccionarCliente.UseVisualStyleBackColor = true;
@@ -112,10 +115,10 @@
             // 
             // btnAgregarProducto
             // 
-            btnAgregarProducto.Location = new Point(24, 340);
-            btnAgregarProducto.Margin = new Padding(3, 2, 3, 2);
+            btnAgregarProducto.Location = new Point(34, 567);
+            btnAgregarProducto.Margin = new Padding(4, 3, 4, 3);
             btnAgregarProducto.Name = "btnAgregarProducto";
-            btnAgregarProducto.Size = new Size(122, 22);
+            btnAgregarProducto.Size = new Size(174, 37);
             btnAgregarProducto.TabIndex = 6;
             btnAgregarProducto.Text = "Agregar Producto";
             btnAgregarProducto.UseVisualStyleBackColor = true;
@@ -123,10 +126,10 @@
             // 
             // btnEliminarProducto
             // 
-            btnEliminarProducto.Location = new Point(24, 376);
-            btnEliminarProducto.Margin = new Padding(3, 2, 3, 2);
+            btnEliminarProducto.Location = new Point(34, 627);
+            btnEliminarProducto.Margin = new Padding(4, 3, 4, 3);
             btnEliminarProducto.Name = "btnEliminarProducto";
-            btnEliminarProducto.Size = new Size(122, 22);
+            btnEliminarProducto.Size = new Size(174, 37);
             btnEliminarProducto.TabIndex = 7;
             btnEliminarProducto.Text = "Eliminar Producto";
             btnEliminarProducto.UseVisualStyleBackColor = true;
@@ -134,102 +137,114 @@
             // 
             // btnConfirmarVenta
             // 
-            btnConfirmarVenta.Location = new Point(519, 488);
-            btnConfirmarVenta.Margin = new Padding(3, 2, 3, 2);
+            btnConfirmarVenta.Location = new Point(741, 813);
+            btnConfirmarVenta.Margin = new Padding(4, 3, 4, 3);
             btnConfirmarVenta.Name = "btnConfirmarVenta";
-            btnConfirmarVenta.Size = new Size(110, 22);
+            btnConfirmarVenta.Size = new Size(157, 37);
             btnConfirmarVenta.TabIndex = 8;
             btnConfirmarVenta.Text = "Confirmar Venta";
             btnConfirmarVenta.UseVisualStyleBackColor = true;
+            btnConfirmarVenta.Click += btnConfirmarVenta_Click;
             // 
             // btnCancelarVenta
             // 
-            btnCancelarVenta.Location = new Point(644, 488);
-            btnCancelarVenta.Margin = new Padding(3, 2, 3, 2);
+            btnCancelarVenta.Location = new Point(920, 813);
+            btnCancelarVenta.Margin = new Padding(4, 3, 4, 3);
             btnCancelarVenta.Name = "btnCancelarVenta";
-            btnCancelarVenta.Size = new Size(110, 22);
+            btnCancelarVenta.Size = new Size(157, 37);
             btnCancelarVenta.TabIndex = 9;
             btnCancelarVenta.Text = "Cancelar";
             btnCancelarVenta.UseVisualStyleBackColor = true;
+            btnCancelarVenta.Click += btnCancelarVenta_Click;
             // 
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.logo_electrohogar;
-            pictureBox1.Location = new Point(543, 22);
+            pictureBox1.Location = new Point(776, 37);
+            pictureBox1.Margin = new Padding(4, 5, 4, 5);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(221, 50);
+            pictureBox1.Size = new Size(316, 83);
             pictureBox1.TabIndex = 10;
             pictureBox1.TabStop = false;
             // 
             // txtPromoElectroHogar
             // 
-            txtPromoElectroHogar.Location = new Point(654, 390);
+            txtPromoElectroHogar.Location = new Point(934, 650);
+            txtPromoElectroHogar.Margin = new Padding(4, 5, 4, 5);
             txtPromoElectroHogar.Name = "txtPromoElectroHogar";
-            txtPromoElectroHogar.Size = new Size(100, 23);
+            txtPromoElectroHogar.Size = new Size(141, 31);
             txtPromoElectroHogar.TabIndex = 11;
             // 
             // txtPromoClienteNuevo
             // 
-            txtPromoClienteNuevo.Location = new Point(654, 419);
+            txtPromoClienteNuevo.Location = new Point(934, 698);
+            txtPromoClienteNuevo.Margin = new Padding(4, 5, 4, 5);
             txtPromoClienteNuevo.Name = "txtPromoClienteNuevo";
-            txtPromoClienteNuevo.Size = new Size(100, 23);
+            txtPromoClienteNuevo.Size = new Size(141, 31);
             txtPromoClienteNuevo.TabIndex = 12;
             // 
             // txtMontoFinal
             // 
-            txtMontoFinal.Location = new Point(654, 449);
+            txtMontoFinal.Location = new Point(934, 748);
+            txtMontoFinal.Margin = new Padding(4, 5, 4, 5);
             txtMontoFinal.Name = "txtMontoFinal";
-            txtMontoFinal.Size = new Size(100, 23);
+            txtMontoFinal.Size = new Size(141, 31);
             txtMontoFinal.TabIndex = 13;
             // 
             // txtMontoTotal
             // 
-            txtMontoTotal.Location = new Point(654, 361);
+            txtMontoTotal.Location = new Point(934, 602);
+            txtMontoTotal.Margin = new Padding(4, 5, 4, 5);
             txtMontoTotal.Name = "txtMontoTotal";
-            txtMontoTotal.Size = new Size(100, 23);
+            txtMontoTotal.Size = new Size(141, 31);
             txtMontoTotal.TabIndex = 14;
             // 
             // lblMontoTotal
             // 
             lblMontoTotal.AutoSize = true;
-            lblMontoTotal.Location = new Point(568, 364);
+            lblMontoTotal.Location = new Point(659, 608);
+            lblMontoTotal.Margin = new Padding(4, 0, 4, 0);
             lblMontoTotal.Name = "lblMontoTotal";
-            lblMontoTotal.Size = new Size(74, 15);
+            lblMontoTotal.Size = new Size(272, 25);
             lblMontoTotal.TabIndex = 15;
-            lblMontoTotal.Text = "Monto Total:";
+            lblMontoTotal.Text = "Monto Total Previo A Descuento:";
             // 
             // lblPromoElectroHogar
             // 
             lblPromoElectroHogar.AutoSize = true;
-            lblPromoElectroHogar.Location = new Point(439, 393);
+            lblPromoElectroHogar.Location = new Point(627, 655);
+            lblPromoElectroHogar.Margin = new Padding(4, 0, 4, 0);
             lblPromoElectroHogar.Name = "lblPromoElectroHogar";
-            lblPromoElectroHogar.Size = new Size(203, 15);
+            lblPromoElectroHogar.Size = new Size(305, 25);
             lblPromoElectroHogar.TabIndex = 16;
             lblPromoElectroHogar.Text = "Promo Electro Hogar(5% descuento):";
             // 
             // lblPromoClienteNuevo
             // 
             lblPromoClienteNuevo.AutoSize = true;
-            lblPromoClienteNuevo.Location = new Point(433, 422);
+            lblPromoClienteNuevo.Location = new Point(619, 703);
+            lblPromoClienteNuevo.Margin = new Padding(4, 0, 4, 0);
             lblPromoClienteNuevo.Name = "lblPromoClienteNuevo";
-            lblPromoClienteNuevo.Size = new Size(209, 15);
+            lblPromoClienteNuevo.Size = new Size(312, 25);
             lblPromoClienteNuevo.TabIndex = 17;
             lblPromoClienteNuevo.Text = "Promo Cliente Nuevo (5% descuento):";
             // 
             // lblMontoFinal
             // 
             lblMontoFinal.AutoSize = true;
-            lblMontoFinal.Location = new Point(568, 449);
+            lblMontoFinal.Location = new Point(811, 748);
+            lblMontoFinal.Margin = new Padding(4, 0, 4, 0);
             lblMontoFinal.Name = "lblMontoFinal";
-            lblMontoFinal.Size = new Size(74, 15);
+            lblMontoFinal.Size = new Size(111, 25);
             lblMontoFinal.TabIndex = 18;
             lblMontoFinal.Text = "Monto Final:";
             // 
             // btnCalcularMonto
             // 
-            btnCalcularMonto.Location = new Point(654, 327);
+            btnCalcularMonto.Location = new Point(934, 545);
+            btnCalcularMonto.Margin = new Padding(4, 5, 4, 5);
             btnCalcularMonto.Name = "btnCalcularMonto";
-            btnCalcularMonto.Size = new Size(105, 23);
+            btnCalcularMonto.Size = new Size(150, 38);
             btnCalcularMonto.TabIndex = 19;
             btnCalcularMonto.Text = "Calcular Monto";
             btnCalcularMonto.UseVisualStyleBackColor = true;
@@ -237,9 +252,9 @@
             // 
             // frmAltaVenta
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(786, 521);
+            ClientSize = new Size(1123, 868);
             Controls.Add(btnCalcularMonto);
             Controls.Add(lblMontoFinal);
             Controls.Add(lblPromoClienteNuevo);
@@ -260,6 +275,7 @@
             Controls.Add(dtiFechaVenta);
             Controls.Add(label1);
             Controls.Add(dgvVenta);
+            Margin = new Padding(4, 5, 4, 5);
             Name = "frmAltaVenta";
             Text = "frmAltaVenta";
             Activated += frmAltaVenta_Activated;

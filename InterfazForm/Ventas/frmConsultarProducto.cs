@@ -14,12 +14,13 @@ namespace InterfazForm.Ventas
 {
     public partial class frmConsultarProducto : Form
     {
-        frmAltaVenta frmAltaVenta = new frmAltaVenta();
+        frmAltaVenta frmAltaVenta;
         private ProductosN productoN = new ProductosN();
         public List<object[]> listaDeProductos = new List<object[]>();
-        public frmConsultarProducto()
+        public frmConsultarProducto(Guid idUsuario)
         {
-            InitializeComponent();
+            InitializeComponent(); 
+            frmAltaVenta frmAltaVenta = new frmAltaVenta(idUsuario);
         }
 
         private void frmConsultarProducto_Load(object sender, EventArgs e)

@@ -21,7 +21,7 @@ namespace Negocio
         }
 
         //*************************************
-        //        ELIMINACION DE CLIENTES   //                                                   //
+        //        ELIMINACION DE CLIENTES   //
         //************************************
 
         public bool EliminarClientes(Guid idClienteABorrar)
@@ -39,7 +39,7 @@ namespace Negocio
         }
 
         //*************************************
-        //        CREACION DE CLIENTES   //                                                   //
+        //        CREACION DE CLIENTES      // 
         //************************************
 
         public bool AgregarCliente(string nombre, string apellido, int dni, string domicilio, string telefono, string email, DateTime fechaNacimiento)
