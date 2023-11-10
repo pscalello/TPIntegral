@@ -34,6 +34,10 @@
             label2 = new Label();
             txtCliente = new TextBox();
             btnSeleccionarCliente = new Button();
+            btnAgregarProducto = new Button();
+            btnEliminarProducto = new Button();
+            btnConfirmarVenta = new Button();
+            btnCancelarVenta = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvVenta).BeginInit();
             SuspendLayout();
             // 
@@ -92,11 +96,52 @@
             btnSeleccionarCliente.UseVisualStyleBackColor = true;
             btnSeleccionarCliente.Click += btnSeleccionarCliente_Click;
             // 
+            // btnAgregarProducto
+            // 
+            btnAgregarProducto.Location = new Point(27, 544);
+            btnAgregarProducto.Name = "btnAgregarProducto";
+            btnAgregarProducto.Size = new Size(149, 29);
+            btnAgregarProducto.TabIndex = 6;
+            btnAgregarProducto.Text = "Agregar Producto";
+            btnAgregarProducto.UseVisualStyleBackColor = true;
+            btnAgregarProducto.Click += btnAgregarProducto_Click;
+            // 
+            // btnEliminarProducto
+            // 
+            btnEliminarProducto.Location = new Point(199, 544);
+            btnEliminarProducto.Name = "btnEliminarProducto";
+            btnEliminarProducto.Size = new Size(139, 29);
+            btnEliminarProducto.TabIndex = 7;
+            btnEliminarProducto.Text = "Eliminar Producto";
+            btnEliminarProducto.UseVisualStyleBackColor = true;
+            // 
+            // btnConfirmarVenta
+            // 
+            btnConfirmarVenta.Location = new Point(648, 559);
+            btnConfirmarVenta.Name = "btnConfirmarVenta";
+            btnConfirmarVenta.Size = new Size(126, 29);
+            btnConfirmarVenta.TabIndex = 8;
+            btnConfirmarVenta.Text = "Confirmar Venta";
+            btnConfirmarVenta.UseVisualStyleBackColor = true;
+            // 
+            // btnCancelarVenta
+            // 
+            btnCancelarVenta.Location = new Point(780, 559);
+            btnCancelarVenta.Name = "btnCancelarVenta";
+            btnCancelarVenta.Size = new Size(94, 29);
+            btnCancelarVenta.TabIndex = 9;
+            btnCancelarVenta.Text = "Cancelar";
+            btnCancelarVenta.UseVisualStyleBackColor = true;
+            // 
             // frmAltaVenta
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(914, 600);
+            Controls.Add(btnCancelarVenta);
+            Controls.Add(btnConfirmarVenta);
+            Controls.Add(btnEliminarProducto);
+            Controls.Add(btnAgregarProducto);
             Controls.Add(btnSeleccionarCliente);
             Controls.Add(txtCliente);
             Controls.Add(label2);
@@ -121,5 +166,9 @@
         private Label label2;
         private TextBox txtCliente;
         private Button btnSeleccionarCliente;
+        private Button btnAgregarProducto;
+        private Button btnEliminarProducto;
+        private Button btnConfirmarVenta;
+        private Button btnCancelarVenta;
     }
 }
