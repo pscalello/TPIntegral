@@ -15,7 +15,7 @@ namespace InterfazForm.Utils
             return !string.IsNullOrWhiteSpace(input) && input.Length >= largoAdmitido && Regex.IsMatch(input, @"^[^\s]+$");
         }
 
-        public static bool ValidaNombreProd(string input, int largoAdmitido)
+        public static bool ValidaPalabraConCaracteresEspeciales(string input, int largoAdmitido)
         {
             return !string.IsNullOrWhiteSpace(input) && input.Length >= largoAdmitido;
         }

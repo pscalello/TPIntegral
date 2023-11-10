@@ -84,7 +84,7 @@ namespace InterfazForm.Clientes
                 txtApellido.Focus();
                 return false;
             }
-            else if (!Validador.ValidaPalabra(txtDireccion.Text, 5))
+            else if (!Validador.ValidaPalabraConCaracteresEspeciales(txtDireccion.Text, 5))
             {
                 MessageBox.Show("La dirección debe tener al menos 5 caracteres.");
                 txtDireccion.Focus();
@@ -103,7 +103,7 @@ namespace InterfazForm.Clientes
                 return false;
             }
 
-            else if (!Validador.ValidaNumero(txtDNI.Text, 1000000, 99999999))
+            else if (!Validador.ValidaNumero(txtDNI.Text, 10000000, 99999999))
             {
                 MessageBox.Show("El DNI sólo debe contener números entre 1000000 y 99999999.");
                 txtDNI.Focus();

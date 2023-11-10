@@ -94,7 +94,7 @@ namespace InterfazForm.Proveedores
 
         private bool validaIntegracion()
         {
-            if (!Validador.ValidaNombreProd(txtNombre.Text, 3))
+            if (!Validador.ValidaPalabraConCaracteresEspeciales(txtNombre.Text, 3))
             {
                 MessageBox.Show("El nombre no puede tener menos de 3 caracteres.");
                 txtNombre.Focus();
