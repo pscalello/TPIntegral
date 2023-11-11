@@ -40,35 +40,47 @@ namespace InterfazForm.Ventas
                     btnAgregar.Enabled = false;
                     break;
             }
-            llenaDataGridVentas();
+            try
+            {
+                llenaDataGridVentas();
+            }
+            catch
+            {
+                MessageBox.Show("Hubo un error al cargar las ventas.");
+            }
         }
 
         private void llenaDataGridVentas()
         {
-            // Formato Columna
-            dgvVentas.Columns["cantidad"].DefaultCellStyle.Format = "N0";      // N0 para formato numérico sin decimales y con separador de miles
-            dgvVentas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvVentas.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
-            dgvVentas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-
-            List<RespuestaConsultaVenta> listaVentas = ventaN.listarVentas();
-
-            foreach (RespuestaConsultaVenta venta in listaVentas)
+            try
             {
-                string textoEstado = "";
-                if (venta.estado == 0)
-                {
-                    textoEstado = "Devuelto";
-                }
-                else if (venta.estado == 1)
-                {
-                    textoEstado = "Entregado";
-                }
-                string fechaLimpia = venta.fechaAlta.Substring(0, 10);
-                object[] fila = { venta.id, venta.cantidad, venta.cliente, fechaLimpia, textoEstado };
-                dgvVentas.Rows.Add(fila);
-            }
+                // Formato Columna
+                dgvVentas.Columns["cantidad"].DefaultCellStyle.Format = "N0";      // N0 para formato numérico sin decimales y con separador de miles
+                dgvVentas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                dgvVentas.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+                dgvVentas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
+                List<RespuestaConsultaVenta> listaVentas = ventaN.listarVentas();
+
+                foreach (RespuestaConsultaVenta venta in listaVentas)
+                {
+                    string textoEstado = "";
+                    if (venta.estado == 0)
+                    {
+                        textoEstado = "Devuelto";
+                    }
+                    else if (venta.estado == 1)
+                    {
+                        textoEstado = "Entregado";
+                    }
+                    string fechaLimpia = venta.fechaAlta.Substring(0, 10);
+                    object[] fila = { venta.id, venta.cantidad, venta.cliente, fechaLimpia, textoEstado };
+                    dgvVentas.Rows.Add(fila);
+                }
+            } catch
+            {
+                throw new Exception("Error al cargar ventas");
+            }
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -106,11 +118,19 @@ namespace InterfazForm.Ventas
                     else
                     {
                         MessageBox.Show("Existen errores para la devolución de la venta.");
+                        return;
                     }
-                    dgvVentas.SuspendLayout();
-                    dgvVentas.Rows.Clear();
-                    llenaDataGridVentas();
-                    dgvVentas.ResumeLayout();
+                    try
+                    {
+                        dgvVentas.SuspendLayout();
+                        dgvVentas.Rows.Clear();
+                        llenaDataGridVentas();
+                        dgvVentas.ResumeLayout();
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Hubo un error al refrescar la lista de ventas.");
+                    }
                 }
             }
             else
