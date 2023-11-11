@@ -40,9 +40,6 @@
             lblAlertaStock = new Label();
             tlDesplegableProductos = new ToolTip(components);
             btnABMClientes = new Button();
-            tooltipAdmin = new ToolTip(components);
-            tooltipAdminYSuperv = new ToolTip(components);
-            TooltipSupervYVendedor = new ToolTip(components);
             tooltipBotonesDeshabilitados = new ToolTip(components);
             logoCarga = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -197,9 +194,6 @@
         private Label lblAlertaStock;
         private ToolTip tlDesplegableProductos;
         private Button btnABMClientes;
-        private ToolTip tooltipAdmin;
-        private ToolTip tooltipAdminYSuperv;
-        private ToolTip TooltipSupervYVendedor;
         private ToolTip tooltipBotonesDeshabilitados;
         private PictureBox logoCarga;
     }

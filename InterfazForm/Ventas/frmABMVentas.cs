@@ -36,11 +36,9 @@ namespace InterfazForm.Ventas
             {
                 case 1: // Vendedor
                     btnDevolucion.Enabled = false;
-                    tooltipDevolucion.SetToolTip(btnDevolucion, "Esta funcionalidad solo está disponible para Supervisores");
                     break;
                 case 2: // Supervisor
                     btnAgregar.Enabled = false;
-                    tooltipVenta.SetToolTip(btnAgregar, "Esta funcionalidad solo está disponible para Vendedores");
                     break;
             }
             try

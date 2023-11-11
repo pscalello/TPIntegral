@@ -40,8 +40,6 @@
             btnDevolucion = new Button();
             btnSalir = new Button();
             pictureBox1 = new PictureBox();
-            tooltipVenta = new ToolTip(components);
-            tooltipDevolucion = new ToolTip(components);
             tooltipBotonesDeshabilitados = new ToolTip(components);
             ((System.ComponentModel.ISupportInitialize)dgvVentas).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -169,8 +167,6 @@
         private DataGridViewTextBoxColumn idCliente;
         private DataGridViewTextBoxColumn fechaAlta;
         private DataGridViewTextBoxColumn estado;
-        private ToolTip tooltipVenta;
-        private ToolTip tooltipDevolucion;
         private ToolTip tooltipBotonesDeshabilitados;
     }
 }
