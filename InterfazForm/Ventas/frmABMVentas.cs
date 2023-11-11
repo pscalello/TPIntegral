@@ -45,43 +45,22 @@ namespace InterfazForm.Ventas
 
         private void llenaDataGridVentas()
         {
-            //BindingList<RespuestaConsultaVenta> listaVentas = ventaN.listarVentas();
-            //dgvVentas.SuspendLayout(); // reduce el parpadeo al dibujar el control. Al final se vuelve a activar
-            //dgvVentas.DataSource = null;
-            //dgvVentas.DataSource = listaVentas;
-            //dgvVentas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            //dgvVentas.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
-            //dgvVentas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            ////dgvVentas.Columns["id"].HeaderText = "Id";
-            ////dgvVentas.Columns["cantidad"].HeaderText = "Cantidad de Productos Vendidos";
-            ////dgvVentas.Columns["idCliente"].HeaderText = "Cliente";
-            ////dgvVentas.Columns["fechaAlta"].HeaderText = "Fecha";
-            ////dgvVentas.Columns["estado"].HeaderText = "Estado";
-            //dgvVentas.ResumeLayout();
-
-            //// Agregar las columnas al DataGridView
-
-            //dgvVentas.Columns.Add("id", "ID Producto");
-            //dgvVentas.Columns.Add("Descripcion", "Descripcion");
-            //dgvVentas.Columns.Add("Cantidad", "Cantidad");
-            //dgvVentas.Columns.Add("MontoUnitario", "Monto Unitario");
-            //dgvVentas.Columns.Add("MontoTotal", "Monto Total Previo A Descuento");
-            //dgvVentas.Columns.Add("IdCategoria", "idcategoria");
-
-            //dgvVentas.Columns[5].Visible = false;
-
-            // Formato Columnas
+            // Formato Columna
             dgvVentas.Columns["cantidad"].DefaultCellStyle.Format = "N0";      // N0 para formato numérico sin decimales y con separador de miles
+            dgvVentas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvVentas.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+            dgvVentas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
             List<RespuestaConsultaVenta> listaVentas = ventaN.listarVentas();
-            
+
             foreach (RespuestaConsultaVenta venta in listaVentas)
             {
                 string textoEstado = "";
                 if (venta.estado == 0)
                 {
                     textoEstado = "Devuelto";
-                } else if (venta.estado == 1)
+                }
+                else if (venta.estado == 1)
                 {
                     textoEstado = "Entregado";
                 }
@@ -89,13 +68,55 @@ namespace InterfazForm.Ventas
                 object[] fila = { venta.id, venta.cantidad, venta.cliente, fechaLimpia, textoEstado };
                 dgvVentas.Rows.Add(fila);
             }
-            
+
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             frmAltaVenta frmAltaVenta = new frmAltaVenta(idUsuario);
             frmAltaVenta.ShowDialog();
+            llenaDataGridVentas();
+        }
+
+        private void btnDevolucion_Click(object sender, EventArgs e)
+        {
+            if (dgvVentas.SelectedRows.Count > 0)
+            {
+                DialogResult result = MessageBox.Show("¿Está seguro de que desea marcar esta venta como devuelta?", "Confirmar devolución", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    List<bool> devolucionCorrecta = new List<bool>();
+                    // loop para permitir devolver varias ventas a la vez
+                    foreach (DataGridViewRow filaSeleccionada in dgvVentas.SelectedRows)
+                    {
+                        Guid idVenta = (Guid)filaSeleccionada.Cells["id"].Value;
+                        bool devolucionCorrectaDeFila = ventaN.EliminarVenta(idVenta, idUsuario);
+
+                        devolucionCorrecta.Add(devolucionCorrectaDeFila);
+
+                        // que salga del loop si hay alguna creacion incorrecta.
+                        if (!devolucionCorrectaDeFila) break;
+                    }
+
+                    if (devolucionCorrecta.All((resultado) => resultado == true))
+                    {
+                        MessageBox.Show("Devolución de venta exitosa!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Existen errores para la devolución de la venta.");
+                    }
+                    dgvVentas.SuspendLayout();
+                    dgvVentas.Rows.Clear();
+                    llenaDataGridVentas();
+                    dgvVentas.ResumeLayout();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar al menos una fila de la grilla para registrar su devolución.");
+            }
         }
     }
 }

@@ -31,7 +31,7 @@ namespace Datos
 
             var jsonRequest = JsonConvert.SerializeObject(map);
 
-            HttpResponseMessage response = WebHelper.DeleteConBody("Venta/DevolverVenta", jsonRequest);
+            HttpResponseMessage response = WebHelper.Patch("Venta/DevolverVenta", jsonRequest);
 
             if (!response.IsSuccessStatusCode)
             {
