@@ -92,5 +92,35 @@ namespace InterfazForm.Clientes
         {
             this.Close();
         }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            if (dgvClientes.SelectedRows.Count > 1)
+            {
+                MessageBox.Show("Debe seleccionar solo una fila de la grilla para modificar.");
+            } else if (dgvClientes.SelectedRows.Count == 1)
+            {
+                DataGridViewRow cliente = dgvClientes.SelectedRows[0];
+                RespuestaConsultaCliente clienteSeleccionado = new RespuestaConsultaCliente(
+                    (Guid)cliente.Cells["id"].Value,
+                    (string)cliente.Cells["nombre"].Value,
+                    (string)cliente.Cells["apellido"].Value,
+                    (int)cliente.Cells["dni"].Value,
+                    (string)cliente.Cells["direccion"].Value,
+                    (string)cliente.Cells["telefono"].Value,
+                    (string)cliente.Cells["email"].Value,
+                    (DateTime)cliente.Cells["fechaNacimiento"].Value,
+                    (DateTime)cliente.Cells["fechaAlta"].Value,
+                    cliente.Cells["fechaBaja"].Value != null ? (DateTime)cliente.Cells["fechaBaja"].Value : null,
+                    (string)cliente.Cells["host"].Value
+                   );
+                frmModificacionCliente frmModificacionCliente = new frmModificacionCliente(clienteSeleccionado);
+                frmModificacionCliente.ShowDialog();
+                llenaDataGriedClientes();
+            } else
+            { // ninguna fila seleccionada
+                MessageBox.Show("Debe seleccionar una fila de la grilla a modificar.");
+            }
+        }
     }
 }

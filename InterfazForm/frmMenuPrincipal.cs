@@ -25,10 +25,12 @@ namespace InterfazForm
         internal int Host;
         internal Guid idUsuario;
         private ProductosN productoN = new ProductosN();
+        private Control controlTooltipActual = null;
         public frmMenuPrincipal(Guid idUsuario)
         {
             InitializeComponent();
             this.idUsuario = idUsuario;
+            logoCarga.Visible = false;
         }
 
         private void frmMenuPrincipal_Load(object sender, EventArgs e)
@@ -116,8 +118,10 @@ namespace InterfazForm
 
         private void btnVentas_Click(object sender, EventArgs e)
         {
+            logoCarga.Visible = true;
             frmABMVentas frmABMVentas = new frmABMVentas(idUsuario, Host);
             frmABMVentas.ShowDialog();
+            logoCarga.Visible = false;
         }
 
         private void btnReportes_Click(object sender, EventArgs e)
@@ -129,6 +133,41 @@ namespace InterfazForm
         {
             frmABMClientes frmABMClientes = new frmABMClientes();
             frmABMClientes.ShowDialog();
+        }
+
+        private void frmMenuPrincipal_MouseMove(object sender, MouseEventArgs e)
+        {
+            Control control = GetChildAtPoint(e.Location);
+            if (control != null)
+            {
+                if (!control.Enabled && controlTooltipActual == null)
+                {
+                    string toolTipString = getTextoTooltip(control);
+                    tooltipBotonesDeshabilitados.Show(toolTipString, control, control.Width / 2, control.Height / 2);
+                    controlTooltipActual = control;
+                }
+            }
+            else
+            {
+                if (controlTooltipActual != null) tooltipBotonesDeshabilitados.Hide(controlTooltipActual);
+                controlTooltipActual = null;
+            }
+        }
+
+        private string getTextoTooltip(dynamic control)
+        {
+            if (control == btnVentas)
+            {
+                return "Esta funcionalidad solo está disponible para Vendedores y Supervisores";
+            }
+            else if (control == btnABMProductos)
+            {
+                return "Esta funcionalidad solo está disponible para Supervisores y Administradores";
+            }
+            else
+            {
+                return "Esta funcionalidad solo está disponible para Administradores";
+            }
         }
     }
 }

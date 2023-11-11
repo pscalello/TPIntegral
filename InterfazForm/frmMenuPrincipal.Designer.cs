@@ -40,7 +40,13 @@
             lblAlertaStock = new Label();
             tlDesplegableProductos = new ToolTip(components);
             btnABMClientes = new Button();
+            tooltipAdmin = new ToolTip(components);
+            tooltipAdminYSuperv = new ToolTip(components);
+            TooltipSupervYVendedor = new ToolTip(components);
+            tooltipBotonesDeshabilitados = new ToolTip(components);
+            logoCarga = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)logoCarga).BeginInit();
             SuspendLayout();
             // 
             // btnReportes
@@ -143,11 +149,23 @@
             btnABMClientes.UseVisualStyleBackColor = true;
             btnABMClientes.Click += btnABMClientes_Click;
             // 
+            // logoCarga
+            // 
+            logoCarga.Image = Properties.Resources.icnLogoCarga;
+            logoCarga.Location = new Point(359, 455);
+            logoCarga.Margin = new Padding(4, 5, 4, 5);
+            logoCarga.Name = "logoCarga";
+            logoCarga.Size = new Size(31, 38);
+            logoCarga.SizeMode = PictureBoxSizeMode.CenterImage;
+            logoCarga.TabIndex = 16;
+            logoCarga.TabStop = false;
+            // 
             // frmMenuPrincipal
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(390, 654);
+            Controls.Add(logoCarga);
             Controls.Add(btnABMClientes);
             Controls.Add(lblAlertaStock);
             Controls.Add(btnSalir);
@@ -161,7 +179,9 @@
             Name = "frmMenuPrincipal";
             Text = "Menú Principal";
             Load += frmMenuPrincipal_Load;
+            MouseMove += frmMenuPrincipal_MouseMove;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)logoCarga).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -177,5 +197,10 @@
         private Label lblAlertaStock;
         private ToolTip tlDesplegableProductos;
         private Button btnABMClientes;
+        private ToolTip tooltipAdmin;
+        private ToolTip tooltipAdminYSuperv;
+        private ToolTip TooltipSupervYVendedor;
+        private ToolTip tooltipBotonesDeshabilitados;
+        private PictureBox logoCarga;
     }
 }

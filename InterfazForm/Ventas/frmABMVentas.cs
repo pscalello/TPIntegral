@@ -17,6 +17,7 @@ namespace InterfazForm.Ventas
         public int hostUsuario;
         public Guid idUsuario;
         VentaN ventaN = new VentaN();
+        private Control controlTooltipActual = null;
         public frmABMVentas(Guid idUsuario, int hostUsuario)
         {
             this.idUsuario = idUsuario;
@@ -35,9 +36,11 @@ namespace InterfazForm.Ventas
             {
                 case 1: // Vendedor
                     btnDevolucion.Enabled = false;
+                    tooltipDevolucion.SetToolTip(btnDevolucion, "Esta funcionalidad solo está disponible para Supervisores");
                     break;
                 case 2: // Supervisor
                     btnAgregar.Enabled = false;
+                    tooltipVenta.SetToolTip(btnAgregar, "Esta funcionalidad solo está disponible para Vendedores");
                     break;
             }
             try
@@ -77,7 +80,8 @@ namespace InterfazForm.Ventas
                     object[] fila = { venta.id, venta.cantidad, venta.cliente, fechaLimpia, textoEstado };
                     dgvVentas.Rows.Add(fila);
                 }
-            } catch
+            }
+            catch
             {
                 throw new Exception("Error al cargar ventas");
             }
@@ -136,6 +140,36 @@ namespace InterfazForm.Ventas
             else
             {
                 MessageBox.Show("Debe seleccionar al menos una fila de la grilla para registrar su devolución.");
+            }
+        }
+
+        private void frmABMVentas_MouseMove(object sender, MouseEventArgs e)
+        {
+            Control control = GetChildAtPoint(e.Location);
+            if (control != null)
+            {
+                if (!control.Enabled && controlTooltipActual == null)
+                {
+                    string toolTipString = getTextoTooltip(control);
+                    tooltipBotonesDeshabilitados.Show(toolTipString, control, control.Width / 2, control.Height / 2);
+                    controlTooltipActual = control;
+                }
+            }
+            else
+            {
+                if (controlTooltipActual != null) tooltipBotonesDeshabilitados.Hide(controlTooltipActual);
+                controlTooltipActual = null;
+            }
+        }
+        private string getTextoTooltip(dynamic control)
+        {
+            if (control == btnAgregar)
+            {
+                return "Esta funcionalidad solo está disponible para Vendedores";
+            }
+            else //btnDevoluciones
+            {
+                return "Esta funcionalidad solo está disponible para Supervisores";
             }
         }
     }

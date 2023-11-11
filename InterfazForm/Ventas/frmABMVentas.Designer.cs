@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmABMVentas));
             dgvVentas = new DataGridView();
             id = new DataGridViewTextBoxColumn();
@@ -39,6 +40,9 @@
             btnDevolucion = new Button();
             btnSalir = new Button();
             pictureBox1 = new PictureBox();
+            tooltipVenta = new ToolTip(components);
+            tooltipDevolucion = new ToolTip(components);
+            tooltipBotonesDeshabilitados = new ToolTip(components);
             ((System.ComponentModel.ISupportInitialize)dgvVentas).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -147,6 +151,7 @@
             Name = "frmABMVentas";
             Text = "ABM Ventas";
             Load += frmABMVentas_Load;
+            MouseMove += frmABMVentas_MouseMove;
             ((System.ComponentModel.ISupportInitialize)dgvVentas).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
@@ -164,5 +169,8 @@
         private DataGridViewTextBoxColumn idCliente;
         private DataGridViewTextBoxColumn fechaAlta;
         private DataGridViewTextBoxColumn estado;
+        private ToolTip tooltipVenta;
+        private ToolTip tooltipDevolucion;
+        private ToolTip tooltipBotonesDeshabilitados;
     }
 }
