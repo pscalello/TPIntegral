@@ -56,7 +56,7 @@ namespace InterfazForm.Clientes
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("¿Está seguro de que desea eliminar este cliente?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult result = MessageBox.Show("¿Está seguro de que desea inactivar este cliente?", "Confirmar inactivación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (result == DialogResult.Yes)
             {
@@ -73,17 +73,17 @@ namespace InterfazForm.Clientes
                     if (eliminaCliente)
                     {
                         llenaDataGriedClientes();
-                        MessageBox.Show("Cliente eliminado correctamente.");
+                        MessageBox.Show("Cliente inactivado correctamente.");
                     }
                     else
                     {
-                        MessageBox.Show("Falló la eliminación, por favor vuelva a intentarlo");
+                        MessageBox.Show("Falló la inactivación, por favor vuelva a intentarlo");
                     }
 
                 }
                 else
                 {
-                    MessageBox.Show("Debe seleccionar una fila de la grilla a eliminar.");
+                    MessageBox.Show("Debe seleccionar una fila de la grilla a inactivar.");
                 }
             }
         }
@@ -98,7 +98,8 @@ namespace InterfazForm.Clientes
             if (dgvClientes.SelectedRows.Count > 1)
             {
                 MessageBox.Show("Debe seleccionar solo una fila de la grilla para modificar.");
-            } else if (dgvClientes.SelectedRows.Count == 1)
+            }
+            else if (dgvClientes.SelectedRows.Count == 1)
             {
                 DataGridViewRow cliente = dgvClientes.SelectedRows[0];
                 RespuestaConsultaCliente clienteSeleccionado = new RespuestaConsultaCliente(
@@ -112,12 +113,14 @@ namespace InterfazForm.Clientes
                     (DateTime)cliente.Cells["fechaNacimiento"].Value,
                     (DateTime)cliente.Cells["fechaAlta"].Value,
                     cliente.Cells["fechaBaja"].Value != null ? (DateTime)cliente.Cells["fechaBaja"].Value : null,
-                    (string)cliente.Cells["host"].Value
+                    (string)cliente.Cells["host"].Value,
+                    (string)cliente.Cells["estado"].Value
                    );
                 frmModificacionCliente frmModificacionCliente = new frmModificacionCliente(clienteSeleccionado);
                 frmModificacionCliente.ShowDialog();
                 llenaDataGriedClientes();
-            } else
+            }
+            else
             { // ninguna fila seleccionada
                 MessageBox.Show("Debe seleccionar una fila de la grilla a modificar.");
             }

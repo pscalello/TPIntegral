@@ -45,7 +45,7 @@
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
-            comboBox1 = new ComboBox();
+            ddEstado = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -212,20 +212,21 @@
             label1.Text = "Nombre:";
             label1.TextAlign = ContentAlignment.MiddleRight;
             // 
-            // comboBox1
+            // ddEstado
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(193, 443);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(300, 33);
-            comboBox1.TabIndex = 92;
+            ddEstado.DropDownStyle = ComboBoxStyle.DropDownList;
+            ddEstado.FormattingEnabled = true;
+            ddEstado.Location = new Point(193, 443);
+            ddEstado.Name = "ddEstado";
+            ddEstado.Size = new Size(300, 33);
+            ddEstado.TabIndex = 92;
             // 
             // frmModificacionCliente
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(526, 588);
-            Controls.Add(comboBox1);
+            Controls.Add(ddEstado);
             Controls.Add(pictureBox1);
             Controls.Add(txtEmail);
             Controls.Add(txtTelefono);
@@ -270,5 +271,6 @@
         private Label label2;
         private Label label1;
         private ComboBox comboBox1;
+        private ComboBox ddEstado;
     }
 }

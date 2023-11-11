@@ -57,5 +57,22 @@ namespace Negocio
                 return false;
             }
         }
+
+        //*************************************
+        //      MODIFICACION DE CLIENTES     // 
+        //************************************
+
+        public bool ModificarCliente(Guid id, string direccion, string telefono, string email)
+        {
+            try
+            {
+                ClienteD.ModificarCliente(id, direccion, telefono, email);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

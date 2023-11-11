@@ -56,6 +56,24 @@ namespace Datos
             return respuesta;
         }
 
+        public static void ModificarCliente(Guid id, string direccion, string telefono, string email)
+        {
+            Dictionary<String, string> map = new Dictionary<string, string>();
+            map.Add("id", id.ToString());
+            map.Add("direccion", direccion);
+            map.Add("telefono", telefono);
+            map.Add("email", email);
+
+            var jsonRequest = JsonConvert.SerializeObject(map);
+
+            HttpResponseMessage response = WebHelper.Patch("Cliente/PatchCliente", jsonRequest);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("Verifique los datos ingresados");
+            }
+
+        }
 
     }
 }

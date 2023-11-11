@@ -21,8 +21,9 @@ namespace Entidad
 
         public DateTime? fechaBaja { get; private set; } //
         public string host { get; private set; } //
+        public string estado { get; private set; } //
 
-        public RespuestaConsultaCliente(Guid id, string nombre, string apellido, int dni, string direccion, string telefono, string email, DateTime fechaNacimiento, DateTime fechaAlta, DateTime? fechaBaja, string host)
+        public RespuestaConsultaCliente(Guid id, string nombre, string apellido, int dni, string direccion, string telefono, string email, DateTime fechaNacimiento, DateTime fechaAlta, DateTime? fechaBaja, string host, string? estado)
         {
             this.id = id;
             this.nombre = nombre;
@@ -35,6 +36,7 @@ namespace Entidad
             this.fechaAlta = fechaAlta;
             this.fechaBaja = fechaBaja;
             this.host = host;
+            this.estado = estado ?? "Activo";
         }
     }
 }

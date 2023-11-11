@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Datos;
 using Entidad;
 using InterfazForm.Utils;
 using Negocio;
@@ -16,32 +17,75 @@ namespace InterfazForm.Clientes
     public partial class frmModificacionCliente : Form
     {
         private RespuestaConsultaCliente clienteAModificar;
+        private ClienteN clienteN;
         public frmModificacionCliente(RespuestaConsultaCliente clienteAModificar)
         {
             InitializeComponent();
             this.clienteAModificar = clienteAModificar;
+            this.clienteN = new ClienteN();
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            if (validaVacios() && validaIntegracion())
+            if (validaVacios() && validaIntegracion() && validaModificado())
             {
-                ClienteN clienteNuevo = new ClienteN();
-
                 string direccion = txtDireccion.Text;
                 string telefono = txtTelefono.Text;
                 string email = txtEmail.Text;
+                string estado = ddEstado.Text;
 
-                bool modificacionCorrecta = false; // hacer llamado de modificacion en ClienteN y ClienteD
+                if (estado == "Activo")
+                {
+                    bool modificacionCorrecta = clienteN.ModificarCliente(clienteAModificar.id, txtDireccion.Text, txtTelefono.Text, txtEmail.Text);
 
-                if (modificacionCorrecta)
+                    if (modificacionCorrecta)
+                    {
+                        MessageBox.Show("¡Modificación de cliente exitosa!");
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Existen errores para la modificación del cliente, por favor vuelva a intentarlo.");
+                    }
+                } else // estado == "Inactivo"
                 {
-                    MessageBox.Show("Modificación de cliente exitosa!");
-                    this.Close();
-                }
-                else
-                {
-                    MessageBox.Show("Existen errores para la modificación del cliente.");
+                    DialogResult result = MessageBox.Show("¿Está seguro de que desea inactivar este cliente?", "Confirmar inactivación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if (result == DialogResult.Yes)
+                    {
+                        if ( // si hay alguna modificación además de la inactivación.
+                            clienteAModificar.direccion != txtDireccion.Text ||
+                            clienteAModificar.telefono != txtTelefono.Text ||
+                            clienteAModificar.email != txtEmail.Text
+                        )
+                        {
+                            bool modificacionCorrecta = clienteN.ModificarCliente(clienteAModificar.id, txtDireccion.Text, txtTelefono.Text, txtEmail.Text);
+
+                            if (modificacionCorrecta)
+                            {
+                                MessageBox.Show("¡Modificación de cliente exitosa! Cierre este mensaje para seguir con la inactivación del mismo.");
+                            }
+                            else
+                            {
+                                MessageBox.Show("Existen errores para la modificación del cliente, por favor vuelva a intentarlo.");
+                                return;
+                            }
+                        }
+
+                        // inactiva el cliente
+                        bool eliminaCliente = clienteN.EliminarClientes(clienteAModificar.id);
+
+                        if (eliminaCliente)
+                        {
+                            MessageBox.Show("Cliente inactivado correctamente.");
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Falló la inactivación, por favor vuelva a intentarlo");
+                        }
+
+                    }
                 }
             }
         }
@@ -91,6 +135,24 @@ namespace InterfazForm.Clientes
             return true;
         }
 
+        private bool validaModificado()
+        {
+            // valida que haya alguna modificacion, que no sean los mismos datos que ya tiene guardados el cliente.
+            if (
+                clienteAModificar.direccion != txtDireccion.Text ||
+                clienteAModificar.telefono != txtTelefono.Text ||
+                clienteAModificar.email != txtEmail.Text ||
+                clienteAModificar.estado != ddEstado.Text
+            )
+            {
+                return true;
+            } else
+            {
+                MessageBox.Show("Los datos ingresados no presentan ninguna modificación.");
+                return false;
+            }
+        }
+
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -104,6 +166,12 @@ namespace InterfazForm.Clientes
             txtEmail.Text = clienteAModificar.email;
             txtDireccion.Text = clienteAModificar.direccion;
             txtTelefono.Text = clienteAModificar.telefono;
+
+            ddEstado.DataSource = new string[]
+            {
+                "Activo",
+                "Inactivo"
+            };
         }
     }
 }
