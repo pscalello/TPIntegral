@@ -1,5 +1,17 @@
-# TP Integral CAI - 2° Cuatrimestre 2023
+# ELECTROHOGAR - TP Integral CAI - 2° Cuatrimestre 2023
 ## Grupo 6
+
+### Procedimiento para utilizar el programa:
+
+1. Si es la primera vez descargando el repo, en una consola (CMD, Powershell, Git Bash Console), deberás hacer un git clone + el link del repositorio.
+
+2. Desde Visual Studio, abrir el archivo de la solución (.sln).
+
+3. En el menú, seleccione "Debug" como configuración de la solución y seleccione "InterfazForm" como proyecto de inicio.
+
+4. Haga click en "Iniciar sin depurar" para iniciar la aplicación, o, alternativamente, presione Ctrl + F5.
+
+<br>
 
 ### Integrantes:
 **Nombre y Apellido:** Stefania Criado
