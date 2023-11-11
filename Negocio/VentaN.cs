@@ -2,6 +2,7 @@
 using Entidad;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,24 +12,42 @@ namespace Negocio
     public class VentaN
     {
         //**************************************** 
-        //         CONSULTA VENTAS              //
+        //          CONSULTA VENTAS              //
         //*****************************************
 
-        //public List<dynamic> listarVentas()
-        //{
-            //return VentaD.ConsultarClientes();
-        //}
+        public List<RespuestaConsultaVenta> listarVentas()
+        {
+            ClienteN clienteN = new ClienteN();
+
+            // busca todos los clientes
+            List<RespuestaConsultaCliente> listaClientes = clienteN.listaClientes();
+            List<RespuestaConsultaVenta> listaVentas = new List<RespuestaConsultaVenta>();
+
+            // busca todas las ventas de todos los clientes
+            foreach (RespuestaConsultaCliente cliente in listaClientes)
+            {
+                List<RespuestaConsultaVenta> respuestaConsulta = VentaD.ConsultarVentasPorCliente(cliente.id);
+                respuestaConsulta.ForEach((venta) => {
+                    venta.cliente = cliente.nombre + " " + cliente.apellido;
+                    // a cada venta la agrega a la lista de ventas
+                    listaVentas.Add(venta);
+                    }
+                );
+            }
+
+            // devuelve la lista de todas las ventas
+            return listaVentas;
+        }
 
         //*************************************
         //        ELIMINACION DE VENTAS      //
         //************************************
 
-        public bool EliminarVenta(Guid idVenta)
+        public bool EliminarVenta(Guid idVenta, Guid idUsuario)
         {
-            Guid idUsuarioAdmin = Guid.Parse("D347CE99-DB8D-4542-AA97-FC9F3CCE6969");
             try
             {
-                VentaD.DevolverVenta(idVenta, idUsuarioAdmin);
+                VentaD.DevolverVenta(idVenta, idUsuario);
                 return true;
             }
             catch
@@ -43,7 +62,6 @@ namespace Negocio
 
         public bool AgregarVenta(Guid idCliente, Guid idUsuario, Guid idProducto, int cantidad)
         {
-            // Guid idUsuarioAdmin = Guid.Parse("D347CE99-DB8D-4542-AA97-FC9F3CCE6969");
             PayloadAgregarVenta payloadAgregarVenta = new PayloadAgregarVenta(idCliente, idUsuario, idProducto, cantidad);
             try
             {

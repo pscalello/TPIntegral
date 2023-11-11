@@ -41,9 +41,9 @@ namespace Datos
         }
 
 
-        public static List<RespuestaConsultaProveedores> ConsultarVentas()
+        public static List<RespuestaConsultaVenta> ConsultarVentasPorCliente(Guid idCliente)
         {
-            HttpResponseMessage response = WebHelper.Get("Proveedor/TraerProveedores");
+            HttpResponseMessage response = WebHelper.Get($"Venta/GetVentaByCliente?id={idCliente}");
 
             if (!response.IsSuccessStatusCode)
             {
@@ -51,7 +51,7 @@ namespace Datos
             }
             var reader = new StreamReader(response.Content.ReadAsStream());
 
-            List<RespuestaConsultaProveedores> respuesta = JsonConvert.DeserializeObject<List<RespuestaConsultaProveedores>>(reader.ReadToEnd());
+            List<RespuestaConsultaVenta> respuesta = JsonConvert.DeserializeObject<List<RespuestaConsultaVenta>>(reader.ReadToEnd());
 
             return respuesta;
         }

@@ -70,15 +70,13 @@ namespace InterfazForm
                     btnABMProveedores.Enabled = true;
                     btnABMProductos.Enabled = true;
                     btnVentas.Enabled = false;
-                    btnDevoluciones.Enabled = false;
                     btnReportes.Enabled = true;
                     break;
                 case 2: //Supervisor
                     btnABMUsuarios.Enabled = false;
                     btnABMProveedores.Enabled = false;
                     btnABMProductos.Enabled = true;
-                    btnVentas.Enabled = false;
-                    btnDevoluciones.Enabled = true;
+                    btnVentas.Enabled = true;
                     btnReportes.Enabled = true;
                     break;
                 case 1: // Vendedor
@@ -86,7 +84,6 @@ namespace InterfazForm
                     btnABMProveedores.Enabled = false;
                     btnABMProductos.Enabled = false;
                     btnVentas.Enabled = true;
-                    btnDevoluciones.Enabled = false;
                     btnReportes.Enabled = true;
                     break;
 
@@ -119,16 +116,11 @@ namespace InterfazForm
 
         private void btnVentas_Click(object sender, EventArgs e)
         {
-            frmAltaVenta frmAltaVenta = new frmAltaVenta(idUsuario);
-            frmAltaVenta.ShowDialog();
+            frmABMVentas frmABMVentas = new frmABMVentas(idUsuario, Host);
+            frmABMVentas.ShowDialog();
         }
 
         private void btnReportes_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Esta funcionalidad estará disponible en las próximas versiones del sistema.");
-        }
-
-        private void btnDevoluciones_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Esta funcionalidad estará disponible en las próximas versiones del sistema.");
         }
