@@ -96,12 +96,15 @@ namespace InterfazForm
             txtUsuario.Text = "";
             txtContraseña.Text = "";
             logoCarga.Visible = false;
+            
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
+            
             txtUsuario.Text = "";
             txtContraseña.Text = "";
+            validacionActiva = false;
             this.Close();
         }
 
@@ -148,8 +151,9 @@ namespace InterfazForm
                 // La entrada no es válida, muestra un mensaje de error y cancela el evento.
                 MessageBox.Show("La contraseña debe tener al menos 3 caracteres y contener solo letras.");
                 e.Cancel = true;
+                validacionActiva = false;
             }
-            validacionActiva = false;
+            
         }
 
         // que funcione el Enter como click, con el boton ingresar
