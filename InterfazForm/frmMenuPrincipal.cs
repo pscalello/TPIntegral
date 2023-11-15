@@ -17,6 +17,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Entidad;
 using InterfazForm.Clientes;
 using InterfazForm.Ventas;
+using InterfazForm.Reportes;
 
 namespace InterfazForm
 {
@@ -126,7 +127,9 @@ namespace InterfazForm
 
         private void btnReportes_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Esta funcionalidad estará disponible en las próximas versiones del sistema.");
+            frmReportes frmReportes = new frmReportes(Host);
+            frmReportes.ShowDialog();
+            //MessageBox.Show("Esta funcionalidad estará disponible en las próximas versiones del sistema.");
         }
 
         private void btnABMClientes_Click(object sender, EventArgs e)

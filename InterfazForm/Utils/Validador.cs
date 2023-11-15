@@ -12,7 +12,10 @@ namespace InterfazForm.Utils
     {
         public static bool ValidaPalabra(string input, int largoAdmitido)
         {
-            return !string.IsNullOrWhiteSpace(input) && input.Length >= largoAdmitido && Regex.IsMatch(input, @"^[^\s]+$");
+            // Esta versiòn no aceptaba espacios, se reemplazo por la de abajo pero se deja por si acaso
+            //return !string.IsNullOrWhiteSpace(input) && input.Length >= largoAdmitido && Regex.IsMatch(input, @"^[^\s]+$");
+            return !string.IsNullOrWhiteSpace(input) && input.Length >= largoAdmitido && Regex.IsMatch(input, @"^.+$");
+
         }
 
         public static bool ValidaPalabraConCaracteresEspeciales(string input, int largoAdmitido)
