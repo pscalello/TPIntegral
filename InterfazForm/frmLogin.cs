@@ -130,6 +130,7 @@ namespace InterfazForm
                 // La entrada no es válida, muestra un mensaje de error y cancela el evento.
                 MessageBox.Show("El usuario debe tener al menos 3 caracteres y contener solo letras.");
                 e.Cancel = true;
+
             }
             validacionActiva = false;
 

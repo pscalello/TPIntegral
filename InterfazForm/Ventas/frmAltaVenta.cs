@@ -61,13 +61,17 @@ namespace InterfazForm.Ventas
             dgvVenta.Columns["Cantidad"].DefaultCellStyle.Format = "N0";      // N0 para formato numérico sin decimales y con separador de miles
             dgvVenta.Columns["MontoUnitario"].DefaultCellStyle.Format = "N2"; // N para formato numérico sin separador de miles ni decimales
             dgvVenta.Columns["MontoTotal"].DefaultCellStyle.Format = "N2";   // N2 para formato numérico con dos decimales y separador de miles
-
+            dgvVenta.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvVenta.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+            dgvVenta.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }
 
         private void llenaDataGriedProductos()
         {
             object[] fila1 = { idProducto, nombreProducto, cantidadProducto, precioProducto, cantidadProducto * precioProducto, idCategoria };
             dgvVenta.Rows.Add(fila1);
+            CalcularMontoAutom();
+
         }
 
 
@@ -153,8 +157,7 @@ namespace InterfazForm.Ventas
 
         }
 
-
-        private void btnCalcularMonto_Click(object sender, EventArgs e)
+        private void CalcularMontoAutom()
         {
             decimal suma = 0;
             decimal descuentoelectro = 0;
@@ -176,8 +179,8 @@ namespace InterfazForm.Ventas
             txtPromoElectroHogar.Text = descuentoelectro.ToString();
             txtPromoClienteNuevo.Text = descuentocliente.ToString();
             txtMontoFinal.Text = montofinal.ToString();
-
         }
+
 
         private void btnConfirmarVenta_Click(object sender, EventArgs e)
         {
@@ -214,7 +217,8 @@ namespace InterfazForm.Ventas
             { // si no agregó ningún producto.
                 MessageBox.Show("Debe ingresar un cliente y al menos un producto para confirmar la venta.");
                 return;
-            } else
+            }
+            else
             { // si no calculó el monto final.
                 MessageBox.Show("Presione el botón \"Calcular Monto\" para conocer el monto final con descuento.");
                 return;
