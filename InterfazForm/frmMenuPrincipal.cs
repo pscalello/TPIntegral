@@ -72,7 +72,7 @@ namespace InterfazForm
                     btnABMUsuarios.Enabled = true;
                     btnABMProveedores.Enabled = true;
                     btnABMProductos.Enabled = true;
-                    btnVentas.Enabled = false;
+                    btnVentas.Enabled = true;
                     btnReportes.Enabled = true;
                     break;
                 case 2: //Supervisor

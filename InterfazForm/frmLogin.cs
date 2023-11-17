@@ -34,6 +34,7 @@ namespace InterfazForm
             intentos = 0;
             txtContraseña.PasswordChar = '*';
             btnOcultarContraseña.Visible = false;
+            validacionActiva = false;
         }
 
         private void btnIngresar_Click(object sender, EventArgs e)
