@@ -49,12 +49,12 @@
             // 
             dgvVentas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvVentas.Columns.AddRange(new DataGridViewColumn[] { id, cantidad, idCliente, fechaAlta, estado });
-            dgvVentas.Location = new Point(8, 19);
-            dgvVentas.Margin = new Padding(2, 2, 2, 2);
+            dgvVentas.Location = new Point(9, 25);
+            dgvVentas.Margin = new Padding(2, 3, 2, 3);
             dgvVentas.Name = "dgvVentas";
             dgvVentas.RowHeadersWidth = 62;
             dgvVentas.RowTemplate.Height = 33;
-            dgvVentas.Size = new Size(708, 320);
+            dgvVentas.Size = new Size(809, 427);
             dgvVentas.TabIndex = 0;
             // 
             // id
@@ -99,10 +99,10 @@
             // 
             // btnAgregar
             // 
-            btnAgregar.Location = new Point(416, 348);
-            btnAgregar.Margin = new Padding(2, 2, 2, 2);
+            btnAgregar.Location = new Point(475, 464);
+            btnAgregar.Margin = new Padding(2, 3, 2, 3);
             btnAgregar.Name = "btnAgregar";
-            btnAgregar.Size = new Size(145, 28);
+            btnAgregar.Size = new Size(166, 37);
             btnAgregar.TabIndex = 1;
             btnAgregar.Text = "Agregar Venta";
             btnAgregar.UseVisualStyleBackColor = true;
@@ -110,10 +110,10 @@
             // 
             // btnDevolucion
             // 
-            btnDevolucion.Location = new Point(565, 348);
-            btnDevolucion.Margin = new Padding(2, 2, 2, 2);
+            btnDevolucion.Location = new Point(646, 464);
+            btnDevolucion.Margin = new Padding(2, 3, 2, 3);
             btnDevolucion.Name = "btnDevolucion";
-            btnDevolucion.Size = new Size(151, 28);
+            btnDevolucion.Size = new Size(173, 37);
             btnDevolucion.TabIndex = 2;
             btnDevolucion.Text = "Registrar Devolución";
             btnDevolucion.UseVisualStyleBackColor = true;
@@ -121,10 +121,10 @@
             // 
             // btnSalir
             // 
-            btnSalir.Location = new Point(638, 380);
-            btnSalir.Margin = new Padding(2, 2, 2, 2);
+            btnSalir.Location = new Point(729, 507);
+            btnSalir.Margin = new Padding(2, 3, 2, 3);
             btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(78, 27);
+            btnSalir.Size = new Size(89, 36);
             btnSalir.TabIndex = 3;
             btnSalir.Text = "Salir";
             btnSalir.UseVisualStyleBackColor = true;
@@ -133,23 +133,24 @@
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(8, 348);
+            pictureBox1.Location = new Point(9, 464);
+            pictureBox1.Margin = new Padding(3, 4, 3, 4);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(216, 46);
+            pictureBox1.Size = new Size(247, 61);
             pictureBox1.TabIndex = 7;
             pictureBox1.TabStop = false;
             // 
             // frmABMVentas
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(724, 418);
+            ClientSize = new Size(827, 557);
             Controls.Add(pictureBox1);
             Controls.Add(btnSalir);
             Controls.Add(btnDevolucion);
             Controls.Add(btnAgregar);
             Controls.Add(dgvVentas);
-            Margin = new Padding(2, 2, 2, 2);
+            Margin = new Padding(2, 3, 2, 3);
             Name = "frmABMVentas";
             Text = "ABM Ventas";
             Load += frmABMVentas_Load;

@@ -91,6 +91,12 @@ namespace InterfazForm.Ventas
                 MessageBox.Show("Debe ingresar una cantidad del producto que sea menor o igual al stock.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
+            else if (salida >= 0.75* Int32.Parse(filaSeleccionada.Cells[6].Value.ToString()))
+            {
+                MessageBox.Show("EL producto seleccionado quedará con un stock menor al 25%");
+                return true;
+                //Dado que el unico que puede ver Ventas es el Vendedor, será el unico que pueda ver este mensaje de stock crítico
+            }
             else
             {
                 return true;

@@ -9,12 +9,14 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Datos;
 using Entidad;
 using Negocio;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace InterfazForm.Ventas
 {
+
     public partial class frmAltaVenta : Form
     {
         public static string nombreCliente { get; set; }
@@ -36,6 +38,8 @@ namespace InterfazForm.Ventas
         public static bool agregaRenglon = false;
 
         public Guid idUsuario { get; set; }
+        private ProductosN productoN = new ProductosN();
+        private string acumuladorProductoBajoStock = "";
 
         public frmAltaVenta(Guid idUsuario)
         {
@@ -122,6 +126,7 @@ namespace InterfazForm.Ventas
                 frmConsultarProducto frmConsultarProducto = new frmConsultarProducto(idUsuario);
                 frmConsultarProducto.ShowDialog();
             }
+
             else
             {
                 MessageBox.Show("Debe seleccionar un cliente para agregar productos.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -229,5 +234,6 @@ namespace InterfazForm.Ventas
         {
             this.Close();
         }
+ 
     }
 }

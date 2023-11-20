@@ -36,43 +36,14 @@ namespace InterfazForm
 
         private void frmMenuPrincipal_Load(object sender, EventArgs e)
         {
-            List<RespuestaConsultaProducto> listaProductos = productoN.listaProductos();
-
-            if (Host == 3 || Host == 2)
-            {
-                //if (condicion de stock){
-                lblAlertaStock.Visible = true;
-                string acumuladorProductoBajoStock = "";
-                foreach (var productoBajoStock in listaProductos)
-                {
-                    if (productoBajoStock != null)
-                    {
-                        acumuladorProductoBajoStock += productoBajoStock.nombre + "\n";
-                    }
-                }
-
-                tlDesplegableProductos.SetToolTip(lblAlertaStock, "Acá irian los productos que estén por debajo del 25% del stock designado, por ahora trae \ntodos los productos. Falta la condición que indique cuál es el 25% del stock.\n" + acumuladorProductoBajoStock);
-                /*
-                }
-                else
-                {
-                    lblAlertaStock.Visible = false;
-                }
-                */
-            }
-            else
-            {
-                lblAlertaStock.Visible = false;
-            }
-
-
+           
             switch (Host)
             {
                 case 3: // Administrador
                     btnABMUsuarios.Enabled = true;
                     btnABMProveedores.Enabled = true;
                     btnABMProductos.Enabled = true;
-                    btnVentas.Enabled = true;
+                    btnVentas.Enabled = false;
                     btnReportes.Enabled = true;
                     break;
                 case 2: //Supervisor

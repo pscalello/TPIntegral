@@ -1,4 +1,5 @@
-﻿using Entidad;
+﻿using Datos;
+using Entidad;
 using Negocio;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,7 @@ namespace InterfazForm.Ventas
         public Guid idUsuario;
         VentaN ventaN = new VentaN();
         private Control controlTooltipActual = null;
+        private ProductosN productoN = new ProductosN();
         public frmABMVentas(Guid idUsuario, int hostUsuario)
         {
             this.idUsuario = idUsuario;
@@ -170,5 +172,7 @@ namespace InterfazForm.Ventas
                 return "Esta funcionalidad solo está disponible para Supervisores";
             }
         }
+
+
     }
 }
