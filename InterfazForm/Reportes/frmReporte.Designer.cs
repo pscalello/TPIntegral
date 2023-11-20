@@ -28,9 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmReporte));
             lblNombreReporte = new Label();
             dgvReporte = new DataGridView();
+            btnImprimir = new Button();
+            brtSalir = new Button();
+            pictureBox1 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)dgvReporte).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // lblNombreReporte
@@ -52,17 +57,50 @@
             dgvReporte.Size = new Size(615, 313);
             dgvReporte.TabIndex = 2;
             // 
+            // btnImprimir
+            // 
+            btnImprimir.Location = new Point(438, 407);
+            btnImprimir.Name = "btnImprimir";
+            btnImprimir.Size = new Size(101, 30);
+            btnImprimir.TabIndex = 3;
+            btnImprimir.Text = "Imprimir";
+            btnImprimir.UseVisualStyleBackColor = true;
+            btnImprimir.Click += btnImprimir_Click;
+            // 
+            // brtSalir
+            // 
+            brtSalir.Location = new Point(545, 407);
+            brtSalir.Name = "brtSalir";
+            brtSalir.Size = new Size(101, 30);
+            brtSalir.TabIndex = 4;
+            brtSalir.Text = "Salir";
+            brtSalir.UseVisualStyleBackColor = true;
+            brtSalir.Click += brtSalir_Click;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(40, 391);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(222, 46);
+            pictureBox1.TabIndex = 14;
+            pictureBox1.TabStop = false;
+            // 
             // frmReporte
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(711, 453);
+            Controls.Add(pictureBox1);
+            Controls.Add(brtSalir);
+            Controls.Add(btnImprimir);
             Controls.Add(dgvReporte);
             Controls.Add(lblNombreReporte);
             Name = "frmReporte";
             Text = "frmReporte";
             Load += frmReporte_Load;
             ((System.ComponentModel.ISupportInitialize)dgvReporte).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -70,5 +108,8 @@
         #endregion
         private Label lblNombreReporte;
         private DataGridView dgvReporte;
+        private Button btnImprimir;
+        private Button brtSalir;
+        private PictureBox pictureBox1;
     }
 }

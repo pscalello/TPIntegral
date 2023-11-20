@@ -34,13 +34,13 @@ namespace InterfazForm.Reportes
         {
             AparienciaDatagriedReporte();
 
-            
 
-            if (tipoReporte ==1)
+
+            if (tipoReporte == 1)
             {
                 this.Text = "Reporte de stock crítico";
                 this.lblNombreReporte.Text = "Reporte de stock crítico";
-                
+
                 // No está el swagger de ventas preparado para información para este reporte
                 // El objetivo en este TP es solo mostrar el diseño del reporte
                 // Se completa con una lista de productos y cantidades para este fin.
@@ -114,6 +114,58 @@ namespace InterfazForm.Reportes
                 this.Text = "Reporte de productos más vendidos por categoría";
                 this.lblNombreReporte.Text = "Reporte de productos más vendidos por categoría";
 
+
+                ProductosN productoN = new ProductosN();
+                List<RespuestaConsultaProducto> listaProductos = productoN.listaProductos();
+                //dgvReporte.DataSource = listaProductos;
+
+                dgvReporte.Columns.Add("Categoria", "Categoría");
+                dgvReporte.Columns.Add("Nombre", "Nombre");
+                dgvReporte.Columns.Add("Ventas", "Ventas");
+                // Alinea ventas a la derecha
+                dgvReporte.Columns["Ventas"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+                foreach (RespuestaConsultaProducto producto in listaProductos)
+                {
+                    string categoria = "";
+                    switch (producto.idCategoria)
+                    {
+                        case 1:
+                            categoria = "Audio";
+                            break;
+                        case 2:
+                            categoria = "Celulares";
+                            break;
+                        case 3:
+                            categoria = "Electro Hogar";
+                            break;
+                        case 4:
+                            categoria = "Informática";
+                            break;
+                        case 5:
+                            categoria = "Smart TV";
+                            break;
+                            // ... agregar más casos según sea necesario ...
+                    }
+                    int ventasAleatorias = new Random().Next(10000, 1000001);
+                    dgvReporte.Rows.Add(categoria, producto.nombre, ventasAleatorias);
+                }
+
+                // Ordenar por columna 3 y luego 1
+                dgvReporte.Sort(dgvReporte.Columns[2], System.ComponentModel.ListSortDirection.Ascending);
+                dgvReporte.Sort(dgvReporte.Columns[0], System.ComponentModel.ListSortDirection.Ascending);
+
+                // Deshabilitar la ordenación para todas las columnas
+                foreach (DataGridViewColumn column in dgvReporte.Columns)
+                {
+                    column.SortMode = DataGridViewColumnSortMode.NotSortable;
+                }
+
+                // Establecer el ancho automático para todas las columnas
+                foreach (DataGridViewColumn column in dgvReporte.Columns)
+                {
+                    column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                }
             }
 
 
@@ -121,7 +173,7 @@ namespace InterfazForm.Reportes
         }
 
 
-        private void AparienciaDatagriedReporte ()
+        private void AparienciaDatagriedReporte()
         {
             // Este método intenta que un datagried parezca un pdf a imprimir
             // se puede mejorar, es general para todos los reportes, los 3
@@ -156,6 +208,14 @@ namespace InterfazForm.Reportes
             dgvReporte.AdvancedColumnHeadersBorderStyle.All = DataGridViewAdvancedCellBorderStyle.None;
         }
 
+        private void btnImprimir_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Esta funcionalidad estará habilitada en futuras versiones");
+        }
 
+        private void brtSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
