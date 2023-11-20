@@ -37,11 +37,19 @@ namespace InterfazForm.Reportes
         private void btnReporteStockCtitico_Click(object sender, EventArgs e)
         {
             frmReporte frmReporte = new frmReporte(1);
-            frmReporte.ShowDialog();        
+            frmReporte.ShowDialog();
         }
 
+        private void btnReporteVentasPorVendedor_Click(object sender, EventArgs e)
+        {
+            frmReporte frmReporte = new frmReporte(2);
+            frmReporte.ShowDialog();
+        }
 
-        
-
+        private void btnReporteProductosMasVendidos_Click(object sender, EventArgs e)
+        {
+            frmReporte frmReporte = new frmReporte(3);
+            frmReporte.ShowDialog();
+        }
     }
 }

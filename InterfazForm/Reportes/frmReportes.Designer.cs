@@ -63,6 +63,7 @@
             btnReporteVentasPorVendedor.TabIndex = 15;
             btnReporteVentasPorVendedor.Text = "Ventas por vendedor";
             btnReporteVentasPorVendedor.UseVisualStyleBackColor = true;
+            btnReporteVentasPorVendedor.Click += btnReporteVentasPorVendedor_Click;
             // 
             // btnReporteProductosMasVendidos
             // 
@@ -72,6 +73,7 @@
             btnReporteProductosMasVendidos.TabIndex = 16;
             btnReporteProductosMasVendidos.Text = "Productos más vendido por categoría";
             btnReporteProductosMasVendidos.UseVisualStyleBackColor = true;
+            btnReporteProductosMasVendidos.Click += btnReporteProductosMasVendidos_Click;
             // 
             // frmReportes
             // 

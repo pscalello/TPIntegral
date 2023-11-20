@@ -240,7 +240,19 @@ namespace Negocio
             return UsuarioD.ConsultarUsuarios(Guid.Parse("D347CE99-DB8D-4542-AA97-FC9F3CCE6969"));
         }
 
-
+        public List<RespuestaConsultaUsuarios> listaVendedores()
+        {
+            List<RespuestaConsultaUsuarios> consultaUsuarios = UsuarioD.ConsultarUsuarios(Guid.Parse("D347CE99-DB8D-4542-AA97-FC9F3CCE6969"));
+            List<RespuestaConsultaUsuarios> listaVendedores = new List<RespuestaConsultaUsuarios>();
+            foreach (RespuestaConsultaUsuarios usuarioEnLista in consultaUsuarios)
+            {
+                if (usuarioEnLista.host == 1)
+                {
+                    listaVendedores.Add(usuarioEnLista);
+                }
+            }
+            return listaVendedores;
+        }
 
 
         public bool DarUsuariodeBaja(string nombreUsuarioABorrar, Guid idUsuarioAdmin)

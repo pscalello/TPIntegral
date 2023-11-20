@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Entidad
 {
-    public class RespuestaConsultaProducto
+    public class RespuestaConsultaProducto//
     {
         public Guid id { get; private set; }
 
