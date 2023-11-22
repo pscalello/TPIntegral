@@ -13,6 +13,7 @@ namespace InterfazForm.Reportes
     public partial class frmReportes : Form
     {
         private int Host;
+        private Control controlTooltipActual = null;
 
         public frmReportes(int Host)
         {
@@ -50,6 +51,25 @@ namespace InterfazForm.Reportes
         {
             frmReporte frmReporte = new frmReporte(3);
             frmReporte.ShowDialog();
+        }
+
+        private void frmReportes_MouseMove(object sender, MouseEventArgs e)
+        {
+            Control control = GetChildAtPoint(e.Location);
+            if (control != null)
+            {
+                if (!control.Enabled && controlTooltipActual == null)
+                {
+                    string toolTipString = "La visualización de este reporte solo está disponible para Supervisores y Administradores";
+                    tooltipBotonesDeshabilitados.Show(toolTipString, control, control.Width / 2, control.Height / 2);
+                    controlTooltipActual = control;
+                }
+            }
+            else
+            {
+                if (controlTooltipActual != null) tooltipBotonesDeshabilitados.Hide(controlTooltipActual);
+                controlTooltipActual = null;
+            }
         }
     }
 }

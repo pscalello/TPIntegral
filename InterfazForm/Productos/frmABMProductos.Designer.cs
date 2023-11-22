@@ -41,27 +41,30 @@
             // dgvProductos
             // 
             dgvProductos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvProductos.Location = new Point(24, 24);
+            dgvProductos.Location = new Point(34, 40);
+            dgvProductos.Margin = new Padding(4, 5, 4, 5);
             dgvProductos.Name = "dgvProductos";
             dgvProductos.RowHeadersWidth = 51;
             dgvProductos.RowTemplate.Height = 25;
-            dgvProductos.Size = new Size(752, 350);
+            dgvProductos.Size = new Size(1074, 583);
             dgvProductos.TabIndex = 1;
             // 
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(24, 392);
+            pictureBox1.Location = new Point(34, 653);
+            pictureBox1.Margin = new Padding(4, 5, 4, 5);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(216, 46);
+            pictureBox1.Size = new Size(309, 77);
             pictureBox1.TabIndex = 7;
             pictureBox1.TabStop = false;
             // 
             // btnSalir
             // 
-            btnSalir.Location = new Point(700, 419);
+            btnSalir.Location = new Point(1000, 698);
+            btnSalir.Margin = new Padding(4, 5, 4, 5);
             btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(75, 23);
+            btnSalir.Size = new Size(107, 38);
             btnSalir.TabIndex = 10;
             btnSalir.Text = "Salir";
             btnSalir.UseVisualStyleBackColor = true;
@@ -69,9 +72,10 @@
             // 
             // btnEliminar
             // 
-            btnEliminar.Location = new Point(700, 380);
+            btnEliminar.Location = new Point(1000, 633);
+            btnEliminar.Margin = new Padding(4, 5, 4, 5);
             btnEliminar.Name = "btnEliminar";
-            btnEliminar.Size = new Size(75, 23);
+            btnEliminar.Size = new Size(107, 38);
             btnEliminar.TabIndex = 9;
             btnEliminar.Text = "Eliminar";
             btnEliminar.UseVisualStyleBackColor = true;
@@ -79,9 +83,10 @@
             // 
             // btnAltaProducto
             // 
-            btnAltaProducto.Location = new Point(619, 380);
+            btnAltaProducto.Location = new Point(884, 633);
+            btnAltaProducto.Margin = new Padding(4, 5, 4, 5);
             btnAltaProducto.Name = "btnAltaProducto";
-            btnAltaProducto.Size = new Size(75, 23);
+            btnAltaProducto.Size = new Size(107, 38);
             btnAltaProducto.TabIndex = 8;
             btnAltaProducto.Text = "Agregar";
             btnAltaProducto.UseVisualStyleBackColor = true;
@@ -89,16 +94,17 @@
             // 
             // frmABMProductos
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1143, 750);
             Controls.Add(btnSalir);
             Controls.Add(btnEliminar);
             Controls.Add(btnAltaProducto);
             Controls.Add(pictureBox1);
             Controls.Add(dgvProductos);
+            Margin = new Padding(4, 5, 4, 5);
             Name = "frmABMProductos";
-            Text = "frmABMProductos";
+            Text = "ABM de Productos";
             Load += frmABMProductos_Load;
             ((System.ComponentModel.ISupportInitialize)dgvProductos).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

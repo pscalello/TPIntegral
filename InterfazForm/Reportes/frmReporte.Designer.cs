@@ -42,26 +42,30 @@
             // 
             lblNombreReporte.AutoSize = true;
             lblNombreReporte.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            lblNombreReporte.Location = new Point(31, 25);
+            lblNombreReporte.Location = new Point(44, 42);
+            lblNombreReporte.Margin = new Padding(4, 0, 4, 0);
             lblNombreReporte.Name = "lblNombreReporte";
-            lblNombreReporte.Size = new Size(218, 25);
+            lblNombreReporte.Size = new Size(334, 40);
             lblNombreReporte.TabIndex = 1;
             lblNombreReporte.Text = "NOMBRE DEL REPORTE";
             // 
             // dgvReporte
             // 
             dgvReporte.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvReporte.Location = new Point(31, 68);
+            dgvReporte.Location = new Point(44, 113);
+            dgvReporte.Margin = new Padding(4, 5, 4, 5);
             dgvReporte.Name = "dgvReporte";
+            dgvReporte.RowHeadersWidth = 62;
             dgvReporte.RowTemplate.Height = 25;
-            dgvReporte.Size = new Size(615, 313);
+            dgvReporte.Size = new Size(879, 522);
             dgvReporte.TabIndex = 2;
             // 
             // btnImprimir
             // 
-            btnImprimir.Location = new Point(438, 407);
+            btnImprimir.Location = new Point(626, 678);
+            btnImprimir.Margin = new Padding(4, 5, 4, 5);
             btnImprimir.Name = "btnImprimir";
-            btnImprimir.Size = new Size(101, 30);
+            btnImprimir.Size = new Size(144, 50);
             btnImprimir.TabIndex = 3;
             btnImprimir.Text = "Imprimir";
             btnImprimir.UseVisualStyleBackColor = true;
@@ -69,9 +73,10 @@
             // 
             // brtSalir
             // 
-            brtSalir.Location = new Point(545, 407);
+            brtSalir.Location = new Point(779, 678);
+            brtSalir.Margin = new Padding(4, 5, 4, 5);
             brtSalir.Name = "brtSalir";
-            brtSalir.Size = new Size(101, 30);
+            brtSalir.Size = new Size(144, 50);
             brtSalir.TabIndex = 4;
             brtSalir.Text = "Salir";
             brtSalir.UseVisualStyleBackColor = true;
@@ -80,22 +85,24 @@
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(40, 391);
+            pictureBox1.Location = new Point(57, 652);
+            pictureBox1.Margin = new Padding(4, 5, 4, 5);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(222, 46);
+            pictureBox1.Size = new Size(317, 77);
             pictureBox1.TabIndex = 14;
             pictureBox1.TabStop = false;
             // 
             // frmReporte
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(711, 453);
+            ClientSize = new Size(1016, 755);
             Controls.Add(pictureBox1);
             Controls.Add(brtSalir);
             Controls.Add(btnImprimir);
             Controls.Add(dgvReporte);
             Controls.Add(lblNombreReporte);
+            Margin = new Padding(4, 5, 4, 5);
             Name = "frmReporte";
             Text = "frmReporte";
             Load += frmReporte_Load;

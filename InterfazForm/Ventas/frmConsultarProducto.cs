@@ -19,7 +19,7 @@ namespace InterfazForm.Ventas
         public List<object[]> listaDeProductos = new List<object[]>();
         public frmConsultarProducto(Guid idUsuario)
         {
-            InitializeComponent(); 
+            InitializeComponent();
             frmAltaVenta frmAltaVenta = new frmAltaVenta(idUsuario);
         }
 
@@ -73,7 +73,7 @@ namespace InterfazForm.Ventas
             frmAltaVenta.idCategoria = Int32.Parse(filaSeleccionada.Cells[1].Value.ToString());
         }
 
-        private bool  ValidacionCantidadProducto ()
+        private bool ValidacionCantidadProducto()
         {
             DataGridViewRow filaSeleccionada = dgvProductos.SelectedRows[0];
             if (String.IsNullOrEmpty(txtCantidadProducto.Text))
@@ -86,12 +86,12 @@ namespace InterfazForm.Ventas
                 MessageBox.Show("Debe ingresar una cantidad del producto válida", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            else if (salida> Int32.Parse(filaSeleccionada.Cells[6].Value.ToString()))
+            else if (salida > Int32.Parse(filaSeleccionada.Cells[6].Value.ToString()))
             {
                 MessageBox.Show("Debe ingresar una cantidad del producto que sea menor o igual al stock.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            else if (salida >= 0.75* Int32.Parse(filaSeleccionada.Cells[6].Value.ToString()))
+            else if (salida >= 0.75 * Int32.Parse(filaSeleccionada.Cells[6].Value.ToString()))
             {
                 MessageBox.Show("EL producto seleccionado quedará con un stock menor al 25%");
                 return true;
@@ -103,6 +103,9 @@ namespace InterfazForm.Ventas
             }
         }
 
-
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

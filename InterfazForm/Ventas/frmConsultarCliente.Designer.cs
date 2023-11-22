@@ -37,20 +37,21 @@
             // dgvClientes
             // 
             dgvClientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvClientes.Location = new Point(12, 12);
+            dgvClientes.Location = new Point(17, 20);
+            dgvClientes.Margin = new Padding(4, 5, 4, 5);
             dgvClientes.Name = "dgvClientes";
             dgvClientes.RowHeadersWidth = 62;
             dgvClientes.RowTemplate.Height = 25;
-            dgvClientes.Size = new Size(593, 267);
+            dgvClientes.Size = new Size(847, 445);
             dgvClientes.TabIndex = 10;
             dgvClientes.DoubleClick += dgvClientes_DoubleClick;
             // 
             // btnSeleccionar
             // 
-            btnSeleccionar.Location = new Point(435, 288);
-            btnSeleccionar.Margin = new Padding(3, 2, 3, 2);
+            btnSeleccionar.Location = new Point(621, 480);
+            btnSeleccionar.Margin = new Padding(4, 3, 4, 3);
             btnSeleccionar.Name = "btnSeleccionar";
-            btnSeleccionar.Size = new Size(82, 22);
+            btnSeleccionar.Size = new Size(117, 37);
             btnSeleccionar.TabIndex = 11;
             btnSeleccionar.Text = "Seleccionar";
             btnSeleccionar.UseVisualStyleBackColor = true;
@@ -58,10 +59,10 @@
             // 
             // btnCancelar
             // 
-            btnCancelar.Location = new Point(523, 288);
-            btnCancelar.Margin = new Padding(3, 2, 3, 2);
+            btnCancelar.Location = new Point(747, 480);
+            btnCancelar.Margin = new Padding(4, 3, 4, 3);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(82, 22);
+            btnCancelar.Size = new Size(117, 37);
             btnCancelar.TabIndex = 12;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
@@ -69,15 +70,15 @@
             // 
             // frmConsultarCliente
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(621, 322);
+            ClientSize = new Size(887, 537);
             Controls.Add(btnCancelar);
             Controls.Add(btnSeleccionar);
             Controls.Add(dgvClientes);
-            Margin = new Padding(3, 2, 3, 2);
+            Margin = new Padding(4, 3, 4, 3);
             Name = "frmConsultarCliente";
-            Text = "frmConsultarCliente";
+            Text = "Selección de Cliente";
             Load += frmConsultarCliente_Load;
             ((System.ComponentModel.ISupportInitialize)dgvClientes).EndInit();
             ResumeLayout(false);

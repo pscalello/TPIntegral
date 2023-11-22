@@ -117,7 +117,7 @@
             Controls.Add(dgvClientes);
             Margin = new Padding(4, 5, 4, 5);
             Name = "frmABMClientes";
-            Text = "frmABMClientes";
+            Text = "ABM de Clientes";
             Load += frmABMClientes_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvClientes).EndInit();

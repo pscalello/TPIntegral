@@ -148,6 +148,7 @@ namespace InterfazForm.Ventas
                         {
                             dgvVenta.Rows.Remove(filaSeleccionada);
                         }
+                        CalcularMontoAutom();
                     }
                     else
                     {
@@ -234,6 +235,6 @@ namespace InterfazForm.Ventas
         {
             this.Close();
         }
- 
+
     }
 }

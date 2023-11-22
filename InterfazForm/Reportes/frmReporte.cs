@@ -122,6 +122,10 @@ namespace InterfazForm.Reportes
                 dgvReporte.Columns.Add("Categoria", "Categoría");
                 dgvReporte.Columns.Add("Nombre", "Nombre");
                 dgvReporte.Columns.Add("Ventas", "Ventas");
+                // agrego columna concatenando categoria y ventas para hacer el sorting por ambas.
+                dgvReporte.Columns.Add("Categoria-Ventas", "Categoria-Ventas");
+                // oculto columna Categoria-Ventas, ya que es solo para el sorting.
+                dgvReporte.Columns[3].Visible = false;
                 // Alinea ventas a la derecha
                 dgvReporte.Columns["Ventas"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
@@ -147,13 +151,21 @@ namespace InterfazForm.Reportes
                             break;
                             // ... agregar más casos según sea necesario ...
                     }
-                    int ventasAleatorias = new Random().Next(10000, 1000001);
-                    dgvReporte.Rows.Add(categoria, producto.nombre, ventasAleatorias);
+                    int ventasAleatorias = new Random().Next(10000, 999999);
+                    // este if es solo para el sorting de la ultima columna
+                    if (ventasAleatorias < 100000)
+                    {
+                        dgvReporte.Rows.Add(categoria, producto.nombre, ventasAleatorias, categoria + "0" + Convert.ToString(ventasAleatorias));
+                    } else
+                    {
+                        dgvReporte.Rows.Add(categoria, producto.nombre, ventasAleatorias, categoria + Convert.ToString(ventasAleatorias));
+                    }
                 }
 
                 // Ordenar por columna 3 y luego 1
-                dgvReporte.Sort(dgvReporte.Columns[2], System.ComponentModel.ListSortDirection.Ascending);
-                dgvReporte.Sort(dgvReporte.Columns[0], System.ComponentModel.ListSortDirection.Ascending);
+                dgvReporte.Sort(dgvReporte.Columns[3], System.ComponentModel.ListSortDirection.Descending);
+
+                AgregarSeparadorDeCategorias();
 
                 // Deshabilitar la ordenación para todas las columnas
                 foreach (DataGridViewColumn column in dgvReporte.Columns)
@@ -206,6 +218,33 @@ namespace InterfazForm.Reportes
 
             // Oculta las líneas divisorias de las cabeceras
             dgvReporte.AdvancedColumnHeadersBorderStyle.All = DataGridViewAdvancedCellBorderStyle.None;
+        }
+
+        // agrega las lineas entre cada categoria diferente.
+        private void AgregarSeparadorDeCategorias()
+        { 
+            string ultimaCategoria = "";
+            // un for loop empezando por la ultima fila, y termina en la primera
+            for (int i = (dgvReporte.Rows.Count - 1); i >= 0; i--)
+            {
+                // guardamos el valor de la categoria de la fila
+                string categoriaDeLaFila = dgvReporte.Rows[i].Cells[0].Value.ToString();
+                
+                // que en la primera iteración no revise nada, solo setea el valor de la ultima categoria.
+                if (i == dgvReporte.Rows.Count - 1)
+                {
+                    ultimaCategoria = categoriaDeLaFila;
+                }
+                else
+                {
+                    // si la categoria es diferente a la anterior, inserta la linea separadora.
+                    if (categoriaDeLaFila != ultimaCategoria)
+                    {
+                        dgvReporte.Rows[i].DividerHeight = 1;
+                    }
+                    ultimaCategoria = categoriaDeLaFila;
+                }
+            }
         }
 
         private void btnImprimir_Click(object sender, EventArgs e)

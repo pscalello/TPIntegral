@@ -39,19 +39,20 @@
             // dgvProductos
             // 
             dgvProductos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvProductos.Location = new Point(12, 12);
+            dgvProductos.Location = new Point(17, 20);
+            dgvProductos.Margin = new Padding(4, 5, 4, 5);
             dgvProductos.Name = "dgvProductos";
             dgvProductos.RowHeadersWidth = 51;
             dgvProductos.RowTemplate.Height = 25;
-            dgvProductos.Size = new Size(564, 271);
+            dgvProductos.Size = new Size(806, 452);
             dgvProductos.TabIndex = 2;
             // 
             // btnAgregarProducto
             // 
-            btnAgregarProducto.Location = new Point(408, 323);
-            btnAgregarProducto.Margin = new Padding(3, 2, 3, 2);
+            btnAgregarProducto.Location = new Point(583, 538);
+            btnAgregarProducto.Margin = new Padding(4, 3, 4, 3);
             btnAgregarProducto.Name = "btnAgregarProducto";
-            btnAgregarProducto.Size = new Size(82, 22);
+            btnAgregarProducto.Size = new Size(117, 37);
             btnAgregarProducto.TabIndex = 3;
             btnAgregarProducto.Text = "Agregar";
             btnAgregarProducto.UseVisualStyleBackColor = true;
@@ -59,43 +60,46 @@
             // 
             // btnCancelar
             // 
-            btnCancelar.Location = new Point(496, 323);
-            btnCancelar.Margin = new Padding(3, 2, 3, 2);
+            btnCancelar.Location = new Point(709, 538);
+            btnCancelar.Margin = new Padding(4, 3, 4, 3);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(82, 22);
+            btnCancelar.Size = new Size(117, 37);
             btnCancelar.TabIndex = 4;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
+            btnCancelar.Click += btnCancelar_Click;
             // 
             // lblCantidadProducto
             // 
             lblCantidadProducto.AutoSize = true;
-            lblCantidadProducto.Location = new Point(12, 294);
+            lblCantidadProducto.Location = new Point(17, 490);
+            lblCantidadProducto.Margin = new Padding(4, 0, 4, 0);
             lblCantidadProducto.Name = "lblCantidadProducto";
-            lblCantidadProducto.Size = new Size(58, 15);
+            lblCantidadProducto.Size = new Size(87, 25);
             lblCantidadProducto.TabIndex = 5;
             lblCantidadProducto.Text = "Cantidad:";
             // 
             // txtCantidadProducto
             // 
-            txtCantidadProducto.Location = new Point(76, 289);
+            txtCantidadProducto.Location = new Point(109, 482);
+            txtCantidadProducto.Margin = new Padding(4, 5, 4, 5);
             txtCantidadProducto.Name = "txtCantidadProducto";
-            txtCantidadProducto.Size = new Size(100, 23);
+            txtCantidadProducto.Size = new Size(141, 31);
             txtCantidadProducto.TabIndex = 6;
             // 
             // frmConsultarProducto
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(589, 356);
+            ClientSize = new Size(841, 593);
             Controls.Add(txtCantidadProducto);
             Controls.Add(lblCantidadProducto);
             Controls.Add(btnCancelar);
             Controls.Add(btnAgregarProducto);
             Controls.Add(dgvProductos);
-            Margin = new Padding(3, 2, 3, 2);
+            Margin = new Padding(4, 3, 4, 3);
             Name = "frmConsultarProducto";
-            Text = "frmConsultarProducto";
+            Text = "Selección de Productos";
             Load += frmConsultarProducto_Load;
             ((System.ComponentModel.ISupportInitialize)dgvProductos).EndInit();
             ResumeLayout(false);
