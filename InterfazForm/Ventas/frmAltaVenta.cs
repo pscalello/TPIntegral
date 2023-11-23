@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -166,25 +167,41 @@ namespace InterfazForm.Ventas
         private void CalcularMontoAutom()
         {
             decimal suma = 0;
+            decimal sumaElectroHogar = 0;
             decimal descuentoelectro = 0;
             decimal descuentocliente = 0;
             decimal montofinal = 0;
 
             foreach (DataGridViewRow fila in dgvVenta.Rows)
             {
+
                 if (fila.Cells["MontoTotal"].Value != null && decimal.TryParse(fila.Cells["MontoTotal"].Value.ToString(), out decimal valor))
                 {
                     suma = suma + valor;
+
+                    if (fila.Cells["IdCategoria"].Value != null && int.TryParse(fila.Cells["IdCategoria"].Value.ToString(), out int categoria))
+                    {
+                        if (categoria == 3)
+                        {
+                            sumaElectroHogar = sumaElectroHogar + valor;
+                        }
+
+                    }
                 }
             }
-            descuentoelectro = suma * 0.05m;
+
+            if (sumaElectroHogar > 100000)
+            {
+                descuentoelectro = sumaElectroHogar * 0.05m;
+            }
+
             descuentocliente = suma * 0.05m;
             montofinal = suma - descuentoelectro - descuentocliente;
 
-            txtMontoTotal.Text = suma.ToString();
-            txtPromoElectroHogar.Text = descuentoelectro.ToString();
-            txtPromoClienteNuevo.Text = descuentocliente.ToString();
-            txtMontoFinal.Text = montofinal.ToString();
+            txtMontoTotal.Text = suma.ToString("N2", new CultureInfo("es-ES"));
+            txtPromoElectroHogar.Text = descuentoelectro.ToString("N2", new CultureInfo("es-ES"));
+            txtPromoClienteNuevo.Text = descuentocliente.ToString("N2", new CultureInfo("es-ES"));
+            txtMontoFinal.Text = montofinal.ToString("N2", new CultureInfo("es-ES"));
         }
 
 
