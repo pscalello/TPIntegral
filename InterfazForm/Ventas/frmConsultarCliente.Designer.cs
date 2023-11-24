@@ -31,7 +31,9 @@
             dgvClientes = new DataGridView();
             btnSeleccionar = new Button();
             btnCancelar = new Button();
+            logoCarga = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)dgvClientes).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)logoCarga).BeginInit();
             SuspendLayout();
             // 
             // dgvClientes
@@ -68,11 +70,22 @@
             btnCancelar.UseVisualStyleBackColor = true;
             btnCancelar.Click += btnCancelar_Click;
             // 
+            // logoCarga
+            // 
+            logoCarga.Image = Properties.Resources.icnLogoCarga;
+            logoCarga.Location = new Point(569, 480);
+            logoCarga.Margin = new Padding(4, 5, 4, 5);
+            logoCarga.Name = "logoCarga";
+            logoCarga.Size = new Size(44, 51);
+            logoCarga.TabIndex = 17;
+            logoCarga.TabStop = false;
+            // 
             // frmConsultarCliente
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(887, 537);
+            Controls.Add(logoCarga);
             Controls.Add(btnCancelar);
             Controls.Add(btnSeleccionar);
             Controls.Add(dgvClientes);
@@ -81,6 +94,7 @@
             Text = "Selección de Cliente";
             Load += frmConsultarCliente_Load;
             ((System.ComponentModel.ISupportInitialize)dgvClientes).EndInit();
+            ((System.ComponentModel.ISupportInitialize)logoCarga).EndInit();
             ResumeLayout(false);
         }
 
@@ -89,5 +103,6 @@
         private DataGridView dgvClientes;
         private Button btnSeleccionar;
         private Button btnCancelar;
+        private PictureBox logoCarga;
     }
 }

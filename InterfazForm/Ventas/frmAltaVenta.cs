@@ -24,6 +24,8 @@ namespace InterfazForm.Ventas
 
         public static Guid idCliente { get; set; }
 
+        public static bool esClienteNuevo { get; set; }
+
         public static Guid idProducto { get; set; }
 
         public static string nombreProducto { get; set; }
@@ -84,6 +86,7 @@ namespace InterfazForm.Ventas
         {
             frmConsultarCliente frmConsultarCliente = new frmConsultarCliente();
             frmConsultarCliente.ShowDialog();
+            CalcularMontoAutom();
         }
 
         private void frmAltaVenta_Activated(object sender, EventArgs e) //refresca el datagrid
@@ -153,13 +156,13 @@ namespace InterfazForm.Ventas
                     }
                     else
                     {
-                        MessageBox.Show("Debe seleccionar una fila de la grilla a eliminar.");
+                        MessageBox.Show("Debe seleccionar al menos una fila de la grilla a eliminar.");
                     }
                 }
             }
             else
             {
-                MessageBox.Show("Debe seleccionar una fila de la grilla a eliminar.");
+                MessageBox.Show("Debe seleccionar al menos una fila de la grilla a eliminar.");
             }
 
         }
@@ -195,7 +198,11 @@ namespace InterfazForm.Ventas
                 descuentoelectro = sumaElectroHogar * 0.05m;
             }
 
-            descuentocliente = suma * 0.05m;
+            if (esClienteNuevo)
+            {
+                descuentocliente = (suma - descuentoelectro) * 0.05m;
+            }
+            
             montofinal = suma - descuentoelectro - descuentocliente;
 
             txtMontoTotal.Text = suma.ToString("N2", new CultureInfo("es-ES"));

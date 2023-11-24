@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Datos;
 using Entidad;
 using Negocio;
 
@@ -15,6 +16,7 @@ namespace InterfazForm.Ventas
     public partial class frmConsultarCliente : Form
     {
         private ClienteN clienteN = new ClienteN();
+        private VentaN ventaN = new VentaN();
         public frmConsultarCliente()
         {
             InitializeComponent();
@@ -24,6 +26,7 @@ namespace InterfazForm.Ventas
         private void frmConsultarCliente_Load(object sender, EventArgs e)
         {
             llenaDataGriedClientes();
+            logoCarga.Visible = false;
         }
 
         private void llenaDataGriedClientes()
@@ -48,6 +51,7 @@ namespace InterfazForm.Ventas
 
         private void btnSeleccionar_Click(object sender, EventArgs e)
         {
+            logoCarga.Visible = true;
             DatosCliente();
             this.Close();
         }
@@ -57,6 +61,8 @@ namespace InterfazForm.Ventas
             DataGridViewRow filaSeleccionada = dgvClientes.SelectedRows[0];
             frmAltaVenta.nombreCliente = filaSeleccionada.Cells[1].Value.ToString() + " " + filaSeleccionada.Cells[2].Value.ToString();
             frmAltaVenta.idCliente = Guid.Parse(filaSeleccionada.Cells[0].Value.ToString());
+            List<RespuestaConsultaVenta> listaVentas = ventaN.listarVentas();
+            frmAltaVenta.esClienteNuevo = !listaVentas.Any((venta) => venta.cliente == frmAltaVenta.nombreCliente);
         }
 
         private void dgvClientes_DoubleClick(object sender, EventArgs e)
